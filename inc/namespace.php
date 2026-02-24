@@ -174,7 +174,7 @@ function render_block_search( string $block_content, array $block, \WP_Block $in
 
 	$query_var = empty( $instance->context['query']['inherit'] )
 		? sprintf( 'query-%d-s', $instance->context['queryId'] ?? 0 )
-		: 's';
+		: 'query-s';
 
 	$action = str_replace( '/page/'. get_query_var( 'paged', 1 ), '', add_query_arg( [ $query_var => '' ] ) );
 
