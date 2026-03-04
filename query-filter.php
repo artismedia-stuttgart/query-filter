@@ -31,7 +31,6 @@ $queryFilterUpdateChecker = PucFactory::buildUpdateChecker(
 
 //Set the branch that contains the stable release.
 $queryFilterUpdateChecker->setBranch('main');
-$queryFilterUpdateChecker->setAuthentication('');
 
 require_once __DIR__ . '/inc/namespace.php';
 
