@@ -71,17 +71,29 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						{ label || __( 'Content Type', 'query-filter' ) }
 					</label>
 				) }
-				<select
-					className="wp-block-query-filter-post-type__select wp-block-query-filter__select"
-					inert
-				>
-					<option>
-						{ emptyLabel || __( 'All', 'query-filter' ) }
-					</option>
+				<ul className="wp-block-query-filter-post-type__list wp-block-query-filter__list">
+					<li className="wp-block-query-filter-post-type__item wp-block-query-filter__item is-active">
+						<a href="#">
+							<span className="wp-block-query-filter__icon"></span>
+							<span className="wp-block-query-filter__label-text">
+								{ emptyLabel || __( 'All', 'query-filter' ) }
+							</span>
+						</a>
+					</li>
 					{ postTypes.map( ( type ) => (
-						<option key={ type.slug }>{ type.name }</option>
+						<li
+							key={ type.slug }
+							className="wp-block-query-filter-post-type__item wp-block-query-filter__item"
+						>
+							<a href="#">
+								<span className="wp-block-query-filter__icon"></span>
+								<span className="wp-block-query-filter__label-text">
+									{ type.name }
+								</span>
+							</a>
+						</li>
 					) ) }
-				</select>
+				</ul>
 			</div>
 		</>
 	);

@@ -45,10 +45,24 @@ if ( empty( $post_types ) ) {
 	<label class="wp-block-query-filter-post-type__label wp-block-query-filter__label<?php echo $attributes['showLabel'] ? '' : ' screen-reader-text' ?>" for="<?php echo esc_attr( $id ); ?>">
 		<?php echo esc_html( $attributes['label'] ?? __( 'Content Type', 'query-filter' ) ); ?>
 	</label>
-	<select class="wp-block-query-filter-post-type__select wp-block-query-filter__select" id="<?php echo esc_attr( $id ); ?>" data-wp-on--change="actions.navigate">
-		<option value="<?php echo esc_attr( $base_url ) ?>"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'All', 'query-filter' ) ); ?></option>
+	<ul class="wp-block-query-filter-post-type__list wp-block-query-filter__list" id="<?php echo esc_attr( $id ); ?>">
+		<li class="wp-block-query-filter-post-type__item wp-block-query-filter__item <?php echo empty( $_GET[ $query_var ] ) ? 'is-active' : '' ?>">
+			<a href="<?php echo esc_url( $base_url ) ?>" data-wp-on--click="actions.navigate">
+				<span class="wp-block-query-filter__icon"></span>
+				<span class="wp-block-query-filter__label-text"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'All', 'query-filter' ) ); ?></span>
+			</a>
+		</li>
 		<?php foreach ( $post_types as $post_type ) : ?>
-			<option value="<?php echo esc_attr( add_query_arg( [ $query_var => $post_type->name, $page_var => false ], $base_url ) ) ?>" <?php selected( $post_type->name, wp_unslash( $_GET[ $query_var ] ?? '' ) ); ?>><?php echo esc_html( $post_type->label ); ?></option>
+			<?php 
+				$is_active = ( $post_type->name === wp_unslash( $_GET[ $query_var ] ?? '' ) );
+				$url = add_query_arg( [ $query_var => $post_type->name, $page_var => false ], $base_url );
+			?>
+			<li class="wp-block-query-filter-post-type__item wp-block-query-filter__item <?php echo $is_active ? 'is-active' : '' ?>">
+				<a href="<?php echo esc_url( $url ) ?>" data-wp-on--click="actions.navigate">
+					<span class="wp-block-query-filter__icon"></span>
+					<span class="wp-block-query-filter__label-text"><?php echo esc_html( $post_type->label ); ?></span>
+				</a>
+			</li>
 		<?php endforeach; ?>
-	</select>
+	</ul>
 </div>

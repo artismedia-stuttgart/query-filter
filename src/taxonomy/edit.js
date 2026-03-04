@@ -92,17 +92,29 @@ export default function Edit( { attributes, setAttributes } ) {
 						{ label }
 					</label>
 				) }
-				<select
-					className="wp-block-query-filter-taxonomy__select wp-block-query-filter__select"
-					inert
-				>
-					<option>
-						{ emptyLabel || __( 'All', 'query-filter' ) }
-					</option>
+				<ul className="wp-block-query-filter-taxonomy__list wp-block-query-filter__list">
+					<li className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item is-active">
+						<a href="#">
+							<span className="wp-block-query-filter__icon"></span>
+							<span className="wp-block-query-filter__label-text">
+								{ emptyLabel || __( 'All', 'query-filter' ) }
+							</span>
+						</a>
+					</li>
 					{ terms.map( ( term ) => (
-						<option key={ term.slug }>{ term.name }</option>
+						<li
+							key={ term.slug }
+							className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item"
+						>
+							<a href="#">
+								<span className="wp-block-query-filter__icon"></span>
+								<span className="wp-block-query-filter__label-text">
+									{ term.name }
+								</span>
+							</a>
+						</li>
 					) ) }
-				</select>
+				</ul>
 			</div>
 		</>
 	);

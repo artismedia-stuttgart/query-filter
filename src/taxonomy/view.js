@@ -18,7 +18,8 @@ const { state } = store( 'query-filter', {
 			const { actions } = yield import(
 				'@wordpress/interactivity-router'
 			);
-			yield actions.navigate( e.target.value );
+			const url = e.currentTarget.href || e.target.value || e.target.closest( 'a' )?.href;
+			yield actions.navigate( url );
 		},
 		*search( e ) {
 			e.preventDefault();

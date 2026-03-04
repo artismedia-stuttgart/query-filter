@@ -1,1 +1,1 @@
-@view-transition{navigation:auto}.wp-block-query-filter{display:flex;flex-direction:column;justify-content:stretch}
+@view-transition{navigation:auto}.wp-block-query-filter{display:flex;flex-direction:column;justify-content:stretch}.wp-block-query-filter__list{display:flex;flex-wrap:wrap;gap:1em;list-style:none;margin:0;padding:0}.wp-block-query-filter__item.is-active a{font-weight:700;text-decoration:underline}.wp-block-query-filter__item a{align-items:center;color:inherit;display:flex;text-decoration:none}.wp-block-query-filter__icon{display:inline-flex;margin-left:.5em}
