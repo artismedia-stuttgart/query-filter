@@ -54,6 +54,26 @@
 		"showLabel": {
 			"type": "boolean",
 			"default": true
+		},
+		"showIcons": {
+			"type": "boolean",
+			"default": true
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 24
+		},
+		"allLast": {
+			"type": "boolean",
+			"default": false
+		},
+		"defaultTerm": {
+			"type": "string",
+			"default": ""
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "query-filter",

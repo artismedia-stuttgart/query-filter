@@ -23,6 +23,11 @@ function bootstrap() : void {
 	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\action_wp_enqueue_scripts' );
 
+	// Settings.
+	add_action( 'admin_menu', __NAMESPACE__ . '\\register_settings_page' );
+	add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
+	add_action( 'admin_init', __NAMESPACE__ . '\\admin_handle_save' );
+
 	// Search.
 	add_filter( 'render_block_core/search', __NAMESPACE__ . '\\render_block_search', 10, 3 );
 
@@ -52,6 +57,207 @@ function action_wp_enqueue_scripts() : void {
 function register_blocks() : void {
 	register_block_type( ROOT_DIR . '/build/taxonomy' );
 	register_block_type( ROOT_DIR . '/build/post-type' );
+}
+
+/**
+ * Register the settings page.
+ *
+ * @return void
+ */
+function register_settings_page() : void {
+	add_options_page(
+		__( 'Query Loop Filter Settings', 'query-filter' ),
+		__( 'Query Loop Filter', 'query-filter' ),
+		'manage_options',
+		'query-filter-settings',
+		__NAMESPACE__ . '\\render_settings_page'
+	);
+}
+
+/**
+ * Register the settings.
+ *
+ * @return void
+ */
+function register_settings() : void {
+	register_setting(
+		'query-filter-settings',
+		'query_filter_term_icons',
+		[
+			'type' => 'object',
+			'show_in_rest' => [
+				'schema' => [
+					'type' => 'object',
+					'additionalProperties' => [
+						'type' => 'integer',
+					],
+				],
+			],
+			'default' => [],
+		]
+	);
+}
+
+/**
+ * Handle form submission for the settings page.
+ *
+ * @return void
+ */
+function admin_handle_save() : void {
+	if ( ! is_admin() || ! isset( $_POST['query_filter_settings_nonce'] ) ) {
+		return;
+	}
+
+	if ( ! wp_verify_nonce( $_POST['query_filter_settings_nonce'], 'query_filter_save_settings' ) ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$icons = isset( $_POST['term_icons'] ) ? (array) $_POST['term_icons'] : [];
+	$icons = array_map( 'absint', array_filter( $icons ) );
+
+	update_option( 'query_filter_term_icons', $icons );
+
+	wp_safe_redirect( add_query_arg( 'updated', 'true', wp_get_referer() ) );
+	exit;
+}
+
+/**
+ * Render the settings page.
+ *
+ * @return void
+ */
+function render_settings_page() : void {
+	wp_enqueue_media();
+	$term_icons = get_option( 'query_filter_term_icons', [] );
+	$taxonomies = get_taxonomies( [ 'publicly_queryable' => true ], 'objects' );
+	?>
+	<style>
+		.query-filter-settings-table {
+			width: auto;
+			min-width: 600px;
+			margin-bottom: 2em;
+		}
+		.query-filter-settings-table th, 
+		.query-filter-settings-table td {
+			vertical-align: middle;
+		}
+		.col-name {
+			min-width: 200px;
+		}
+		.col-icon {
+			width: 100px;
+			min-width: 100px;
+			text-align: center;
+		}
+		.col-actions {
+			width: 250px;
+			min-width: 250px;
+		}
+		.term-icon-preview {
+			margin: 0 auto;
+		}
+	</style>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Query Loop Filter Settings', 'query-filter' ); ?></h1>
+		
+		<?php if ( isset( $_GET['updated'] ) ) : ?>
+			<div class="updated notice is-dismissible">
+				<p><?php esc_html_e( 'Settings saved.', 'query-filter' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<form method="post" action="">
+			<?php wp_nonce_field( 'query_filter_save_settings', 'query_filter_settings_nonce' ); ?>
+			
+			<?php foreach ( $taxonomies as $taxonomy ) : ?>
+				<?php 
+				$terms = get_terms( [
+					'taxonomy'   => $taxonomy->name,
+					'hide_empty' => false,
+				] );
+				if ( empty( $terms ) || is_wp_error( $terms ) ) continue;
+				?>
+				<h2><?php echo esc_html( $taxonomy->label ); ?></h2>
+				<table class="widefat fixed striped query-filter-settings-table">
+					<thead>
+						<tr>
+							<th class="col-name"><?php esc_html_e( 'Term Name', 'query-filter' ); ?></th>
+							<th class="col-icon"><?php esc_html_e( 'Icon', 'query-filter' ); ?></th>
+							<th class="col-actions"><?php esc_html_e( 'Actions', 'query-filter' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( $terms as $term ) : ?>
+							<?php $icon_id = $term_icons[ $term->term_id ] ?? 0; ?>
+							<tr>
+								<td class="col-name"><?php echo esc_html( $term->name ); ?></td>
+								<td class="col-icon">
+									<div class="term-icon-preview" id="preview-<?php echo esc_attr( $term->term_id ); ?>" style="width: 50px; height: 50px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #fff;">
+										<?php if ( $icon_id ) : ?>
+											<?php echo wp_get_attachment_image( $icon_id, [ 50, 50 ], false, [ 'style' => 'max-width:100%; height:auto; object-fit:contain;' ] ); ?>
+										<?php endif; ?>
+									</div>
+									<input type="hidden" name="term_icons[<?php echo esc_attr( $term->term_id ); ?>]" id="input-<?php echo esc_attr( $term->term_id ); ?>" value="<?php echo esc_attr( $icon_id ); ?>">
+								</td>
+								<td class="col-actions">
+									<button type="button" class="button select-term-icon" data-term-id="<?php echo esc_attr( $term->term_id ); ?>">
+										<?php esc_html_e( 'Select Icon', 'query-filter' ); ?>
+									</button>
+									<button type="button" class="button remove-term-icon" data-term-id="<?php echo esc_attr( $term->term_id ); ?>" <?php echo $icon_id ? '' : 'style="display:none;"'; ?>>
+										<?php esc_html_e( 'Remove', 'query-filter' ); ?>
+									</button>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endforeach; ?>
+
+			<p class="submit">
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'query-filter' ); ?>">
+			</p>
+		</form>
+	</div>
+
+	<script>
+	jQuery(document).ready(function($) {
+		var frame;
+		$('.select-term-icon').on('click', function(e) {
+			e.preventDefault();
+			var $button = $(this);
+			var termId = $button.data('term-id');
+			
+			frame = wp.media({
+				title: '<?php esc_attr_e( 'Select Icon', 'query-filter' ); ?>',
+				button: { text: '<?php esc_attr_e( 'Use Icon', 'query-filter' ); ?>' },
+				multiple: false
+			});
+
+			frame.on('select', function() {
+				var attachment = frame.state().get('selection').first().toJSON();
+				$('#input-' + termId).val(attachment.id);
+				var img = attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+				$('#preview-' + termId).html('<img src="' + img + '" style="max-width:100%; height:auto;">');
+				$button.next('.remove-term-icon').show();
+			});
+
+			frame.open();
+		});
+
+		$('.remove-term-icon').on('click', function(e) {
+			e.preventDefault();
+			var termId = $(this).data('term-id');
+			$('#input-' + termId).val('');
+			$('#preview-' + termId).empty();
+			$(this).hide();
+		});
+	});
+	</script>
+	<?php
 }
 
 /**

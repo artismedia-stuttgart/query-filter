@@ -5,11 +5,22 @@ import {
 	SelectControl,
 	TextControl,
 	ToggleControl,
+	RangeControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { taxonomy, emptyLabel, label, showLabel } = attributes;
+	const {
+		taxonomy,
+		emptyLabel,
+		label,
+		showLabel,
+		showIcons,
+		iconSize,
+		allLast,
+		defaultTerm,
+		showCount,
+	} = attributes;
 
 	const taxonomies = useSelect(
 		( select ) => {
@@ -29,16 +40,87 @@ export default function Edit( { attributes, setAttributes } ) {
 		[ taxonomy ]
 	);
 
+	const termIcons = useSelect( ( select ) => {
+		return (
+			select( 'core' ).getEntityRecord( 'root', 'site' )
+				?.query_filter_term_icons || {}
+		);
+	}, [] );
+
 	const terms = useSelect(
 		( select ) => {
-			return (
+			const records =
 				select( 'core' ).getEntityRecords( 'taxonomy', taxonomy, {
 					number: 50,
-				} ) || []
-			);
+				} ) || [];
+
+			return records.map( ( term ) => {
+				const iconId = termIcons[ term.id ];
+				const iconMedia = iconId
+					? select( 'core' ).getMedia( iconId )
+					: null;
+				return {
+					...term,
+					iconUrl:
+						iconMedia?.media_details?.sizes?.thumbnail
+							?.source_url || iconMedia?.source_url,
+				};
+			} );
 		},
-		[ taxonomy ]
+		[ taxonomy, termIcons ]
 	);
+
+	const allItem = (
+		<li
+			key="all"
+			className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item is-active"
+		>
+			<a href="#">
+				<span
+					className="wp-block-query-filter__icon"
+					style={ {
+						width: showIcons ? iconSize : undefined,
+						height: showIcons ? iconSize : undefined,
+					} }
+				></span>
+				<span className="wp-block-query-filter__label-text">
+					{ emptyLabel || __( 'All', 'query-filter' ) }
+				</span>
+			</a>
+		</li>
+	);
+
+	const termItems = terms.map( ( term ) => (
+		<li
+			key={ term.slug }
+			className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item"
+		>
+			<a href="#">
+				<span
+					className="wp-block-query-filter__icon"
+					style={ {
+						width: showIcons ? iconSize : undefined,
+						height: showIcons ? iconSize : undefined,
+					} }
+				>
+					{ showIcons && term.iconUrl && (
+						<img
+							src={ term.iconUrl }
+							alt=""
+							style={ {
+								width: iconSize,
+								height: iconSize,
+								objectFit: 'contain',
+							} }
+						/>
+					) }
+				</span>
+				<span className="wp-block-query-filter__label-text">
+					{ term.name } { showCount && `(${ term.count })` }
+				</span>
+			</a>
+		</li>
+	) );
 
 	return (
 		<>
@@ -76,6 +158,50 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { showLabel } )
 						}
 					/>
+					<ToggleControl
+						label={ __( 'Show Icons', 'query-filter' ) }
+						checked={ showIcons }
+						onChange={ ( showIcons ) =>
+							setAttributes( { showIcons } )
+						}
+					/>
+					{ showIcons && (
+						<RangeControl
+							label={ __( 'Icon Size', 'query-filter' ) }
+							value={ iconSize }
+							onChange={ ( iconSize ) =>
+								setAttributes( { iconSize } )
+							}
+							min={ 16 }
+							max={ 128 }
+						/>
+					) }
+					<ToggleControl
+						label={ __( 'Show Post Count', 'query-filter' ) }
+						checked={ showCount }
+						onChange={ ( showCount ) =>
+							setAttributes( { showCount } )
+						}
+					/>
+					<ToggleControl
+						label={ __( 'Sort "All" last', 'query-filter' ) }
+						checked={ allLast }
+						onChange={ ( allLast ) => setAttributes( { allLast } ) }
+					/>
+					<SelectControl
+						label={ __( 'Default Selected Term', 'query-filter' ) }
+						value={ defaultTerm }
+						options={ [
+							{ label: __( 'None', 'query-filter' ), value: '' },
+							...terms.map( ( term ) => ( {
+								label: term.name,
+								value: term.slug,
+							} ) ),
+						] }
+						onChange={ ( defaultTerm ) =>
+							setAttributes( { defaultTerm } )
+						}
+					/>
 					<TextControl
 						label={ __( 'Empty Choice Label', 'query-filter' ) }
 						value={ emptyLabel }
@@ -93,27 +219,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					</label>
 				) }
 				<ul className="wp-block-query-filter-taxonomy__list wp-block-query-filter__list">
-					<li className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item is-active">
-						<a href="#">
-							<span className="wp-block-query-filter__icon"></span>
-							<span className="wp-block-query-filter__label-text">
-								{ emptyLabel || __( 'All', 'query-filter' ) }
-							</span>
-						</a>
-					</li>
-					{ terms.map( ( term ) => (
-						<li
-							key={ term.slug }
-							className="wp-block-query-filter-taxonomy__item wp-block-query-filter__item"
-						>
-							<a href="#">
-								<span className="wp-block-query-filter__icon"></span>
-								<span className="wp-block-query-filter__label-text">
-									{ term.name }
-								</span>
-							</a>
-						</li>
-					) ) }
+					{ ! allLast && allItem }
+					{ termItems }
+					{ allLast && allItem }
 				</ul>
 			</div>
 		</>
