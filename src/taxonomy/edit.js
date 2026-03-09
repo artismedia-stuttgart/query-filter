@@ -84,7 +84,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					} }
 				></span>
 				<span className="wp-block-query-filter__label-text">
-					{ emptyLabel || __( 'All', 'query-filter' ) }
+					{ emptyLabel || __( 'Alle', 'query-filter' ) }
 				</span>
 			</a>
 		</li>
@@ -125,9 +125,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Taxonomy Settings', 'query-filter' ) }>
+				<PanelBody
+					title={ __( 'Taxonomie-Einstellungen', 'query-filter' ) }
+				>
 					<SelectControl
-						label={ __( 'Select Taxonomy', 'query-filter' ) }
+						label={ __( 'Taxonomie auswählen', 'query-filter' ) }
 						value={ taxonomy }
 						options={ ( taxonomies || [] ).map( ( taxonomy ) => ( {
 							label: taxonomy.name,
@@ -143,23 +145,23 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<TextControl
-						label={ __( 'Label', 'query-filter' ) }
+						label={ __( 'Beschriftung', 'query-filter' ) }
 						value={ label }
 						help={ __(
-							'If empty then no label will be shown',
+							'Wenn leer, wird keine Beschriftung angezeigt',
 							'query-filter'
 						) }
 						onChange={ ( label ) => setAttributes( { label } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Label', 'query-filter' ) }
+						label={ __( 'Beschriftung anzeigen', 'query-filter' ) }
 						checked={ showLabel }
 						onChange={ ( showLabel ) =>
 							setAttributes( { showLabel } )
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Show Icons', 'query-filter' ) }
+						label={ __( 'Icons anzeigen', 'query-filter' ) }
 						checked={ showIcons }
 						onChange={ ( showIcons ) =>
 							setAttributes( { showIcons } )
@@ -167,7 +169,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					{ showIcons && (
 						<RangeControl
-							label={ __( 'Icon Size', 'query-filter' ) }
+							label={ __( 'Icon-Größe', 'query-filter' ) }
 							value={ iconSize }
 							onChange={ ( iconSize ) =>
 								setAttributes( { iconSize } )
@@ -177,22 +179,34 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					) }
 					<ToggleControl
-						label={ __( 'Show Post Count', 'query-filter' ) }
+						label={ __(
+							'Beitragszähler anzeigen',
+							'query-filter'
+						) }
 						checked={ showCount }
 						onChange={ ( showCount ) =>
 							setAttributes( { showCount } )
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Sort "All" last', 'query-filter' ) }
+						label={ __(
+							'"Alle" am Ende sortieren',
+							'query-filter'
+						) }
 						checked={ allLast }
 						onChange={ ( allLast ) => setAttributes( { allLast } ) }
 					/>
 					<SelectControl
-						label={ __( 'Default Selected Term', 'query-filter' ) }
+						label={ __(
+							'Standardmäßig ausgewählt',
+							'query-filter'
+						) }
 						value={ defaultTerm }
 						options={ [
-							{ label: __( 'None', 'query-filter' ), value: '' },
+							{
+								label: __( 'Keiner', 'query-filter' ),
+								value: '',
+							},
 							...terms.map( ( term ) => ( {
 								label: term.name,
 								value: term.slug,
@@ -203,9 +217,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<TextControl
-						label={ __( 'Empty Choice Label', 'query-filter' ) }
+						label={ __(
+							'Beschriftung für "Alle"',
+							'query-filter'
+						) }
 						value={ emptyLabel }
-						placeholder={ __( 'All', 'query-filter' ) }
+						placeholder={ __( 'Alle', 'query-filter' ) }
 						onChange={ ( emptyLabel ) =>
 							setAttributes( { emptyLabel } )
 						}

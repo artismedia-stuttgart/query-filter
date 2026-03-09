@@ -21,7 +21,6 @@ function bootstrap() : void {
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\\pre_get_posts_transpose_query_vars' );
 	add_filter( 'block_type_metadata', __NAMESPACE__ . '\\filter_block_type_metadata', 10 );
 	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
-	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\action_wp_enqueue_scripts' );
 
 	// Settings.
 	add_action( 'admin_menu', __NAMESPACE__ . '\\register_settings_page' );
@@ -36,27 +35,13 @@ function bootstrap() : void {
 }
 
 /**
- * Fires when scripts and styles are enqueued.
- *
- * @TODO work out why this doesn't work but building interactivity via the blocks does.
- */
-function action_wp_enqueue_scripts() : void {
-	$asset = include ROOT_DIR . '/build/taxonomy/index.asset.php';
-	wp_register_style(
-		'query-filter-view',
-		plugins_url( '/build/taxonomy/index.css', PLUGIN_FILE ),
-		[],
-		$asset['version']
-	);
-}
-
-/**
  * Fires after WordPress has finished loading but before any headers are sent.
  *
  */
 function register_blocks() : void {
 	register_block_type( ROOT_DIR . '/build/taxonomy' );
 	register_block_type( ROOT_DIR . '/build/post-type' );
+	register_block_type( ROOT_DIR . '/build/sort' );
 }
 
 /**
@@ -66,8 +51,8 @@ function register_blocks() : void {
  */
 function register_settings_page() : void {
 	add_options_page(
-		__( 'Query Loop Filter Settings', 'query-filter' ),
-		__( 'Query Loop Filter', 'query-filter' ),
+		__( 'Query Filter Einstellungen', 'query-filter' ),
+		__( 'Query Filter', 'query-filter' ),
 		'manage_options',
 		'query-filter-settings',
 		__NAMESPACE__ . '\\render_settings_page'
@@ -162,11 +147,11 @@ function render_settings_page() : void {
 		}
 	</style>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Query Loop Filter Settings', 'query-filter' ); ?></h1>
+		<h1><?php esc_html_e( 'Query Filter Einstellungen', 'query-filter' ); ?></h1>
 		
 		<?php if ( isset( $_GET['updated'] ) ) : ?>
 			<div class="updated notice is-dismissible">
-				<p><?php esc_html_e( 'Settings saved.', 'query-filter' ); ?></p>
+				<p><?php esc_html_e( 'Einstellungen gespeichert.', 'query-filter' ); ?></p>
 			</div>
 		<?php endif; ?>
 
@@ -185,9 +170,9 @@ function render_settings_page() : void {
 				<table class="widefat fixed striped query-filter-settings-table">
 					<thead>
 						<tr>
-							<th class="col-name"><?php esc_html_e( 'Term Name', 'query-filter' ); ?></th>
+							<th class="col-name"><?php esc_html_e( 'Name', 'query-filter' ); ?></th>
 							<th class="col-icon"><?php esc_html_e( 'Icon', 'query-filter' ); ?></th>
-							<th class="col-actions"><?php esc_html_e( 'Actions', 'query-filter' ); ?></th>
+							<th class="col-actions"><?php esc_html_e( 'Aktionen', 'query-filter' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -205,10 +190,10 @@ function render_settings_page() : void {
 								</td>
 								<td class="col-actions">
 									<button type="button" class="button select-term-icon" data-term-id="<?php echo esc_attr( $term->term_id ); ?>">
-										<?php esc_html_e( 'Select Icon', 'query-filter' ); ?>
+										<?php esc_html_e( 'Icon auswählen', 'query-filter' ); ?>
 									</button>
 									<button type="button" class="button remove-term-icon" data-term-id="<?php echo esc_attr( $term->term_id ); ?>" <?php echo $icon_id ? '' : 'style="display:none;"'; ?>>
-										<?php esc_html_e( 'Remove', 'query-filter' ); ?>
+										<?php esc_html_e( 'Entfernen', 'query-filter' ); ?>
 									</button>
 								</td>
 							</tr>
@@ -218,7 +203,7 @@ function render_settings_page() : void {
 			<?php endforeach; ?>
 
 			<p class="submit">
-				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'query-filter' ); ?>">
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e( 'Einstellungen speichern', 'query-filter' ); ?>">
 			</p>
 		</form>
 	</div>
@@ -232,8 +217,8 @@ function render_settings_page() : void {
 			var termId = $button.data('term-id');
 			
 			frame = wp.media({
-				title: '<?php esc_attr_e( 'Select Icon', 'query-filter' ); ?>',
-				button: { text: '<?php esc_attr_e( 'Use Icon', 'query-filter' ); ?>' },
+				title: '<?php esc_attr_e( 'Icon auswählen', 'query-filter' ); ?>',
+				button: { text: '<?php esc_attr_e( 'Icon verwenden', 'query-filter' ); ?>' },
 				multiple: false
 			});
 
@@ -289,10 +274,13 @@ function pre_get_posts_transpose_query_vars( WP_Query $query ) : void {
 	}
 
 	$prefix = $query->is_main_query() ? 'query-' : "query-{$query_id}-";
+	
 	$tax_query = [];
 	$valid_keys = [
 		'post_type' => $query->is_search() ? 'any' : 'post',
 		's' => '',
+		'orderby' => $query->get( 'orderby' ),
+		'order' => $query->get( 'order' ),
 	];
 
 	// Preserve valid params for later retrieval.

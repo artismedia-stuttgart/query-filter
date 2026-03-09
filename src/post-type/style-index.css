@@ -1,7 +1,3 @@
-@view-transition {
-  navigation: auto;
-}
-
 /* Base Wrapper */
 .wp-block-query-filter {
   display: flex;
@@ -26,7 +22,6 @@
   margin: 0 !important; /* Override theme defaults */
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   gap: 0.5rem;
 }
 
@@ -61,24 +56,11 @@
   font-weight: 600;
 }
 
-/* Icons and Counts */
+/* Icons */
 .wp-block-query-filter__icon {
   margin-right: 0.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.wp-block-query-filter__icon img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.wp-block-query-filter__count {
-  margin-left: 0.35rem;
-  opacity: 0.6;
-  font-size: 0.8em;
-  font-weight: normal;
 }

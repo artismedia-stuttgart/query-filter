@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "query-filter/sort",
+  "version": "0.1.0",
+  "title": "Query Filter Sortierung",
+  "category": "theme",
+  "icon": "sort",
+  "description": "Ermöglicht Besuchern das Sortieren von Query Loops.",
+  "ancestor": [
+    "core/query"
+  ],
+  "usesContext": [
+    "queryId",
+    "query"
+  ],
+  "supports": {
+    "html": false,
+    "className": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Sortieren nach:"
+    },
+    "layout": {
+      "type": "string",
+      "default": "links"
+    }
+  },
+  "textdomain": "query-filter",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css",
+  "viewScriptModule": "file:../taxonomy/view.js",
+  "render": "file:./render.php"
+}

@@ -1,74 +1,96 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import {
+	PanelBody,
+	FormTokenField,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
-export default function Edit( { attributes, setAttributes, context } ) {
-	const { emptyLabel, label, showLabel } = attributes;
+export default function Edit( { attributes, setAttributes } ) {
+	const { postTypes, emptyLabel, label, showLabel } = attributes;
 
-	const allPostTypes = useSelect( ( select ) => {
-		return (
-			( select( 'core' ).getPostTypes( { per_page: 100 } ) || [] ).filter(
-				( type ) => type.viewable
-			) || []
-		);
+	const availablePostTypes = useSelect( ( select ) => {
+		const results = (
+			select( 'core' ).getPostTypes( { per_page: 100 } ) || []
+		).filter( ( postType ) => postType.viewable );
+
+		return results;
 	}, [] );
-
-	let contextPostTypes = ( context.query.postType || '' )
-		.split( ',' )
-		.map( ( type ) => type.trim() );
-
-	// Support for enhanced query loop block plugin.
-	if ( Array.isArray( context.query.multiple_posts ) ) {
-		contextPostTypes = contextPostTypes.concat(
-			context.query.multiple_posts
-		);
-	}
-
-	const postTypes = contextPostTypes.map( ( postType ) => {
-		return (
-			allPostTypes.find( ( type ) => type.slug === postType ) || {
-				slug: postType,
-				name: postType,
-			}
-		);
-	} );
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Post Type Settings', 'query-filter' ) }>
+				<PanelBody
+					title={ __( 'Beitragstyp-Einstellungen', 'query-filter' ) }
+				>
+					<FormTokenField
+						label={ __(
+							'Beitragstypen auswählen',
+							'query-filter'
+						) }
+						value={
+							postTypes
+								? postTypes.map(
+										( slug ) =>
+											availablePostTypes.find(
+												( pt ) => pt.slug === slug
+											)?.labels.name || slug
+								  )
+								: []
+						}
+						suggestions={ availablePostTypes.map(
+							( pt ) => pt.labels.name
+						) }
+						onChange={ ( names ) =>
+							setAttributes( {
+								postTypes: names.map(
+									( name ) =>
+										availablePostTypes.find(
+											( pt ) => pt.labels.name === name
+										)?.slug || name
+								),
+							} )
+						}
+					/>
 					<TextControl
-						label={ __( 'Label', 'query-filter' ) }
+						label={ __( 'Beschriftung', 'query-filter' ) }
 						value={ label }
-						defaultValue={ __( 'Content Type', 'query-filter' ) }
 						help={ __(
-							'If empty then no label will be shown',
+							'Wenn leer, wird keine Beschriftung angezeigt',
 							'query-filter'
 						) }
 						onChange={ ( label ) => setAttributes( { label } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Label', 'query-filter' ) }
+						label={ __( 'Beschriftung anzeigen', 'query-filter' ) }
 						checked={ showLabel }
 						onChange={ ( showLabel ) =>
 							setAttributes( { showLabel } )
 						}
 					/>
 					<TextControl
-						label={ __( 'Empty Choice Label', 'query-filter' ) }
+						label={ __(
+							'Beschriftung für "Alle"',
+							'query-filter'
+						) }
 						value={ emptyLabel }
-						placeholder={ __( 'All', 'query-filter' ) }
+						placeholder={ __( 'Alle', 'query-filter' ) }
 						onChange={ ( emptyLabel ) =>
 							setAttributes( { emptyLabel } )
 						}
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div { ...useBlockProps( { className: 'wp-block-query-filter' } ) }>
+			<div
+				{ ...useBlockProps( {
+					className: 'wp-block-query-filter-post-type',
+				} ) }
+			>
 				{ showLabel && (
 					<label className="wp-block-query-filter-post-type__label wp-block-query-filter__label">
-						{ label || __( 'Content Type', 'query-filter' ) }
+						{ label }
 					</label>
 				) }
 				<ul className="wp-block-query-filter-post-type__list wp-block-query-filter__list">
@@ -76,19 +98,21 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						<a href="#">
 							<span className="wp-block-query-filter__icon"></span>
 							<span className="wp-block-query-filter__label-text">
-								{ emptyLabel || __( 'All', 'query-filter' ) }
+								{ emptyLabel || __( 'Alle', 'query-filter' ) }
 							</span>
 						</a>
 					</li>
-					{ postTypes.map( ( type ) => (
+					{ ( postTypes || [] ).map( ( slug ) => (
 						<li
-							key={ type.slug }
+							key={ slug }
 							className="wp-block-query-filter-post-type__item wp-block-query-filter__item"
 						>
 							<a href="#">
 								<span className="wp-block-query-filter__icon"></span>
 								<span className="wp-block-query-filter__label-text">
-									{ type.name }
+									{ availablePostTypes.find(
+										( pt ) => pt.slug === slug
+									)?.labels.name || slug }
 								</span>
 							</a>
 						</li>

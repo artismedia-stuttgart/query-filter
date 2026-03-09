@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "query-filter/post-type",
   "version": "0.1.0",
-  "title": "Post Type Filter",
+  "title": "Beitragstyp-Filter",
   "category": "theme",
   "icon": "filter",
-  "description": "Allows users to filter by post type when placed wihin a query loop block",
+  "description": "Ermöglicht das Filtern nach Beitragstypen innerhalb eines Query Loop Blocks.",
   "ancestor": [
     "core/query"
   ],
@@ -40,12 +40,12 @@
       "margin": true,
       "padding": true,
       "blockGap": true
-    },
-    "interactivity": {
-      "clientNavigation": true
     }
   },
   "attributes": {
+    "postTypes": {
+      "type": "array"
+    },
     "emptyLabel": {
       "type": "string",
       "default": ""
@@ -60,7 +60,6 @@
   },
   "textdomain": "query-filter",
   "editorScript": "file:./index.js",
-  "viewScriptModule": "query-filter-taxonomy-view-script-module",
-  "style": "query-filter-view",
+  "style": "file:./index.css",
   "render": "file:./render.php"
 }

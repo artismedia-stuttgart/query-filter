@@ -1,0 +1,143 @@
+/* Base Wrapper */
+.wp-block-query-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.wp-block-query-filter-sort {
+  width: fit-content;
+}
+/* Label Styling */
+.wp-block-query-filter__label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: inherit;
+}
+
+/* List Styling (Links Layout) */
+.sorting-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important; /* Override theme defaults */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Item Styling */
+.sorting-item {
+  width: auto;
+  margin: 0 !important; /* Override theme defaults */
+}
+
+.sorting-item a {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+}
+
+.sorting-item a:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+}
+
+.sorting-item.is-active a {
+  background-color: #111827;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Dropdown styling */
+.qf-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.qf-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  min-width: 220px;
+  color: #374151;
+  transition: border-color 0.2s;
+}
+
+.qf-dropdown-trigger:hover {
+  border-color: #999;
+}
+
+.qf-dropdown-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #374151;
+}
+
+.qf-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 220px;
+  margin-top: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.qf-dropdown-content.qf-show {
+  display: block;
+}
+
+.qf-dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+}
+
+.qf-dropdown-item button {
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: #374151;
+  transition: background-color 0.2s ease;
+}
+
+.qf-dropdown-item button:hover {
+  background-color: #f3f4f6;
+}
+
+.qf-dropdown-item.is-active button {
+  background-color: #e5e7eb;
+  font-weight: 600;
+  color: #111827;
+}

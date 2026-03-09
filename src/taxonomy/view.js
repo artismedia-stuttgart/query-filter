@@ -1,4 +1,4 @@
-import { store, getElement } from '@wordpress/interactivity';
+import { store, getElement, getContext } from '@wordpress/interactivity';
 
 const updateURL = async ( action, value, name ) => {
 	const url = new URL( action );
@@ -11,14 +11,53 @@ const updateURL = async ( action, value, name ) => {
 	await actions.navigate( url.toString() );
 };
 
-const { state } = store( 'query-filter', {
+store( 'query-filter', {
+	state: {
+		searchValue: '',
+	},
 	actions: {
+		toggleSorting() {
+			const context = getContext();
+			context.isOpen = ! context.isOpen;
+		},
+		closeSorting( e ) {
+			const context = getContext();
+			const element = getElement();
+
+			if (
+				context.isOpen &&
+				element?.ref &&
+				! element.ref.contains( e.target )
+			) {
+				context.isOpen = false;
+			}
+		},
 		*navigate( e ) {
 			e.preventDefault();
 			const { actions } = yield import(
 				'@wordpress/interactivity-router'
 			);
-			const url = e.currentTarget.href || e.target.value || e.target.closest( 'a' )?.href;
+
+			const el = e.currentTarget || e.target;
+			const url =
+				el?.href ||
+				el?.dataset?.href ||
+				el?.closest( 'a' )?.href ||
+				el?.closest( 'button' )?.dataset?.href ||
+				el?.closest( '[data-href]' )?.dataset?.href;
+
+			if ( ! url ) {
+				return;
+			}
+
+			// Try to close dropdown on navigate.
+			try {
+				const context = getContext();
+				if ( context && typeof context.isOpen !== 'undefined' ) {
+					context.isOpen = false;
+				}
+			} catch ( err ) {}
+
 			yield actions.navigate( url );
 		},
 		*search( e ) {
@@ -36,7 +75,7 @@ const { state } = store( 'query-filter', {
 				value = ref.value;
 			}
 
-			// Don't navigate if the search didn't really change.
+			const { state } = store( 'query-filter' );
 			if ( value === state.searchValue ) return;
 
 			state.searchValue = value;

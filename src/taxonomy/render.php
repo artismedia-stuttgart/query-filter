@@ -43,7 +43,7 @@ ob_start();
 <li class="wp-block-query-filter-taxonomy__item wp-block-query-filter__item <?php echo $all_is_active ? 'is-active' : '' ?>">
 	<a href="<?php echo esc_url( $base_url ) ?>" data-wp-on--click="actions.navigate">
 		<span class="wp-block-query-filter__icon" <?php echo ! empty( $attributes['showIcons'] ) ? 'style="width:' . esc_attr( $attributes['iconSize'] ) . 'px; height:' . esc_attr( $attributes['iconSize'] ) . 'px;"' : ''; ?>></span>
-		<span class="wp-block-query-filter__label-text"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'All', 'query-filter' ) ); ?></span>
+		<span class="wp-block-query-filter__label-text"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'Alle', 'query-filter' ) ); ?></span>
 	</a>
 </li>
 <?php
@@ -53,6 +53,14 @@ $term_items_html = '';
 foreach ( $terms as $term ) {
 	$is_active = ( $term->slug === wp_unslash( $current_value ?? '' ) );
 	$url = add_query_arg( [ $query_var => $term->slug, $page_var => false ], $base_url );
+	
+	// Preserve other filter/sort params.
+	foreach ( $_GET as $key => $value ) {
+		if ( $key !== $query_var && $key !== $page_var && strpos($key, 'query-') === 0 ) {
+			$url = add_query_arg( $key, $value, $url );
+		}
+	}
+
 	$icon_id = $term_icons[ $term->term_id ] ?? null;
 	$icon_url = $icon_id ? wp_get_attachment_image_url( $icon_id, 'full' ) : null;
 	
@@ -79,7 +87,7 @@ foreach ( $terms as $term ) {
 ?>
 
 <div <?php echo get_block_wrapper_attributes( [ 'class' => 'wp-block-query-filter' ] ); ?> data-wp-interactive="query-filter" data-wp-context="{}">
-	<label class="wp-block-query-filter-post-type__label wp-block-query-filter__label<?php echo $attributes['showLabel'] ? '' : ' screen-reader-text' ?>" for="<?php echo esc_attr( $id ); ?>">
+	<label class="wp-block-query-filter-taxonomy__label wp-block-query-filter__label<?php echo $attributes['showLabel'] ? '' : ' screen-reader-text' ?>" for="<?php echo esc_attr( $id ); ?>">
 		<?php echo esc_html( $attributes['label'] ?? $taxonomy->label ); ?>
 	</label>
 	<ul class="wp-block-query-filter-taxonomy__list wp-block-query-filter__list" id="<?php echo esc_attr( $id ); ?>">

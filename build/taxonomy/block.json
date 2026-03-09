@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "query-filter/taxonomy",
   "version": "0.1.0",
-  "title": "Taxonomy Filter",
+  "title": "Taxonomie-Filter",
   "category": "theme",
   "icon": "filter",
-  "description": "Allows users to filter by taxonomy terms when placed wihin a query loop block",
+  "description": "Ermöglicht das Filtern nach Taxonomie-Begriffen innerhalb eines Query Loop Blocks.",
   "ancestor": [
     "core/query"
   ],
@@ -83,7 +83,7 @@
   },
   "textdomain": "query-filter",
   "editorScript": "file:./index.js",
-  "style": "query-filter-view",
+  "style": "file:./index.css",
   "viewScriptModule": "file:./view.js",
   "render": "file:./render.php"
 }

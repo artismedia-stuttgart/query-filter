@@ -49,7 +49,7 @@ if ( empty( $post_types ) ) {
 		<li class="wp-block-query-filter-post-type__item wp-block-query-filter__item <?php echo empty( $_GET[ $query_var ] ) ? 'is-active' : '' ?>">
 			<a href="<?php echo esc_url( $base_url ) ?>" data-wp-on--click="actions.navigate">
 				<span class="wp-block-query-filter__icon"></span>
-				<span class="wp-block-query-filter__label-text"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'All', 'query-filter' ) ); ?></span>
+				<span class="wp-block-query-filter__label-text"><?php echo esc_html( $attributes['emptyLabel'] ?: __( 'Alle', 'query-filter' ) ); ?></span>
 			</a>
 		</li>
 		<?php foreach ( $post_types as $post_type ) : ?>
