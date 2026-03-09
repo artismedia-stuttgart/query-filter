@@ -6,17 +6,11 @@
 .wp-block-query-filter {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
 }
 
 /* Label Styling */
 .wp-block-query-filter__label {
   display: block;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1.2;
-  color: inherit;
 }
 
 /* List Styling */
@@ -25,9 +19,7 @@
   padding: 0;
   margin: 0 !important; /* Override theme defaults */
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 /* Item Styling */
@@ -38,32 +30,10 @@
 
 .wp-block-query-filter__item a {
   display: flex;
-  align-items: center;
-  padding: 0.375rem 0.75rem;
-  background-color: #f3f4f6;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #374151;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  transition: all 0.2s ease;
-}
-
-.wp-block-query-filter__item a:hover {
-  background-color: #e5e7eb;
-  color: #111827;
-  text-decoration: none;
-}
-
-.wp-block-query-filter__item.is-active a {
-  background-color: #111827;
-  color: #ffffff;
-  font-weight: 600;
 }
 
 /* Icons and Counts */
 .wp-block-query-filter__icon {
-  margin-right: 0.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -74,11 +44,4 @@
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-.wp-block-query-filter__count {
-  margin-left: 0.35rem;
-  opacity: 0.6;
-  font-size: 0.8em;
-  font-weight: normal;
 }
