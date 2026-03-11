@@ -42,6 +42,17 @@ function register_blocks() : void {
 	register_block_type( ROOT_DIR . '/build/taxonomy' );
 	register_block_type( ROOT_DIR . '/build/post-type' );
 	register_block_type( ROOT_DIR . '/build/sort' );
+
+	$view_asset_path = ROOT_DIR . '/build/view.asset.php';
+	if ( file_exists( $view_asset_path ) ) {
+		$view_asset = require $view_asset_path;
+		wp_register_script_module(
+			'query-filter-view-script-module',
+			plugins_url( 'build/view.js', PLUGIN_FILE ),
+			$view_asset['dependencies'] ?? [],
+			$view_asset['version'] ?? null
+		);
+	}
 }
 
 /**
@@ -364,7 +375,7 @@ function render_block_search( string $block_content, array $block, \WP_Block $in
 		return $block_content;
 	}
 
-	wp_enqueue_script_module( 'query-filter-taxonomy-view-script-module' );
+	wp_enqueue_script_module( 'query-filter-view-script-module' );
 
 	$query_var = empty( $instance->context['query']['inherit'] )
 		? sprintf( 'query-%d-s', $instance->context['queryId'] ?? 0 )
@@ -411,7 +422,6 @@ function render_block_query( $block_content, $block ) {
 	$block_content->next_tag();
 
 	// Always allow region updates on interactivity, use standard core region naming.
-	$block_content->set_attribute( 'data-wp-interactive', 'query-filter' );
 	$block_content->set_attribute( 'data-wp-router-region', 'query-' . ( $block['attrs']['queryId'] ?? 0 ) );
 
 	return (string) $block_content;

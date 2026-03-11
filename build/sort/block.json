@@ -21,6 +21,9 @@
     "spacing": {
       "margin": true,
       "padding": true
+    },
+    "interactivity": {
+      "clientNavigation": true
     }
   },
   "attributes": {
@@ -36,6 +39,6 @@
   "textdomain": "query-filter",
   "editorScript": "file:./index.js",
   "style": "file:./index.css",
-  "viewScriptModule": "file:../taxonomy/view.js",
+  "viewScriptModule": "file:../view.js",
   "render": "file:./render.php"
 }

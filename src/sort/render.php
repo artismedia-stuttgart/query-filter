@@ -29,6 +29,7 @@ $layout = $attributes['layout'] ?? 'links';
 
 <div <?php echo get_block_wrapper_attributes( [ 'class' => 'wp-block-query-filter' ] ); ?> 
 	data-wp-interactive="query-filter"
+	data-wp-router-region="query-filter-sort-<?php echo esc_attr( $query_id ); ?>"
 	data-wp-context='{ "isOpen": false }'
 	data-wp-on-document--click="actions.closeSorting"
 >

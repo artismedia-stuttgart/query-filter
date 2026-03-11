@@ -84,6 +84,6 @@
   "textdomain": "query-filter",
   "editorScript": "file:./index.js",
   "style": "file:./index.css",
-  "viewScriptModule": "file:./view.js",
+  "viewScriptModule": "file:../view.js",
   "render": "file:./render.php"
 }
