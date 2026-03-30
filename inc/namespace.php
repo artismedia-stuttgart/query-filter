@@ -22,6 +22,9 @@ function bootstrap() : void {
 	add_filter( 'block_type_metadata', __NAMESPACE__ . '\\filter_block_type_metadata', 10 );
 	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 
+	// WAR-PLAN-DEBUG: Add the final checker hook.
+	add_action( 'pre_get_posts', __NAMESPACE__ . '\\war_plan_final_query_check', 9999 );
+
 	// Settings.
 	add_action( 'admin_menu', __NAMESPACE__ . '\\register_settings_page' );
 	add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
@@ -278,6 +281,15 @@ function filter_query_loop_block_query_vars( array $query, \WP_Block $block, int
  * @param  WP_Query $query The WP_Query instance (passed by reference).
  */
 function pre_get_posts_transpose_query_vars( WP_Query $query ) : void {
+	// WAR-PLAN-DEBUG: Log initial state
+	if ( ! empty( $_GET['queryId'] ) ) {
+		error_log('--- WAR-PLAN: START ---');
+		error_log('Target Query ID from URL: ' . sanitize_text_field($_GET['queryId']));
+		error_log('Current Page URL: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+		error_log('Is Main Query? ' . ($query->is_main_query() ? 'Yes' : 'No'));
+		error_log('Original Query Vars: ' . print_r($query->query_vars, true));
+	}
+
 	$query_id = $query->get( 'query_id', null );
 
 	if ( ! $query->is_main_query() && is_null( $query_id ) ) {
@@ -344,6 +356,12 @@ function pre_get_posts_transpose_query_vars( WP_Query $query ) : void {
 		}
 
 		$query->set( 'tax_query', $tax_query );
+	}
+
+	// WAR-PLAN-DEBUG: Log modified state
+	if ( ! empty( $_GET['queryId'] ) ) {
+		error_log('Modified Query Vars: ' . print_r($query->query_vars, true));
+		error_log('--- WAR-PLAN: END ---');
 	}
 }
 
@@ -425,4 +443,28 @@ function render_block_query( $block_content, $block ) {
 	$block_content->set_attribute( 'data-wp-router-region', 'query-' . ( $block['attrs']['queryId'] ?? 0 ) );
 
 	return (string) $block_content;
+}
+
+/**
+ * WAR-PLAN-DEBUG: Final Query Check
+ *
+ * Checks the query vars at a very late stage to see if they have been
+ * overwritten by another plugin or theme.
+ *
+ * @param \WP_Query $query The query object.
+ */
+function war_plan_final_query_check( $query ) {
+    // Only run on the front-end, for the targeted query, and when our filter is active.
+    if ( is_admin() || ! isset( $_GET['queryId'] ) || empty( $_GET['queryId'] ) ) {
+        return;
+    }
+    
+    $query_id = $query->get( 'queryId' );
+    if ( empty( $query_id ) || $query_id !== $_GET['queryId'] ) {
+        return;
+    }
+
+    error_log('--- WAR-PLAN: FINAL CHECK (Priority 9999) ---');
+    error_log('Final Query Vars seen by WordPress: ' . print_r($query->query_vars, true));
+    error_log('--- WAR-PLAN: FINAL CHECK END ---');
 }

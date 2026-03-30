@@ -7,6 +7,7 @@
  * Requires PHP:      8.0
  * Version:           0.2.11
  * Author:            Human Made Limited and Kaith Menken
+ * Author URI:        https://kaith.de
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       query-filter
