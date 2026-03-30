@@ -35,9 +35,6 @@
       "margin": true,
       "padding": true,
       "blockGap": true
-    },
-    "interactivity": {
-      "clientNavigation": true
     }
   },
   "attributes": {
@@ -59,6 +56,5 @@
   "textdomain": "query-filter",
   "editorScript": "file:./index.js",
   "style": "file:./index.css",
-  "viewScriptModule": "file:../view.js",
   "render": "file:./render.php"
 }

@@ -1,7 +1,0 @@
-.wp-block-search-filter-buttons .greyd_filter_button {
-    margin-bottom: 0;
-}
-
-.wp-block-search-filter-buttons .greyd_filter_button:not(.is-active) {
-    display: none;
-}

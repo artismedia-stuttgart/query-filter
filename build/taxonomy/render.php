@@ -7,10 +7,10 @@ $id = 'query-filter-' . wp_generate_uuid4();
 
 $taxonomy = get_taxonomy( $attributes['taxonomy'] );
 
-$query_id = $block->context['queryId'] ?? 0;
 if ( empty( $block->context['query']['inherit'] ) ) {
+	$query_id = $block->context['queryId'] ?? 0;
 	$query_var = sprintf( 'query-%d-%s', $query_id, $attributes['taxonomy'] );
-	$page_var = 'query-' . $query_id . '-page';
+	$page_var = isset( $block->context['queryId'] ) ? 'query-' . $block->context['queryId'] . '-page' : 'query-page';
 	$base_url = remove_query_arg( [ $query_var, $page_var ] );
 } else {
 	$query_var = sprintf( 'query-%s', $attributes['taxonomy'] );
@@ -86,7 +86,7 @@ foreach ( $terms as $term ) {
 }
 ?>
 
-<div <?php echo get_block_wrapper_attributes( [ 'class' => 'wp-block-query-filter' ] ); ?> data-wp-interactive="query-filter" data-wp-router-region="query-filter-taxonomy-<?php echo esc_attr( $query_id . '-' . $attributes['taxonomy'] ); ?>" data-wp-context="{}">
+<div <?php echo get_block_wrapper_attributes( [ 'class' => 'wp-block-query-filter' ] ); ?> data-wp-interactive="query-filter" data-wp-context="{}">
 	<label class="wp-block-query-filter-taxonomy__label wp-block-query-filter__label<?php echo $attributes['showLabel'] ? '' : ' screen-reader-text' ?>" for="<?php echo esc_attr( $id ); ?>">
 		<?php echo esc_html( $attributes['label'] ?? $taxonomy->label ); ?>
 	</label>
