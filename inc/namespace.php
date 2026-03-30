@@ -22,14 +22,22 @@ function bootstrap(): void
   add_filter('query_loop_block_query_vars', __NAMESPACE__ . '\\filter_query_loop_block_query_vars', 10, 3);
   add_action('pre_get_posts', __NAMESPACE__ . '\\pre_get_posts_transpose_query_vars');
   add_filter('block_type_metadata', __NAMESPACE__ . '\\filter_block_type_metadata', 10);
-  add_action('init', __NAMESPACE__ . '\\register_blocks');
+  add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 
-  // WAR-PLAN-DEBUG: Add the final checker hook.
-  add_action('pre_get_posts', __NAMESPACE__ . '\\war_plan_final_query_check', 9999);
+  // WAR-PLAN: Final proof logging.
+  add_filter( 'the_posts', function( $posts, $query ) {
+  	// Target the specific query loop with ID 3, only on the frontend.
+  	if ( ! is_admin() && $query->get( 'query_id' ) == 3 ) {
+  		error_log('--- WAR-PLAN: POSTS RETURNED FROM DB (Query ID 3) ---');
+  		error_log( 'Post Count: ' . count( $posts ) );
+  		error_log( 'Post IDs: ' . implode( ', ', wp_list_pluck( $posts, 'ID' ) ) );
+  		error_log('--- END POSTS RETURNED ---');
+  	}
+  	return $posts;
+  }, 10, 2 );
 
   // Settings.
-  add_action('admin_menu', __NAMESPACE__ . '\\register_settings_page');
-  add_action('admin_init', __NAMESPACE__ . '\\register_settings');
+  add_action( 'admin_menu', __NAMESPACE__ . '\\register_settings_page' );  add_action('admin_init', __NAMESPACE__ . '\\register_settings');
   add_action('admin_init', __NAMESPACE__ . '\\admin_handle_save');
 
   // Search.
@@ -295,22 +303,7 @@ function filter_query_loop_block_query_vars(array $query, \WP_Block $block, int 
  *
  * @param  WP_Query $query The WP_Query instance (passed by reference).
  */
-function pre_get_posts_transpose_query_vars(WP_Query $query): void
-{
-  // WAR-PLAN-DEBUG: Log initial state
-  $has_filter_param = false;
-  foreach ( array_keys($_GET) as $key ) {
-  	if ( strpos($key, 'query-') === 0 ) {
-  		$has_filter_param = true;
-  		break;
-  	}
-  }
-  if ( $has_filter_param ) {
-  	error_log('--- WAR-PLAN: START ---');
-  	error_log('Current Page URL: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-  	error_log('Is Main Query? ' . ($query->is_main_query() ? 'Yes' : 'No'));
-  	error_log('Original Query Vars: ' . print_r($query->query_vars, true));
-  }
+function pre_get_posts_transpose_query_vars( WP_Query $query ) : void {
 
   $query_id = $query->get('query_id', null);
 
@@ -377,15 +370,9 @@ function pre_get_posts_transpose_query_vars(WP_Query $query): void
       ];
     }
 
-    $query->set('tax_query', $tax_query);
-  }
-
-  // WAR-PLAN-DEBUG: Log modified state
-  if ( $has_filter_param ) {
-  	error_log('Modified Query Vars: ' . print_r($query->query_vars, true));
-  	error_log('--- WAR-PLAN: END ---');
-  }
-}
+    $query->set( 'tax_query', $tax_query );
+    }
+    }
 
 /**
  * Filters the settings determined from the block type metadata.
@@ -468,49 +455,4 @@ function render_block_query($block_content, $block)
   $block_content->set_attribute('data-wp-router-region', 'query-' . ($block['attrs']['queryId'] ?? 0));
 
   return (string) $block_content;
-}
-
-/**
- * WAR-PLAN-DEBUG: Final Query Check
- *
- * Checks the query vars at a very late stage to see if they have been
- * overwritten by another plugin or theme.
- *
- * @param \WP_Query $query The query object.
- */
-function war_plan_final_query_check( $query ) {
-    // Only run on the front-end, for a request that has our filters.
-	if ( is_admin() ) {
-		return;
-	}
-
-	$has_filter_param = false;
-	foreach ( array_keys($_GET) as $key ) {
-		if ( strpos($key, 'query-') === 0 ) {
-			$has_filter_param = true;
-			break;
-		}
-	}
-
-	if ( ! $has_filter_param ) {
-		return;
-	}
-
-    // Additional check to ensure we are targeting the right query object on the page.
-    $prefix = $query->is_main_query() ? 'query-' : "query-{$query->get( 'query_id' )}-";
-    $is_target_query = false;
-    foreach ( array_keys($_GET) as $key ) {
-		if ( strpos($key, $prefix) === 0 ) {
-			$is_target_query = true;
-			break;
-		}
-	}
-
-    if ( ! $is_target_query ) {
-        return;
-    }
-
-    error_log('--- WAR-PLAN: FINAL CHECK (Priority 9999) ---');
-    error_log('Final Query Vars seen by WordPress: ' . print_r($query->query_vars, true));
-    error_log('--- WAR-PLAN: FINAL CHECK END ---');
 }
