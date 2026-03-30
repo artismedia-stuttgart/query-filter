@@ -5,7 +5,7 @@
  * Description:       Filter blocks for the query loop utilising the interactivity API.
  * Requires at least: 6.6
  * Requires PHP:      8.0
- * Version:           0.2.14
+ * Version:           0.2.15
  * Author:            Human Made Limited and Kaith Menken
  * Author URI:        https://kaith.de
  * License:           GPL-2.0-or-later

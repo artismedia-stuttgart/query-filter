@@ -298,12 +298,18 @@ function filter_query_loop_block_query_vars(array $query, \WP_Block $block, int 
 function pre_get_posts_transpose_query_vars(WP_Query $query): void
 {
   // WAR-PLAN-DEBUG: Log initial state
-  if (! empty($_GET['queryId'])) {
-    error_log('--- WAR-PLAN: START ---');
-    error_log('Target Query ID from URL: ' . sanitize_text_field($_GET['queryId']));
-    error_log('Current Page URL: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-    error_log('Is Main Query? ' . ($query->is_main_query() ? 'Yes' : 'No'));
-    error_log('Original Query Vars: ' . print_r($query->query_vars, true));
+  $has_filter_param = false;
+  foreach ( array_keys($_GET) as $key ) {
+  	if ( strpos($key, 'query-') === 0 ) {
+  		$has_filter_param = true;
+  		break;
+  	}
+  }
+  if ( $has_filter_param ) {
+  	error_log('--- WAR-PLAN: START ---');
+  	error_log('Current Page URL: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+  	error_log('Is Main Query? ' . ($query->is_main_query() ? 'Yes' : 'No'));
+  	error_log('Original Query Vars: ' . print_r($query->query_vars, true));
   }
 
   $query_id = $query->get('query_id', null);
@@ -375,9 +381,9 @@ function pre_get_posts_transpose_query_vars(WP_Query $query): void
   }
 
   // WAR-PLAN-DEBUG: Log modified state
-  if (! empty($_GET['queryId'])) {
-    error_log('Modified Query Vars: ' . print_r($query->query_vars, true));
-    error_log('--- WAR-PLAN: END ---');
+  if ( $has_filter_param ) {
+  	error_log('Modified Query Vars: ' . print_r($query->query_vars, true));
+  	error_log('--- WAR-PLAN: END ---');
   }
 }
 
@@ -472,19 +478,39 @@ function render_block_query($block_content, $block)
  *
  * @param \WP_Query $query The query object.
  */
-function war_plan_final_query_check($query)
-{
-  // Only run on the front-end, for the targeted query, and when our filter is active.
-  if (is_admin() || ! isset($_GET['queryId']) || empty($_GET['queryId'])) {
-    return;
-  }
+function war_plan_final_query_check( $query ) {
+    // Only run on the front-end, for a request that has our filters.
+	if ( is_admin() ) {
+		return;
+	}
 
-  $query_id = $query->get('queryId');
-  if (empty($query_id) || $query_id !== $_GET['queryId']) {
-    return;
-  }
+	$has_filter_param = false;
+	foreach ( array_keys($_GET) as $key ) {
+		if ( strpos($key, 'query-') === 0 ) {
+			$has_filter_param = true;
+			break;
+		}
+	}
 
-  error_log('--- WAR-PLAN: FINAL CHECK (Priority 9999) ---');
-  error_log('Final Query Vars seen by WordPress: ' . print_r($query->query_vars, true));
-  error_log('--- WAR-PLAN: FINAL CHECK END ---');
+	if ( ! $has_filter_param ) {
+		return;
+	}
+
+    // Additional check to ensure we are targeting the right query object on the page.
+    $prefix = $query->is_main_query() ? 'query-' : "query-{$query->get( 'query_id' )}-";
+    $is_target_query = false;
+    foreach ( array_keys($_GET) as $key ) {
+		if ( strpos($key, $prefix) === 0 ) {
+			$is_target_query = true;
+			break;
+		}
+	}
+
+    if ( ! $is_target_query ) {
+        return;
+    }
+
+    error_log('--- WAR-PLAN: FINAL CHECK (Priority 9999) ---');
+    error_log('Final Query Vars seen by WordPress: ' . print_r($query->query_vars, true));
+    error_log('--- WAR-PLAN: FINAL CHECK END ---');
 }
