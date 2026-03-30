@@ -1,0 +1,128 @@
+/*    Image
+__________________________________
+*/
+figure,
+.wp-block-image {
+	margin: 0px;
+}
+:where(
+	.wp-block-image img[width="0"],
+	.wp-block-image img[width="1"]
+) {
+	width: auto;
+}
+
+.wp-block-image.aligncenter {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.wp-block-image figure,
+.wp-block-image img {
+	float: none;
+	vertical-align: middle;
+}
+
+:where( .wp-block-image img ) {
+	max-width: 100%;
+	height: auto;
+	/**
+	 * This rule fixes the stretching of images that do not have enough
+	 * space but their width & height are set.
+	 */
+	object-fit: contain;
+	/**
+	 * @since 2.3.0 This fixes some display issues an Safari browsers,
+	 * where the height of images cannot be calculated correctly and
+	 * becomes 0. This leads to Javascript functions not beeing able
+	 * to calculate the correct height of the image and their surrounding
+	 * elements.
+	 */
+	min-height: 0.1px;
+}
+
+/* Fix images with height smaller than the line-height. */
+figure.wp-block-image:not(:has( > figcaption)) {
+	line-height: 0;
+}
+
+/* .wp-block-image.alignright,
+.wp-block-image.alignright > img {
+	float: none;
+	margin: 0 0 0 auto;
+}
+
+.wp-block-image.alignleft,
+.wp-block-image.alignleft > img {
+	float: none;
+	margin: 0 auto 0 0;
+}
+
+.wp-block-image.aligncenter,
+.wp-block-image.aligncenter > img {
+	margin: 0 auto 0 auto;
+} */
+
+
+/*    Image alignment fix
+__________________________________
+*/
+/* figure.wp-block-image.aligncenter,
+figure.wp-block-image.alignleft,
+figure.wp-block-image.alignright {
+	display: block;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+} */
+figure.greyd-image.alignleft,
+figure.greyd-image.alignright,
+figure.greyd-image.aligncenter {
+	width: fit-content;
+}
+
+/* styles */
+.wp-block-image.is-style-rounded-corners img {
+	border-radius: 0.5em;
+}
+
+.wp-block-image.is-style-has-shadow img {
+	box-shadow: 0px 10px 15px -4px rgba(40, 40, 40, 0.25);
+}
+
+.wp-block-image.is-style-diagonal-up img {
+	clip-path: polygon(0 12%, 0 100%, 100% 88%, 100% 0);
+}
+
+.wp-block-image.is-style-diagonal-down img {
+	clip-path: polygon(0 0, 0 88%, 100% 100%, 100% 12%);
+}
+
+.wp-block-image.is-style-rotate-left img {
+	transform: rotate(357deg);
+}
+
+.wp-block-image.is-style-rotate-right img {
+	transform: rotate(3deg);
+}
+
+.wp-block-image.is-style-tilt-left img {
+	transform: perspective(400px) rotateY(10deg);
+	box-shadow: -40px 110px 50px -60px rgb(0 0 0 / 15%);
+}
+
+.wp-block-image.is-style-tilt-right img {
+	transform: perspective(400px) rotateY(350deg);
+	box-shadow: 40px 110px 50px -60px rgb(0 0 0 / 15%);
+}
+
+/** can be rmoved in version 1.8.5 + */
+.wp-block-image:not(.is-style-rounded) > figure {
+	border-radius: inherit;
+}
+
+/** download link */
+.wp-block-greyd-image__download {
+	display: block;
+	margin-top: 0.5em;
+}

@@ -1,0 +1,212 @@
+{
+    "hard": {
+        "navigation": {
+            "offmenu": {
+                "menu_item_border_radius": "0",
+                "menu_item_sec_border_radius": "0"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_border_radius": "0",
+                "navi_header_logo_border_radius": "0",
+                "navi_header_menu_border_radius": "0",
+                "navi_header_burger_border_radius": "0",
+                "navi_header_item_border_radius": "0"
+            },
+            "offmenu": {
+                "navi_header_off_border_radius": "0",
+                "navi_header_off_item_border_radius": "0"
+            },
+            "dropdowns": {
+                "drop_border_radius": "0",
+                "drop_tab_style": "triangle",
+                "drop_tab_border_radius": "0",
+                "drop_tab_height": "12",
+                "drop_tab_width": "20",
+                "drop_tab_margin": "-1",
+                "dropitem_border_radius": "0"
+            },
+            "footer": {
+                "navi_footer_border_radius": "0",
+                "navi_footer_item_border_radius": "0"
+            },
+            "header_sec": {
+                "navi_header_sec_border_radius": "0",
+                "navi_header_sec_logo_border_radius": "0",
+                "navi_header_sec_menu_border_radius": "0",
+                "navi_header_sec_burger_border_radius": "0",
+                "navi_header_sec_item_border_radius": "0"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_border_radius": "0",
+                "navi_header_sec_off_item_border_radius": "0"
+            }
+        },
+        "elements": {
+            "buttons": {
+                "buttons_border_radius": "0",
+                "buttons_sec_border_radius": "0",
+                "buttons_trd_border_radius": "0"
+            },
+            "forms": {
+                "forms_border_radius": "0",
+                "forms_sec_border_radius": "0",
+                "forms_tooltip_border_radius": "0"
+            },
+            "messages": {
+                "messages_border_radius": "0",
+                "messages_border_width": "5"
+            }
+        },
+        "woocommerce": {
+            "woo_payment_border_radius": "0",
+            "woo_payment_box_border_radius": "0",
+            "woo_account_border_radius": "0",
+            "woo_account_item_border_radius": "0",
+            "woo_login_border_radius": "0",
+            "woo_table_border_radius": "0",
+            "woo_tab_border_radius": "0"
+        }
+    },
+    "rounded": {
+        "navigation": {
+            "offmenu": {
+                "menu_item_border_radius": "4",
+                "menu_item_sec_border_radius": "4"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_border_radius": "5",
+                "navi_header_logo_border_radius": "5",
+                "navi_header_menu_border_radius": "5",
+                "navi_header_burger_border_radius": "5",
+                "navi_header_item_border_radius": "4"
+            },
+            "offmenu": {
+                "navi_header_off_border_radius": "5",
+                "navi_header_off_item_border_radius": "4"
+            },
+            "dropdowns": {
+                "drop_border_radius": "4",
+                "drop_tab_style": "triangle",
+                "drop_tab_border_radius": "1",
+                "drop_tab_height": "12",
+                "drop_tab_width": "20",
+                "drop_tab_margin": "-1",
+                "dropitem_border_radius": "4"
+            },
+            "footer": {
+                "navi_footer_border_radius": "5",
+                "navi_footer_item_border_radius": "4"
+            },
+            "header_sec": {
+                "navi_header_sec_border_radius": "4",
+                "navi_header_sec_logo_border_radius": "4",
+                "navi_header_sec_menu_border_radius": "4",
+                "navi_header_sec_burger_border_radius": "4",
+                "navi_header_sec_item_border_radius": "4"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_border_radius": "5",
+                "navi_header_sec_off_item_border_radius": "4"
+            }
+        },
+        "elements": {
+            "buttons": {
+                "buttons_border_radius": "5",
+                "buttons_sec_border_radius": "5",
+                "buttons_trd_border_radius": "5"
+            },
+            "forms": {
+                "forms_border_radius": "4",
+                "forms_sec_border_radius": "4",
+                "forms_tooltip_border_radius": "4"
+            },
+            "messages": {
+                "messages_border_radius": "5",
+                "messages_border_width": "5"
+            }
+        },
+        "woocommerce": {
+            "woo_payment_border_radius": "5",
+            "woo_payment_box_border_radius": "5",
+            "woo_account_border_radius": "5",
+            "woo_account_item_border_radius": "5",
+            "woo_login_border_radius": "5",
+            "woo_table_border_radius": "5",
+            "woo_tab_border_radius": "4"
+        }
+    },
+    "round": {
+        "navigation": {
+            "offmenu": {
+                "menu_item_border_radius": "50",
+                "menu_item_sec_border_radius": "50"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_border_radius": "50",
+                "navi_header_logo_border_radius": "50",
+                "navi_header_menu_border_radius": "50",
+                "navi_header_burger_border_radius": "50",
+                "navi_header_item_border_radius": "50"
+            },
+            "offmenu": {
+                "navi_header_off_border_radius": "50",
+                "navi_header_off_item_border_radius": "50"
+            },
+            "dropdowns": {
+                "drop_border_radius": "20",
+                "drop_tab_style": "triangle_rd",
+                "drop_tab_border_radius": "6",
+                "drop_tab_height": "22",
+                "drop_tab_width": "22",
+                "drop_tab_margin": "-5",
+                "dropitem_border_radius": "50"
+            },
+            "footer": {
+                "navi_footer_border_radius": "25",
+                "navi_footer_item_border_radius": "50"
+            },
+            "header_sec": {
+                "navi_header_sec_border_radius": "50",
+                "navi_header_sec_logo_border_radius": "50",
+                "navi_header_sec_menu_border_radius": "50",
+                "navi_header_sec_burger_border_radius": "50",
+                "navi_header_sec_item_border_radius": "50"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_border_radius": "50",
+                "navi_header_sec_off_item_border_radius": "50"
+            }
+        },
+        "elements": {
+            "buttons": {
+                "buttons_border_radius": "50",
+                "buttons_sec_border_radius": "50",
+                "buttons_trd_border_radius": "50"
+            },
+            "forms": {
+                "forms_border_radius": "10",
+                "forms_sec_border_radius": "10",
+                "forms_tooltip_border_radius": "15"
+            },
+            "messages": {
+                "messages_border_radius": "10",
+                "messages_border_width": "10"
+            }
+        },
+        "woocommerce": {
+            "woo_payment_border_radius": "10",
+            "woo_payment_box_border_radius": "10",
+            "woo_account_border_radius": "25",
+            "woo_account_item_border_radius": "50",
+            "woo_login_border_radius": "25",
+            "woo_table_border_radius": "25",
+            "woo_tab_border_radius": "10"
+        }
+    }
+}

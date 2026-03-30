@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "greyd/search-filter-buttons",
+	"version": "0.1.0",
+	"title": "Filter Buttons & Chips",
+	"icon": "forms",
+	"category": "greyd-search",
+	"description": "Filter search results with taxonomies using buttons",
+	"ancestor": ["greyd/search"],
+	"textdomain": "greyd_hub",
+	"supports": {
+		"customClassName": true,
+		"defaultStylePicker": false,
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+
+		"html": false,
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php",
+	"style": "greyd-search-filter-buttons-style",
+	"viewScript": "file:./view.js"
+}

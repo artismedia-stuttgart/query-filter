@@ -1,0 +1,66 @@
+/**
+ * Style the editor inside the meta-menu-offcanvas template.
+ * 
+ * This file gets processed and affects everything in the admin view.
+ */
+
+ .editor-styles-wrapper > .is-root-container.wp-block-post-content {
+	margin: 0 auto;
+	--maxWidth: 100vh !important;
+	max-width: calc(var(--HED2OFFwidth) - var(--HED2OFFmleftright) - var(--HED2OFFmleftright)) !important;
+	min-height: calc(100vh - var(--HED2OFFmtop) - var(--HED2OFFmbottom));
+	padding: var(--HED2OFFtopbottom) var(--HED2OFFleftright);
+	
+	background-color: var(--HED2OFFbgcolor);
+	color: var(--HED2OFFtxtcolor);
+	border-color: var(--HED2OFFbocolor);
+} 
+
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h1,
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h2,
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h3,
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h4,
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h5,
+.editor-styles-wrapper > .is-root-container.wp-block-post-content h6 {
+	color: var(--HED2OFFhcolor);
+}
+
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li > ul {
+	padding: 0px 0px var(--HED2OFFSUBmargin) var(--HED2OFFSUBleft);
+}
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li > ul ul {
+	padding-bottom: 0px;
+}
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li a {
+	margin: 0 0 var(--HED2OFFITMmargin);
+}
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li a:not(.button) {
+	align-items: center;
+	padding: var(--HED2OFFITMtopbottom) var(--HED2OFFITMleftright);
+	
+	font-family: var(--HED2OFFMNUfontFamily);
+	font-size: var(--HED2OFFMNUfontSize); 
+	font-weight: var(--HED2OFFMNUfontWeight);
+	line-height: var(--HED2OFFMNUlineHeight);
+	letter-spacing: var(--HED2OFFMNUletterSpacing);
+	word-spacing: var(--HED2OFFMNUwordSpacing);
+	/* text-align: var(--HED2OFFMNUtextAlign); */
+	text-transform: var(--HED2OFFMNUtextTransform); 
+
+	color: var(--HED2OFFITMtxtcolor);
+	background-color: var(--HED2OFFITMbgcolor);
+	border-color: var(--HED2OFFITMbocolor);
+	
+	border-width: var(--HED2OFFITMborderWidth);
+	border-radius: var(--HED2OFFITMborderRadius);
+	border-top-style: var(--HED2OFFITMborderTop);
+	border-bottom-style: var(--HED2OFFITMborderBottom);
+	border-left-style: var(--HED2OFFITMborderLeft);
+	border-right-style: var(--HED2OFFITMborderRight);
+} 
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li > ul a:not(.button) {
+	font-size: var(--HED2OFFSUBfontSize); 
+}
+.editor-styles-wrapper > .is-root-container.wp-block-post-content [class^="menu"] li a img { 
+	height: var(--HED2OFFMNUfontSize);
+}

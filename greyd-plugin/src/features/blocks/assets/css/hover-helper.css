@@ -1,0 +1,132 @@
+/**
+ * Editor admin Hover Helper CSS
+ * 
+ * This file does not gets processed and affects everything on the admin screen.
+ */
+
+/*    Hover Helper
+__________________________________
+*/
+.hover_helper .wp-block-spacer {
+	--hover-background-image: repeating-linear-gradient(45deg, transparent 0%, transparent 100%);
+}
+
+.hover_helper .wp-block-spacer {
+	transition: background-image 0.5s ease;
+	background-image: var(--hover-background-image) !important;
+}
+
+.hover_helper .wp-block-spacer:hover,
+.hover_helper .wp-block-columns:hover .wp-block-spacer,
+.hover_helper .wp-block-group:hover .wp-block-spacer,
+.hover_helper .greyd-content-box:hover .wp-block-spacer {
+	--hover-background-image: repeating-linear-gradient(45deg, transparent 0px, transparent 10px, rgba(155, 155, 155, 0.15) 10px, rgba(155, 155, 155, 0.15) 20px, transparent 20px);
+}
+
+/* no colors */
+.hover_helper .wp-block-group,
+.hover_helper .wp-block-columns,
+.hover_helper .wp-block-column,
+.hover_helper .wp-block-greyd-box,
+.hover_helper .wp-block-greyd-anchor,
+.hover_helper .wp-block-greyd-list,
+.hover_helper .wp-block-greyd-cond,
+.hover_helper .wp-block-greyd-cond-item,
+.hover_helper .wp-block-greyd-accord,
+.hover_helper .wp-block-greyd-accord-item,
+.hover_helper .wp-block-greyd-posts,
+.hover_helper .wp-block-greyd-posts-links,
+.hover_helper .wp-block-greyd-template-post,
+.hover_helper .wp-block-greyd-template-posts,
+.hover_helper .wp-block-greyd-template-details,
+.hover_helper .wp-block-greyd-dynamic,
+.hover_helper .wp-block-greyd-form {
+	transition: outline 0.5s ease;
+}
+
+.hover_helper .wp-block-group:hover,
+.hover_helper .wp-block-columns:hover,
+.hover_helper .wp-block-columns:hover .wp-block-column,
+.hover_helper .wp-block-column:hover,
+.hover_helper .wp-block-columns:hover .wp-block-column:hover,
+.hover_helper .wp-block-columns:hover .wp-block-greyd-box,
+.hover_helper .wp-block-greyd-box:hover,
+.hover_helper .wp-block-columns:hover .wp-block-greyd-box:hover,
+.hover_helper .wp-block-greyd-dynamic:hover,
+.hover_helper .wp-block-greyd-form:hover,
+.hover_helper .wp-block-greyd-cond:hover,
+.hover_helper .wp-block-greyd-accord:hover,
+.hover_helper .wp-block-greyd-list:hover,
+.hover_helper .wp-block-greyd-template-post:hover,
+.hover_helper .wp-block-greyd-template-posts:hover,
+.hover_helper .wp-block-greyd-template-details:hover,
+.hover_helper .wp-block-greyd-posts:hover,
+.hover_helper .wp-block-greyd-posts-links:hover {
+	outline: 1px dotted rgba(150, 150, 150, 1);
+}
+
+/* colors */
+.hover_helper_colors .wp-block-group,
+.hover_helper_colors .wp-block-columns,
+.hover_helper_colors .wp-block-column,
+.hover_helper_colors .wp-block-greyd-box,
+.hover_helper_colors .wp-block-greyd-anchor,
+.hover_helper_colors .wp-block-greyd-list,
+.hover_helper_colors .wp-block-greyd-cond,
+.hover_helper_colors .wp-block-greyd-cond-item,
+.hover_helper_colors .wp-block-greyd-accord,
+.hover_helper_colors .wp-block-greyd-accord-item,
+.hover_helper_colors .wp-block-greyd-posts,
+.hover_helper_colors .wp-block-greyd-posts-links,
+.hover_helper_colors .wp-block-greyd-template-post,
+.hover_helper_colors .wp-block-greyd-template-posts,
+.hover_helper_colors .wp-block-greyd-template-details,
+.hover_helper_colors .wp-block-greyd-dynamic,
+.hover_helper_colors .wp-block-greyd-form {
+	transition: box-shadow 0.5s ease;
+}
+
+.hover_helper_colors .wp-block-group:hover,
+.hover_helper_colors .wp-block-columns:hover {
+	box-shadow: 0 0 0 1px inset gray;
+}
+
+.hover_helper_colors .wp-block-columns:hover .wp-block-column {
+	box-shadow: 0 0 0 1px inset green;
+}
+
+.hover_helper_colors .wp-block-column:hover,
+.hover_helper_colors .wp-block-columns:hover .wp-block-column:hover {
+	box-shadow: 0 0 0 2px inset green;
+}
+
+.hover_helper_colors .wp-block-columns:hover .wp-block-greyd-box {
+	box-shadow: 0 0 0 1px inset red;
+}
+
+.hover_helper_colors .wp-block-greyd-box:hover,
+.hover_helper_colors .wp-block-columns:hover .wp-block-greyd-box:hover {
+	box-shadow: 0 0 0 2px inset red;
+}
+
+.hover_helper_colors .wp-block-greyd-dynamic:hover,
+.hover_helper_colors .wp-block-greyd-form:hover,
+.hover_helper_colors .wp-block-greyd-cond:hover,
+.hover_helper_colors .wp-block-greyd-accord:hover {
+	box-shadow: 0 0 0 1px inset blue;
+}
+
+.hover_helper_colors .wp-block-greyd-list:hover {
+	box-shadow: 0 0 0 1px inset rgb(255, 236, 201);
+}
+
+.hover_helper_colors .wp-block-greyd-template-post:hover,
+.hover_helper_colors .wp-block-greyd-template-posts:hover,
+.hover_helper_colors .wp-block-greyd-template-details:hover,
+.hover_helper_colors .wp-block-greyd-posts:hover {
+	box-shadow: 0 0 0 1px inset orange;
+}
+
+.hover_helper_colors .wp-block-greyd-posts-links:hover {
+	box-shadow: 0 0 0 1px inset rgb(255, 94, 0);
+}

@@ -1,0 +1,22 @@
+/**
+ * Editor CSS for Dynamic Features.
+ * Style blocks only inside the editor.
+ * 
+ * This file gets processed and only affects blocks inside .editor-styles-wrapper
+ */
+
+
+
+/*    Dynamic Tag
+__________________________________
+*/
+.is-tag {
+	--bg-color: rgba( var(--wp-block-synced-color--rgb, 122, 0, 223), 0.1 );
+	background: var(--bg-color);
+	padding-inline: 4px;
+	box-shadow: 0 4px 0 var(--bg-color), 0 -4px 0 var(--bg-color);
+	border-radius: 1px;
+}
+.is-tag + .is-tag {
+	margin-left: 2px;
+}

@@ -1,0 +1,120 @@
+/*
+----------------------------------------------------------
+
+                    Dashboard
+
+----------------------------------------------------------
+*/
+
+.toplevel_page_greyd_dashboard #wpcontent {
+	padding-left: 20px;
+}
+
+.toplevel_page_greyd_dashboard #wpbody .wrap.greyd_deprecated_dashboard {
+	margin: 10px 20px 0 2px;
+}
+
+.greyd_ci_bar {
+    position: relative;
+    margin-left: -20px;
+    height: 5px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(31.42%, #F9DD61), color-stop(70.25%, #F2B25A));
+    background: linear-gradient(90deg, #F9DD61 31.42%, #F2B25A 70.25%);
+}
+.greyd_admin_logo {
+    position: absolute;
+    display: block;
+    z-index: 999;
+    right: 24px;
+    top: 17px;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+}
+.greyd_admin_logo:hover {
+    opacity: .7;
+}
+.greyd_admin_logo ~ #wpbody #screen-meta,
+.greyd_admin_logo ~ #wpbody #screen-meta-links {
+    display: none;
+}
+/* Headline */
+.greyd_suite_headline {
+    margin: 21px 0 27px 2px;
+}
+/* Tabs */
+.greyd_tabs {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto !important;
+}
+.greyd_tabs .tab {
+    display: flex;
+    box-sizing: border-box;
+    height: 38px;
+}
+.greyd_tabs.notice {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* WP Notices */
+.greyd_tabs ~ *:not(.wrap) {
+    margin-left: 0;
+}
+
+/* Kacheln */
+.greyd_deprecated_dashboard .greyd_tile_wrapper {
+    align-items: stretch;
+}
+.greyd_deprecated_dashboard .greyd_tile {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.greyd_deprecated_dashboard .greyd_tile .greyd_info_box {
+    position: absolute;
+    top: 7px;
+    right: 6px;
+    font-size: small;
+    padding: 5px 8px 4px;
+}
+.greyd_deprecated_dashboard .greyd_tile img {
+    margin-bottom: 1em;
+}
+.greyd_deprecated_dashboard .greyd_tile p {
+    margin-bottom: -.5em;
+}
+.greyd_deprecated_dashboard .greyd_tile .button {
+    margin-top: .5em;
+}
+.greyd_deprecated_dashboard .greyd_tile .button:not(:last-child) {
+    margin-right: 10px;
+}
+.greyd_deprecated_dashboard .button .dashicons {
+    font-size: 1.4em;
+    height: 1em;
+    width: 1em;
+    vertical-align: sub;
+}
+
+/* alternate styling */
+.greyd_tile.clear {
+    background: 0 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.greyd_tile.clear p,
+.greyd_tile.clear h4 {
+    color: #5f5f5f !important;
+}
+.greyd_tile.center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+}

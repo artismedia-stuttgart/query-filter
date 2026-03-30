@@ -1,0 +1,20 @@
+.wp-block-greyd-page-navigation.page-hierarchy-placeholder {
+	padding: 1em;
+	background: #f0f0f0;
+	border: 1px dashed #ccc;
+	text-align: center;
+}
+
+.wp-block-greyd-page-navigation.page-navigation-placeholder {
+	padding: 1em;
+	background: #f0f0f0;
+	border: 1px dashed #ccc;
+	text-align: center;
+}
+
+.wp-block-greyd-page-navigation.page-navigation-info {
+	margin-top: 0.5em;
+	font-size: 0.9em;
+	color: #666;
+	font-style: italic;
+}

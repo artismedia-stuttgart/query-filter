@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1960 1960" style="enable-background:new 0 0 1960 1960;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#1D1D1B;}
+	.st1{fill:none;stroke:#1F0026;stroke-width:20;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#1F0026;stroke-width:20;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#E9E6ED;stroke-width:20;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#E9E6ED;stroke-width:20;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-linecap:round;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#1F0026;stroke-width:40;stroke-linecap:round;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#1F0026;stroke-width:40;stroke-miterlimit:10;}
+	.st9{fill:none;stroke:#1F0026;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st10{fill:none;stroke:#E9E6ED;stroke-width:40;stroke-linecap:round;stroke-miterlimit:10;}
+	.st11{fill:none;stroke:#FFFFFF;stroke-width:40;stroke-miterlimit:10;}
+</style>
+<g>
+	<line class="st11" x1="1940" y1="20" x2="1649.5" y2="310.5"/>
+	<line class="st11" x1="310.5" y1="1649.5" x2="20" y2="1940"/>
+	<line class="st11" x1="1649.5" y1="1649.5" x2="1940" y2="1940"/>
+	<line class="st11" x1="20" y1="20" x2="310.5" y2="310.5"/>
+	<line class="st11" x1="980" y1="1649.5" x2="980" y2="1940"/>
+	<line class="st11" x1="980" y1="33.2" x2="980" y2="310.5"/>
+	<line class="st11" x1="33.2" y1="980" x2="311.7" y2="980"/>
+	<line class="st11" x1="1649.5" y1="980" x2="1926.8" y2="980"/>
+	<rect x="310.5" y="310.5" class="st11" width="1339" height="1339"/>
+	<circle class="st11" cx="980" cy="980" r="946.8"/>
+	<ellipse class="st11" cx="980.6" cy="978.8" rx="668.9" ry="670.7"/>
+	<path class="st11" d="M480.8,1424c122.9,138.3,302.1,225.5,501.6,225.5c185.2,0,352.9-75.1,474.3-196.5l-138.9-138.9L1175,1455.9
+		L817.2,978.8L480.8,1424z"/>
+	<circle class="st11" cx="1253" cy="707" r="141.5"/>
+</g>
+</svg>

@@ -1,0 +1,62 @@
+/**
+ * Anchor target
+ */
+body {
+	--anchorbasemargin: 2px;
+}
+
+body.admin-bar {
+	--anchorbasemargin: -30px;
+}
+
+@media all and (max-width: 782px) {
+	body.admin-bar {
+		--anchorbasemargin: -44px;
+	}
+}
+
+:where( .greyd-anchor-target--wrapper ) {
+	position: relative;
+	all: unset;
+}
+
+.greyd-anchor-target {
+	position: absolute !important;
+	--anchorcustommargin: 0px;
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin));
+}
+
+.navigation.main_on.sticky + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HEDheightScr) - var(--HEDtopbottom) - var(--HEDtopbottom));
+}
+
+.navigation.main_on.sticky[data-mod-header_scroll_on=false] + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HEDheight) - var(--HEDtopbottom) - var(--HEDtopbottom));
+}
+
+.navigation.meta_on.sticky + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HED2heightScr) - var(--HED2topbottom) - var(--HED2topbottom));
+}
+
+.navigation.meta_on.sticky[data-mod-header_scroll_on=false] + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HED2height) - var(--HED2topbottom) - var(--HED2topbottom));
+}
+
+.navigation.main_on.meta_on.sticky + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HEDheightScr) - var(--HEDtopbottom) - var(--HEDtopbottom) - var(--HED2heightScr) - var(--HED2topbottom) - var(--HED2topbottom));
+}
+
+.navigation.main_on.meta_on.sticky[data-mod-header_scroll_on=false] + .main .greyd-anchor-target {
+	margin-top: calc(var(--anchorbasemargin) + var(--anchorcustommargin) - var(--HEDheight) - var(--HEDtopbottom) - var(--HEDtopbottom) - var(--HED2height) - var(--HED2topbottom) - var(--HED2topbottom));
+}
+
+/* helper */
+/* .greyd-anchor-target::after {
+    content: " ";
+    position: absolute;
+    top: 2px;
+    outline: 1px solid red;
+    width: 100vw;
+    z-index: 9999999;
+    margin-top: calc( -1 * var(--anchorMargin) );
+} */

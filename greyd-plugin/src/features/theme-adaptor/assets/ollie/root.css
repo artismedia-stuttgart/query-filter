@@ -1,0 +1,204 @@
+:where(:root) {
+
+
+	/**
+	 * ====================================================================
+	 *                             Presets
+	 * ====================================================================
+	 */
+
+	/**
+	 * Colors
+	 * 
+	 * Ollie defines their colors using different names, so we need to map them to the
+	 * definitions used in greyd, so that all patterns and blocks are automatically styled correctly
+	 */
+	--wp--preset--color--primary: #4D34FA;
+	--wp--preset--color--secondary: #E4E1FE;
+	--wp--preset--color--tertiary: #f6f6fc;
+	--wp--preset--color--foreground: #14111F;
+	--wp--preset--color--dark: #444B57;
+	--wp--preset--color--mediumdark: #636381;
+	--wp--preset--color--mediumlight: #D0CCDE;
+	--wp--preset--color--base: #F6F6FC;
+	--wp--preset--color--background: #FFFFFF;
+	--wp--preset--color--darkest: #000000;
+	--wp--preset--color--lightest: #ffffff;
+	--wp--preset--color--transparent: rgb(255, 255, 255, 0);
+
+	/**
+	 * Font sizes
+	 */
+	--wp--preset--font-size--tiny: var(--wp--preset--font-size--x-small);
+
+	/**
+	 * Font families
+	 */
+	--wp--preset--font-family--body: var(--wp--preset--font-family--primary, inherit );
+	--wp--preset--font-family--heading: var(--wp--preset--font-family--primary, inherit );
+	--wp--preset--font-family--highlight: var(--wp--preset--font-family--primary, inherit );
+
+	/**
+	 * Spacings
+	 */
+	--wp--preset--spacing--tiny: calc(var(--wp--preset--spacing--small) * 0.8);
+
+
+	/**
+	 * ====================================================================
+	 *                             Buttons
+	 * ====================================================================
+	 */
+	
+	/* spacing */
+	--wp--custom--greyd--button--spacing--padding--top: 0.6em;
+	--wp--custom--greyd--button--spacing--padding--right: 1em;
+	--wp--custom--greyd--button--spacing--padding--bottom: 0.6em;
+	--wp--custom--greyd--button--spacing--padding--left: 1em;
+
+	/* typography */
+	--wp--custom--greyd--button--typography--font-size: var(--wp--preset--font-size--small);
+	--wp--custom--greyd--button--typography--font-family: var(--wp--preset--font-family--body);
+	--wp--custom--greyd--button--typography--font-weight: var(--wp--custom--font-weight--medium);
+	--wp--custom--greyd--button--typography--line-height: var(--wp--custom--line-height-normal);
+	--wp--custom--greyd--button--typography--letter-spacing: 0px;
+	--wp--custom--greyd--button--typography--text-transform: none;
+
+	/* small button */
+	--wp--custom--greyd--button--small--typography--font-size: var(--wp--preset--font-size--tiny);
+	--wp--custom--greyd--button--small--spacing--padding--top: 0.3em;
+	--wp--custom--greyd--button--small--spacing--padding--right: 1em;
+	--wp--custom--greyd--button--small--spacing--padding--bottom: 0.3em;
+	--wp--custom--greyd--button--small--spacing--padding--left: 1em;
+
+	/* big button */
+	--wp--custom--greyd--button--big--typography--font-size: var(--wp--preset--font-size--medium);
+	--wp--custom--greyd--button--big--spacing--padding--top: 0.6em;
+	--wp--custom--greyd--button--big--spacing--padding--right: 1.5em;
+	--wp--custom--greyd--button--big--spacing--padding--bottom: 0.6em;
+	--wp--custom--greyd--button--big--spacing--padding--left: 1.5em;
+
+	/* primary button */
+	--wp--custom--greyd--button--prim--color--background: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--prim--color--text: var(--wp--preset--color--base);
+	--wp--custom--greyd--button--prim--border--color: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--prim--border--radius: 5px;
+	--wp--custom--greyd--button--prim--border--style: solid;
+	--wp--custom--greyd--button--prim--border--width: 0;
+	--wp--custom--greyd--button--prim--shadow: none;
+	/* hover */
+	--wp--custom--greyd--button--prim--hover--color--background: var(--wp--preset--color--primary);
+	--wp--custom--greyd--button--prim--hover--color--text: var(--wp--preset--color--lightest);
+	--wp--custom--greyd--button--prim--hover--border--color: var(--wp--preset--color--primary);
+	--wp--custom--greyd--button--prim--hover--border--style: var(--wp--custom--greyd--button--prim--border--style);
+	--wp--custom--greyd--button--prim--hover--border--width: var(--wp--custom--greyd--button--prim--border--width);
+	--wp--custom--greyd--button--prim--hover--shadow: var(--wp--custom--greyd--button--prim--shadow);
+
+	/* secondary button */
+	--wp--custom--greyd--button--sec--color--background: var(--wp--preset--color--tertiary);
+	--wp--custom--greyd--button--sec--color--text: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--sec--border--color: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--sec--border--radius: 5px;
+	--wp--custom--greyd--button--sec--border--style: solid;
+	--wp--custom--greyd--button--sec--border--width: 0;
+	--wp--custom--greyd--button--sec--shadow: none;
+	/* hover */
+	--wp--custom--greyd--button--sec--hover--color--background: var(--wp--preset--color--main-accent);
+	--wp--custom--greyd--button--sec--hover--color--text: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--sec--hover--border--color: var(--wp--preset--color--main-accent);
+	--wp--custom--greyd--button--sec--hover--border--style: var(--wp--custom--greyd--button--sec--border--style);
+	--wp--custom--greyd--button--sec--hover--border--width: var(--wp--custom--greyd--button--sec--border--width);
+	--wp--custom--greyd--button--sec--hover--shadow: var(--wp--custom--greyd--button--sec--shadow);
+
+	/* tertiary button */
+	--wp--custom--greyd--button--trd--color--background: var(--wp--preset--color--transparent);
+	--wp--custom--greyd--button--trd--color--text: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--trd--border--color: var(--wp--preset--color--main);
+	--wp--custom--greyd--button--trd--border--radius: 5px;
+	--wp--custom--greyd--button--trd--border--style: solid;
+	--wp--custom--greyd--button--trd--border--width: 0;
+	--wp--custom--greyd--button--trd--shadow: none;
+	/* hover */
+	--wp--custom--greyd--button--trd--hover--color--background: var(--wp--preset--color--transparent);
+	--wp--custom--greyd--button--trd--hover--color--text: var(--wp--preset--color--primary);
+	--wp--custom--greyd--button--trd--hover--border--color: var(--wp--preset--color--primary);
+	--wp--custom--greyd--button--trd--hover--border--style: var(--wp--custom--greyd--button--trd--border--style);
+	--wp--custom--greyd--button--trd--hover--border--width: var(--wp--custom--greyd--button--trd--border--width);
+	--wp--custom--greyd--button--trd--hover--shadow: var(--wp--custom--greyd--button--trd--shadow);
+
+
+	/**
+	 * ====================================================================
+	 *                             Inputs
+	 * ====================================================================
+	 */
+
+	/* spacing */
+	--wp--custom--greyd--input--spacing--padding--top: 0.6em;
+	--wp--custom--greyd--input--spacing--padding--right: 1em;
+	--wp--custom--greyd--input--spacing--padding--bottom: 0.6em;
+	--wp--custom--greyd--input--spacing--padding--left: 1em;
+
+	/* typography */
+	--wp--custom--greyd--input--typography--font-family: var(--wp--preset--font-family--body);
+	--wp--custom--greyd--input--typography--font-size: var(--wp--preset--font-size--small);
+	--wp--custom--greyd--input--typography--font-weight: 400;
+	--wp--custom--greyd--input--typography--letter-spacing: 0px;
+	--wp--custom--greyd--input--typography--line-height: 1.6;
+	--wp--custom--greyd--input--typography--text-transform: none;
+
+	/* label */
+	--wp--custom--greyd--input--label--color--background: var(--wp--preset--color--transparent);
+	--wp--custom--greyd--input--label--color--text: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--label--typography--font-family: var(--wp--preset--font-family--body);
+	--wp--custom--greyd--input--label--typography--font-size: var(--wp--preset--font-size--base);
+	--wp--custom--greyd--input--label--typography--font-weight: var(--wp--custom--font-weigth-regular);
+	--wp--custom--greyd--input--label--typography--line-height: var(--wp--custom--line-height--normal);
+
+	/* primary input */
+	--wp--custom--greyd--input--prim--border--color: var(--wp--preset--color--mediumlight);
+	--wp--custom--greyd--input--prim--border--radius: 5px;
+	--wp--custom--greyd--input--prim--border--style: solid;
+	--wp--custom--greyd--input--prim--border--width: 1px;
+	--wp--custom--greyd--input--prim--color--background: var(--wp--preset--color--base);
+	--wp--custom--greyd--input--prim--color--placeholder: var(--wp--preset--color--mediumdark);
+	--wp--custom--greyd--input--prim--color--text: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--prim--shadow: none;
+	/* hover */
+	--wp--custom--greyd--input--prim--hover--border--color: var(--wp--preset--color--mediumlight);
+	--wp--custom--greyd--input--prim--hover--border--style: var(--wp--custom--greyd--input--prim--border--style);
+	--wp--custom--greyd--input--prim--hover--border--width: var(--wp--custom--greyd--input--prim--border--width);
+	--wp--custom--greyd--input--prim--hover--color--background: var(--wp--preset--color--base);
+	--wp--custom--greyd--input--prim--hover--color--placeholder: var(--wp--preset--color--mediumdark);
+	--wp--custom--greyd--input--prim--hover--color--text: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--prim--hover--shadow: var(--wp--custom--greyd--input--prim--shadow);
+
+	/* secondary input */
+	--wp--custom--greyd--input--sec--border--color: var(--wp--preset--color--mediumdark);
+	--wp--custom--greyd--input--sec--border--radius: 5px;
+	--wp--custom--greyd--input--sec--border--style: solid;
+	--wp--custom--greyd--input--sec--border--width: 1px;
+	--wp--custom--greyd--input--sec--color--background: var(--wp--preset--color--transparent);
+	--wp--custom--greyd--input--sec--color--placeholder: var(--wp--preset--color--mediumdark);
+	--wp--custom--greyd--input--sec--color--text: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--sec--shadow: none;
+	/* hover */
+	--wp--custom--greyd--input--sec--hover--border--color: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--sec--hover--border--style: var(--wp--custom--greyd--input--sec--border--style);
+	--wp--custom--greyd--input--sec--hover--border--width: var(--wp--custom--greyd--input--sec--border--width);
+	--wp--custom--greyd--input--sec--hover--color--background: var(--wp--preset--color--transparent);
+	--wp--custom--greyd--input--sec--hover--color--placeholder: var(--wp--preset--color--dark);
+	--wp--custom--greyd--input--sec--hover--color--text: var(--wp--preset--color--foreground);
+	--wp--custom--greyd--input--sec--hover--shadow: var(--wp--custom--greyd--input--sec--shadow);
+}
+
+.button.is-style-trd {
+	border: none;
+	background-color: transparent;
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
+
+.wp-block-greyd-buttons.wp-block-greyd-buttons {
+	gap: var(--wp--preset--spacing--small);
+}

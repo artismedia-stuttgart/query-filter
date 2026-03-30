@@ -1,0 +1,91 @@
+/**
+ * Search Form Layout
+ */
+ .greyd-search-form:not(.custom) {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: var(--gutter, var(--wp--style--block-gap, 1em ) );
+	align-items: flex-end;
+}
+
+/**
+ * Input layout
+ */
+.greyd-search-form .input-outer-wrapper {
+	position: relative;
+	width: auto;
+}
+
+:where( .greyd-search-form.custom .input-outer-wrapper ) {
+	margin-block-start: var(--gutter, var(--wp--style--block-gap, 1em ) );
+	margin-block-end: 0px;
+}
+
+.greyd-search-form:not(.custom) :is(button, .button, select, .input, .input-wrapper, .greyd_multiselect .input) {
+	margin-bottom: 0;
+}
+
+/**
+ * Label
+ */
+.greyd-search-form .input-outer-wrapper .label_wrap {
+	margin-block-end: calc( 0.5 * var(--gutter, var(--wp--preset--spacing--tiny, 0.5em) ) );
+}
+
+/**
+ * Autofill Dropdown
+ */
+.greyd-search-form .custom-select.autosearch {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+.greyd-search-form .custom-select.autosearch .loader {
+	display: none;
+}
+
+.greyd-search-form .custom-select.autosearch .select-selected {
+	display: none;
+}
+
+.greyd-search-form .custom-select.autosearch .select-items.loading > * {
+	opacity: 0.5;
+	transition: none;
+}
+
+.greyd-search-form .custom-select.autosearch .select-items:empty::after {
+	content: attr(loading);
+	display: block;
+	padding: calc(13px - 4px) 16px;
+}
+
+.greyd-search-form .custom-select.autosearch .select-items.loading::before {
+	content: " ";
+	display: block;
+	position: absolute;
+	right: 16px;
+	top: calc(13px - 4px);
+	height: calc(1em - 4px);
+	width: calc(1em - 4px);
+	border: 2px solid currentColor;
+	border-top-color: transparent;
+	border-radius: 100%;
+	animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.greyd-search-form input[type=search].input::placeholder {
+	color: currentColor;
+	opacity: 0.5;
+}

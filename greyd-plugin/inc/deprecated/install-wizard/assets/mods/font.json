@@ -1,0 +1,167 @@
+{
+    "sans": {
+        "basics": {
+            "fonts": {
+                "fontFamily1": "Arial, Helvetica, sans-serif",
+                "fontFamily2": "Arial, Helvetica, sans-serif",
+                "fontFamily3": ""
+            }
+        },
+        "navigation": {
+            "offmenu": {
+                "menu_fontfamily": "fontFamily1"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_fontfamily": "fontFamily1"
+            },
+            "offmenu": {
+                "navi_header_off_menu_fontfamily": "fontFamily1"
+            },
+            "dropdowns": {
+                "dropitem_fontfamily": "fontFamily1"
+            },
+            "footer": {
+                "navi_footer_item_fontfamily": "fontFamily1"
+            },
+            "header_sec": {
+                "navi_header_sec_fontfamily": "fontFamily1"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_menu_fontfamily": "fontFamily1"
+            }
+        },
+        "elements": {
+            "text": {
+                "body_fontfamily": "fontFamily1"
+            },
+            "headlines": {
+                "headlines_fontfamily": "fontFamily2"
+            },
+            "buttons": {
+                "buttons_fontfamily": "fontFamily1"
+            },
+            "links": {
+                "link_fontfamily": "fontFamily1"
+            },
+            "forms": {
+                "forms_fontfamily": "fontFamily1",
+                "forms_label_fontfamily": "fontFamily1"
+            },
+            "messages": {
+                "messages_fontfamily": "fontFamily1"
+            }
+        }
+    },
+    "slab": {
+        "basics": {
+            "fonts": {
+                "fontFamily1": "Arial, Helvetica, sans-serif",
+                "fontFamily2": "\"Lucida Console\", Monaco, monospace",
+                "fontFamily3": ""
+            }
+        },
+        "navigation": {
+            "offmenu": {
+                "menu_fontfamily": "fontFamily1"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_fontfamily": "fontFamily1"
+            },
+            "offmenu": {
+                "navi_header_off_menu_fontfamily": "fontFamily1"
+            },
+            "dropdowns": {
+                "dropitem_fontfamily": "fontFamily1"
+            },
+            "footer": {
+                "navi_footer_item_fontfamily": "fontFamily1"
+            },
+            "header_sec": {
+                "navi_header_sec_fontfamily": "fontFamily1"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_menu_fontfamily": "fontFamily1"
+            }
+        },
+        "elements": {
+            "text": {
+                "body_fontfamily": "fontFamily1"
+            },
+            "headlines": {
+                "headlines_fontfamily": "fontFamily2"
+            },
+            "buttons": {
+                "buttons_fontfamily": "fontFamily1"
+            },
+            "links": {
+                "link_fontfamily": "fontFamily1"
+            },
+            "forms": {
+                "forms_fontfamily": "fontFamily1",
+                "forms_label_fontfamily": "fontFamily1"
+            },
+            "messages": {
+                "messages_fontfamily": "fontFamily1"
+            }
+        }
+    },
+    "serif": {
+        "basics": {
+            "fonts": {
+                "fontFamily1": "Georgia, serif",
+                "fontFamily2": "Georgia, serif",
+                "fontFamily3": ""
+            }
+        },
+        "navigation": {
+            "offmenu": {
+                "menu_fontfamily": "fontFamily1"
+            }
+        },
+        "navigation_2": {
+            "header": {
+                "navi_header_fontfamily": "fontFamily1"
+            },
+            "offmenu": {
+                "navi_header_off_menu_fontfamily": "fontFamily1"
+            },
+            "dropdowns": {
+                "dropitem_fontfamily": "fontFamily1"
+            },
+            "footer": {
+                "navi_footer_item_fontfamily": "fontFamily1"
+            },
+            "header_sec": {
+                "navi_header_sec_fontfamily": "fontFamily1"
+            },
+            "offmenu_sec": {
+                "navi_header_sec_off_menu_fontfamily": "fontFamily1"
+            }
+        },
+        "elements": {
+            "text": {
+                "body_fontfamily": "fontFamily1"
+            },
+            "headlines": {
+                "headlines_fontfamily": "fontFamily2"
+            },
+            "buttons": {
+                "buttons_fontfamily": "fontFamily1"
+            },
+            "links": {
+                "link_fontfamily": "fontFamily1"
+            },
+            "forms": {
+                "forms_fontfamily": "fontFamily1",
+                "forms_label_fontfamily": "fontFamily1"
+            },
+            "messages": {
+                "messages_fontfamily": "fontFamily1"
+            }
+        }
+    }
+}

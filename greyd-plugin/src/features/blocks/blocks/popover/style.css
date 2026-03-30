@@ -1,0 +1,470 @@
+/**
+ * Block
+ */
+ .wp-block-greyd-popover {
+	--dialog-color: currentColor;
+	--dialog-background: var(--wp--preset--color--light, var(--color62, #e9e6ed));
+	--dialog-radius: 0;
+	--dialog-padding: calc(2 * var(--wp--style--block-gap--horizontal, var(--gutter, 1rem)));
+	/**
+	 * @since 1.7.4
+	 * set a default margin for the dialog, this actually only affects
+	 * the max-width & max-height, as margin: auto is used for alignment.
+	 *
+	*/
+	--dialog-margin: var(--wp--style--block-gap--horizontal, var(--gutter, 1rem));
+	/**
+	 * leave this one undefined for cleaner fallbacks
+	--dialog-width: calc(320px + 30vw);
+	*/
+	--dialog-border: none;
+	--dialog-box-shadow: 0 19px 38px rgb(0 0 0 / 12%), 0 15px 12px rgb(0 0 0 / 22%);
+	--dialog-origin: center center;
+	
+	--backdrop-color: linear-gradient(165deg, rgb(0, 0, 0, .5), rgb(0, 0, 0, 1));
+	--backdrop-opacity: 50;
+	--backdrop-blur: 2px;
+
+	--close-size: 28px;
+	--close-color: currentColor;
+	--close-background: var(--dialog-background);
+	--close-radius: 100%;
+
+	--tri-size: 0px;
+	/* --tri-color: var(--dialog-background); */
+
+	/* positioning */
+	--button-width: 0;
+	--button-height: 0;
+	--button-align: 0;
+	--button-left: 0;
+	--button-right: 0;
+	--button-delta: 0; /* calc(0.5 * (var(--button-width) - var(--dialog-width, var(--button-width)))); */
+	/**
+	 * @since 1.7.4 set this in the dialog
+	--dialog-margin-x: calc(var(--dialog-margin) * 2);
+	--dialog-margin-y: calc(var(--dialog-margin) * 2);
+	*/
+}
+
+
+/**
+ * Trigger Button
+ */
+
+.wp-block-greyd-popover-button {
+	outline: 0;
+	appearance: none;
+	border: 0;
+	cursor: pointer !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+:where( .wp-block-greyd-popover-button.link ) {
+	background: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+/**
+ * Popup
+ */
+
+.wp-block-greyd-popover .wp-block-greyd-popover-popup {
+	position: relative;
+	width: var(--button-width);
+	margin: var(--button-align);
+}
+.wp-block-greyd-popover [role=dialog] {
+	box-sizing: border-box;
+	position: fixed;
+	z-index: 99999;
+	/* display: flex;
+	flex-direction: column; */
+	padding: var(--dialog-padding);
+	margin: var(--dialog-margin);
+	color: var(--dialog-color);
+	/**
+	 * Set var(--text-color) to use for outline color
+	 * @since 2.2.0
+	 */
+	--text-color: var(--dialog-color);
+	background: var(--dialog-background);
+	border-radius: var(--dialog-radius);
+	border: var(--dialog-border);
+	box-shadow: var(--dialog-box-shadow);
+	overflow: hidden;
+}
+.wp-block-greyd-popover :is([role="alertdialog"], [role="dialog"]):is([open], :focus-within) {
+	overflow-y: auto;
+	/* overflow: visible; */
+	scale: 1;
+}
+
+.wp-block-greyd-popover [role=dialog]:not([open]) {
+	visibility: hidden;
+	scale: 0;
+	opacity: 0;
+	overflow: hidden;
+}
+
+
+/**
+ * Backdrop
+ */
+
+.wp-block-greyd-popover .dialog-backdrop {
+	position: fixed;
+	z-index: 9999;
+	inset: 0;
+	overflow-y: auto;
+	-webkit-backdrop-filter: blur(var(--backdrop-blur));
+	backdrop-filter: blur(var(--backdrop-blur));
+}
+
+.wp-block-greyd-popover .dialog-backdrop::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--backdrop-color);
+	opacity: calc(var(--backdrop-opacity) / 100);
+}
+
+.wp-block-greyd-popover :not(
+	[role="alertdialog"][open]
+	[role="dialog"][open],
+	[role="dialog"]:focus-within,
+	[tabindex="0"]
+) + .dialog-backdrop {
+	display: none !important;
+}
+
+.wp-block-greyd-popover .is-variation-dropdown[role="alertdialog"][open] + [tabindex="0"] + .dialog-backdrop,
+.wp-block-greyd-popover .is-variation-dropdown[role="dialog"][open] + [tabindex="0"] + .dialog-backdrop,
+.wp-block-greyd-popover .is-variation-dropdown[role="dialog"]:focus-within + [tabindex="0"] + .dialog-backdrop
+{
+	display: none !important;
+}
+
+/* this is added to the body when a dialog is open */
+body.has-dialog {
+	overflow: hidden;
+}
+
+
+/**
+ * Close Button
+ */
+
+.wp-block-greyd-popover .popover-close-button {
+	appearance: none;
+	border: none;
+	background: none;
+	color: currentColor;
+	position: relative;
+	box-sizing: content-box;
+	/* align-self: flex-end; */
+	z-index: 1;
+	cursor: pointer;
+	width: var(--close-size);
+	height: var(--close-size);
+	--close-outset: calc(var(--close-size) / 4);
+	padding: var(--close-outset);
+	margin: calc(var(--close-outset) * -1);
+	transition: transform .2s, opacity .2s;
+	border-radius: var(--close-radius);
+	/* align right */
+	margin-left: auto;
+	display: block;
+}
+
+.wp-block-greyd-popover .popover-close-button:hover {
+	transform: scale(1.05);
+	opacity: 0.8;
+}
+
+.wp-block-greyd-popover .popover-close-button:before,
+.wp-block-greyd-popover .popover-close-button:after {
+	position: absolute;
+	top: var(--close-outset);
+	left: calc(var(--close-outset) + var(--close-size) / 2 - 1px);
+	content: ' ';
+	height: calc(var(--close-size) + 1px);
+	width: 2px;
+	background-color: var(--close-color);
+}
+
+.wp-block-greyd-popover .popover-close-button:before {
+	transform: rotate(45deg);
+}
+
+.wp-block-greyd-popover .popover-close-button:after {
+	transform: rotate(-45deg);
+}
+
+.popover-close-button.is-hidden {
+	display: none;
+}
+
+/**
+ * @deprecated 1.7.4
+ * Close Button Outside - this leads to too many overflow
+ * issues, so it's better to use the default inside button.
+.wp-block-greyd-popover .popover-close-button.is-outside {
+	position: absolute;
+	top: calc(var(--close-size) * -0.5);
+	right: var(--dialog-padding);
+	background: var(--close-background);
+	box-shadow: var(--dialog-box-shadow);
+}
+.wp-block-greyd-popover .popover-close-button.is-outside:hover {
+	transform: scale(1.05) translateY(-5%);
+	opacity: 1;
+}
+*/
+
+
+/**
+ * Popup Variations
+ */
+
+.wp-block-greyd-popover [role=dialog] {
+	--vw-100: calc(var(--vw-unit, 1vw) * 100);
+	/**
+	 * @since 1.7.4
+	 * set this in the dialog, otherwise a custom margin
+	 * in greydStyles does not affect this.
+	 */
+	--dialog-margin-x: calc(var(--dialog-margin) * 2);
+	--dialog-margin-y: calc(var(--dialog-margin) * 2);
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	/* min-width: fit-content; */
+	width: var(--dialog-width, calc(320px + 30vw));
+	max-width: calc(var(--vw-100) - var(--dialog-margin-x));
+	height: var(--dialog-height, fit-content);
+	min-height: auto;
+	max-height: calc(100vh - var(--dialog-margin-y));
+
+	transition-property: var(--dialog-transition-property);
+	transition-duration: var(--dialog-transition-duration, 0.3s);
+	transition-timing-function: var(--dialog-transition-timing-function, ease-in-out);
+	transform-origin: var(--dialog-transition-origin, var(--dialog-origin));
+}
+
+body.admin-bar .wp-block-greyd-popover [role=dialog] {
+	max-height: calc(100vh - var(--dialog-margin-y) - var(--wp-admin--admin-bar--height, 0));
+	/* translate: 0 var(--wp-admin--admin-bar--height); */
+}
+
+/* popup */
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-default) ) {
+	--dialog-transition-property: scale, opacity;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-default,
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-center-center {
+	margin: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-right,
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-center-right {
+	margin-block: auto;
+	left: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-left,
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-center-left {
+	margin-block: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-top,
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-top-center {
+	margin-inline: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-bottom,
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-bottom-center {
+	margin-inline: auto;
+	top: auto;
+}
+/* .wp-block-greyd-popover [role=dialog].is-variation-default.is-position-top-left {
+
+} */
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-bottom-left {
+	top: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-top-right {
+	left: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-default.is-position-bottom-right {
+	top: auto;
+	left: auto;
+}
+
+/* offcanvas */
+/* overlay */
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-overlay),
+.wp-block-greyd-popover:has([role=dialog].is-variation-offcanvas) ) {
+	--dialog-transition-property: transform, opacity;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay:not([open]),
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas:not([open]) {
+	scale: 1;
+	transform: translateX(100%);
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-default,
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-default {
+	height: auto;
+	left: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-left:not([open]),
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-left:not([open]) {
+	transform: translateX(-100%);
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-left,
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-left {
+	height: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-top:not([open]),
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-top:not([open]) {
+	transform: translateY(-100%);
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-top,
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-top {
+	margin-inline: auto;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-bottom:not([open]),
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-bottom:not([open]) {
+	transform: translateY(100%);
+}
+.wp-block-greyd-popover [role=dialog].is-variation-overlay.is-position-bottom,
+.wp-block-greyd-popover [role=dialog].is-variation-offcanvas.is-position-bottom {
+	margin-inline: auto;
+	top: auto;
+}
+/* offcanvas body */
+/* html {
+	background-color: purple;
+} */
+.is-offcanvas {
+	width: 100%;
+	transition: margin 0.3s;
+	overflow: hidden;
+	--offcanvas-delta: 0px;
+}
+.is-offcanvas.is-position-default {
+	/* margin-left: -50vw; */
+	margin-left: var(--offcanvas-delta);
+}
+.is-offcanvas.is-position-left {
+	/* margin-left: 50vw; */
+	margin-left: var(--offcanvas-delta);
+}
+.is-offcanvas.is-position-top {
+	/* margin-top: 50vh; */
+	margin-top: var(--offcanvas-delta);
+}
+.is-offcanvas.is-position-bottom {
+	/* margin-top: -50vh; */
+	margin-top: var(--offcanvas-delta);
+}
+
+/* dropdown */
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown:is([open], :focus-within) {
+	overflow: visible;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown::before {
+	content: "";
+	position: absolute;
+	border: var(--tri-size) solid transparent;
+	z-index: -1;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown {
+	position: absolute;
+	width: var(--dialog-width, fit-content);
+}
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-dropdown) ) {
+	--dialog-transition-property: transform, opacity;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-default::before {
+	border-right-color: var(--dialog-background);
+	left: calc(1px - (2 * var(--tri-size)));
+	bottom: calc(50% - var(--tri-size));
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-default {
+	max-width: calc(var(--button-right) - var(--dialog-margin-x));
+	left: 100%;
+	top: calc(0px - var(--button-height));
+	margin-top: auto;
+	margin-bottom: auto;
+}
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-dropdown.is-position-default) ) {
+	--dialog-transition-origin: center left;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-left::before {
+	border-left-color: var(--dialog-background);
+	right: calc(1px - (2 * var(--tri-size)));
+	bottom: calc(50% - var(--tri-size));
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-left {
+	max-width: calc(var(--button-left) - var(--dialog-margin-x));
+	top: calc(0px - var(--button-height));
+	margin-top: auto;
+	margin-bottom: auto;
+	translate: calc(-100% - var(--dialog-margin-x));
+}
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-dropdown.is-position-left) ) {
+	--dialog-transition-origin: center right;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-top::before {
+	border-top-color: var(--dialog-background);
+	bottom: calc(1px - (2 * var(--tri-size)));
+	/* left: calc(50% - var(--tri-size)); */
+	left: calc(0px - var(--button-delta) + (0.5 * var(--button-width)) - var(--tri-size));
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-top {
+	top: auto;
+	bottom: var(--button-height);
+	left: min(0px, var(--button-delta));
+	margin-left: auto;
+	margin-right: auto;
+}
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-dropdown.is-position-top) ) {
+	--dialog-transition-origin: bottom center;
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-bottom:before {
+	border-bottom-color: var(--dialog-background);
+	top: calc(1px - (2 * var(--tri-size)));
+	/* left: calc(50% - var(--tri-size)); */
+	left: calc(0px - var(--button-delta) + (0.5 * var(--button-width)) - var(--tri-size));
+}
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown.is-position-bottom {
+	left: min(0px, var(--button-delta));
+	margin-left: auto;
+	margin-right: auto;
+}
+:where( .wp-block-greyd-popover:has([role=dialog].is-variation-dropdown.is-position-bottom) ) {
+	--dialog-transition-origin: top center;
+}
+/* 
+@media screen and (min-width: 768px) {
+	.wp-block-greyd-popover [role=dialog].is-variation-dropdown {
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: var(--dialog-width, fit-content);
+	}
+} 
+*/
+
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown + * + .dialog-backdrop,
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown + .dialog-backdrop {
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+}
+
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown + * + .dialog-backdrop::before,
+.wp-block-greyd-popover [role=dialog].is-variation-dropdown + .dialog-backdrop::before {
+	opacity: 0 !important;
+}

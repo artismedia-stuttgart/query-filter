@@ -1,0 +1,77 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "greyd/page-navigation",
+	"version": "1.0.0",
+	"title": "Page Navigation",
+	"category": "greyd-blocks",
+	"icon": "index-card",
+	"description": "Display a hierarchical navigation of pages, posts or custom post types",
+	"keywords": [ "navigation", "hierarchy", "post", "page", "menu", "structure", "accordion", "toggle" ],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": false
+		}
+	},
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"postType": {
+			"type": "string",
+			"default": "page"
+		},
+		"inheritPostType": {
+			"type": "boolean",
+			"default": false
+		},
+		"maxDepth": {
+			"type": "number",
+			"default": 3
+		},
+		"icon": {
+			"type": "string",
+			"default": "arrow_carrot-right"
+		},
+		"iconExpanded": {
+			"type": "string",
+			"default": "arrow_carrot-down"
+		},
+		"greydClass": {
+			"type": "string",
+			"default": ""
+		},
+		"greydStyles": {
+			"type": "object",
+			"default": {}
+		},
+		"linkStyles": {
+			"type": "object",
+			"default": {}
+		},
+		"chevronStyles": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"textdomain": "greyd_hub",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "greyd-page-navigation-style",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

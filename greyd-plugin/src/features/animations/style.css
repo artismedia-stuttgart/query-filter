@@ -1,0 +1,227 @@
+/**
+ * Animation public styles.
+ * 
+ * @since 1.6.0
+ */
+
+[data-anim-action] {
+	transition-property: all;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion) {
+	[data-anim-action] {
+		transition-property: none !important;
+		transition-duration: 0s !important;
+		transition-delay: 0s !important;
+	}
+}
+
+/**
+ * whileScroll
+ */
+[data-anim-event="whileScroll"] {
+	transition-duration: 200ms;
+	transition-delay: 0s;
+}
+
+/**
+ * onScroll
+ */
+[data-anim-event="onScroll"][data-anim-triggered="false"][data-anim-reverse="false"] {
+	transition-duration: 0s !important;
+	transition-delay: 0s !important;
+}
+
+/**
+ * changeColor
+ */
+[data-anim-action="changeColor"] {
+	transition-property: color, background;
+}
+
+/**
+ * transforms
+ */
+[data-anim-action="translateX"],
+[data-anim-action="translateY"],
+[data-anim-action="scale"],
+[data-anim-action="rotate"] {
+	transition-property: transform;
+}
+
+/**
+ * filter
+ */
+[data-anim-action="filter"] {
+	transition-property: filter;
+}
+
+/**
+ * ===================
+ *    P R E S E T S
+ * ===================
+ */
+
+/**
+ * show
+ */
+[data-anim-action="show"] {
+	opacity: 0;
+	transition: none;
+}
+
+[data-anim-action="show"][data-anim-triggered="true"],
+[data-anim-action="show"][data-anim-event="hover"]:hover {
+	opacity: 1;
+}
+
+/**
+ * hide
+ */
+[data-anim-action="hide"] {
+	transition: none;
+}
+
+[data-anim-action="hide"][data-anim-triggered="true"],
+[data-anim-action="hide"][data-anim-event="hover"]:hover {
+	opacity: 0;
+}
+
+/**
+ * fadeIn
+ */
+[data-anim-action="fadeIn"] {
+	opacity: 0;
+	transition-property: opacity;
+}
+
+[data-anim-action="fadeIn"][data-anim-triggered="true"],
+[data-anim-action="fadeIn"][data-anim-event="hover"]:hover {
+	opacity: 1;
+}
+
+/**
+ * fadeInUp
+ */
+[data-anim-action="fadeInUp"] {
+	opacity: 0;
+	transform: translateY(100px);
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeInUp"][data-anim-triggered="true"],
+[data-anim-action="fadeInUp"][data-anim-event="hover"]:hover {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/**
+ * fadeInDown
+ */
+[data-anim-action="fadeInDown"] {
+	opacity: 0;
+	transform: translateY(-100px);
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeInDown"][data-anim-triggered="true"],
+[data-anim-action="fadeInDown"][data-anim-event="hover"]:hover {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/**
+ * fadeInRight
+ */
+[data-anim-action="fadeInRight"] {
+	opacity: 0;
+	transform: translateX(100px);
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeInRight"][data-anim-triggered="true"],
+[data-anim-action="fadeInRight"][data-anim-event="hover"]:hover {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/**
+ * fadeInLeft
+ */
+[data-anim-action="fadeInLeft"] {
+	opacity: 0;
+	transform: translateX(-100px);
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeInLeft"][data-anim-triggered="true"],
+[data-anim-action="fadeInLeft"][data-anim-event="hover"]:hover {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/**
+ * fadeOut
+ */
+[data-anim-action="fadeOut"] {
+	transition-property: opacity;
+}
+
+[data-anim-action="fadeOut"][data-anim-triggered="true"],
+[data-anim-action="fadeOut"][data-anim-event="hover"]:hover {
+	opacity: 0;
+}
+
+/**
+ * fadeOutUp
+ */
+[data-anim-action="fadeOutUp"] {
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeOutUp"][data-anim-triggered="true"],
+[data-anim-action="fadeOutUp"][data-anim-event="hover"]:hover {
+	transform: translateY(-100px);
+	opacity: 0;
+}
+
+/**
+ * fadeOutDown
+ */
+[data-anim-action="fadeOutDown"] {
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeOutDown"][data-anim-triggered="true"],
+[data-anim-action="fadeOutDown"][data-anim-event="hover"]:hover {
+	transform: translateY(100px);
+	opacity: 0;
+}
+
+/**
+ * fadeOutRight
+ */
+[data-anim-action="fadeOutRight"] {
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeOutRight"][data-anim-triggered="true"],
+[data-anim-action="fadeOutRight"][data-anim-event="hover"]:hover {
+	transform: translateX(100px);
+	opacity: 0;
+}
+
+/**
+ * fadeOutLeft
+ */
+[data-anim-action="fadeOutLeft"] {
+	transition-property: opacity, transform;
+}
+
+[data-anim-action="fadeOutLeft"][data-anim-triggered="true"],
+[data-anim-action="fadeOutLeft"][data-anim-event="hover"]:hover {
+	transform: translateX(-100px);
+	opacity: 0;
+}

@@ -1,0 +1,17 @@
+/* Adjust spacing between checkbox and label field for ranges */
+.greyd-datepicker-ranges-settings .components-checkbox-control {
+	margin-bottom: 10px !important;
+}
+
+/* General utilities */
+.greyd-help-text {
+	margin-bottom: 20px;
+}
+
+.greyd-meta-field-control .components-base-control:first-child {
+	margin-bottom: 12px;
+}
+
+.greyd-meta-field-control .components-tip {
+	margin-bottom: 24px;
+}

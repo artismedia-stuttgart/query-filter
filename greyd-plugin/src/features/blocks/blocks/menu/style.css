@@ -1,0 +1,34 @@
+ul.menu {
+    list-style: none;
+}
+.block_menu_wrapper {
+    --gap: var(--gutter);
+}
+.block_menu_wrapper ul {
+    list-style: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+.block_menu_wrapper ul li,
+.block_menu_wrapper ul li a {
+    margin: 0;
+}
+.block_menu_wrapper ul:not(.sub-menu) {
+    margin-bottom: var(--gap);
+}
+.block_menu_wrapper ul.sub-menu {
+    margin-top: var(--gap);
+    /*margin-left: 1em;*/
+    margin-bottom: 0;
+}
+/**
+ * This is used for backward compatibility below 1.2.1.
+ * Can be remove in future versions.
+ * @deprecated since 1.2.1
+ */
+.block_menu_wrapper ul li a:last-child {
+    margin-right: 0 !important;
+}

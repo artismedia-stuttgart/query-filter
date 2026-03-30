@@ -1,0 +1,116 @@
+.wp-block-greyd-popover [role="dialog"] {
+	z-index: 21;
+	translate: 0;
+}
+
+.wp-block-greyd-popover .dialog-backdrop {
+	z-index: 20;
+	display: block !important;
+}
+
+.wp-block-greyd-popover .wp-block-greyd-popover-button {
+	width: fit-content;
+}
+
+.wp-block-greyd-buttons .wp-block-greyd-popover .button {
+	cursor: auto;
+	margin-bottom: 0;
+}
+
+[data-type="greyd/popover-button"] > * {
+	display: inline-flex;
+}
+[data-type="greyd/popover-button"].alignleft > * {
+	justify-content: left;
+}
+[data-type="greyd/popover-button"].aligncenter > * {
+	justify-content: center;
+}
+[data-type="greyd/popover-button"].alignright > * {
+	justify-content: right;
+}
+
+[data-type="greyd/popover-button"] {
+	display: flex;
+}
+
+[data-type="greyd/popover-button"].alignleft {
+	/* text-align: left; */
+	justify-content: left;
+}
+
+[data-type="greyd/popover-button"].aligncenter {
+	/* text-align: center; */
+	justify-content: center;
+}
+
+[data-type="greyd/popover-button"].alignright {
+	/* text-align: right; */
+	justify-content: right;
+}
+
+/* offcanvas body */
+.interface-interface-skeleton__content {
+	/* background-color: purple !important; */
+	/* contain block for fixed positioning of popover */
+	transform: translateZ(0);
+}
+
+/* fix popover position */
+/* .wp-block-greyd-popover [role="dialog"] {
+	--adminbar-width: 32px;
+	--adminmenu-width: 160px;
+	--sidebar-width: 0px;
+	--listview-width: 0px;
+	margin-bottom: 26px;
+	margin-top: calc(20px + var(--adminbar-width));
+	margin-left: calc((var(--sidebar-width) * -0.5) + (var(--listview-width) * 0.5) + (var(--adminmenu-width) * 0.5));
+	max-height: calc(100vh - (var(--dialog-margin) * 2) - 100px);
+}
+
+.is-style-banner-right.wp-block-greyd-popover [role="dialog"] {
+	margin-left: 0;
+	margin-right: var(--sidebar-width);
+}
+
+.is-style-banner-left.wp-block-greyd-popover [role="dialog"] {
+	margin-left: calc(var(--listview-width) + var(--adminmenu-width));
+}
+
+.is-sidebar-opened .wp-block-greyd-popover [role="dialog"] {
+	--sidebar-width: 280px;
+}
+
+.interface-interface-skeleton__secondary-sidebar ~ .interface-navigable-region .wp-block-greyd-popover [role="dialog"] {
+	--listview-width: 350px;
+}
+
+.is-fullscreen-mode .wp-block-greyd-popover [role="dialog"] {
+	--adminbar-width: 0px;
+	--adminmenu-width: 0px;
+} */
+
+@media (max-width: 576px) {
+	.hidden-xs {
+		opacity: 0.35;
+		display: block !important;
+	}
+}
+@media (min-width: 576px) and (max-width: 992px) {
+	.hidden-sm {
+		opacity: 0.35;
+		display: block !important;
+	}
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+	.hidden-md{
+		opacity: 0.35;
+		display: block !important;
+	}
+}
+@media (min-width: 1200px) {
+	.hidden-lg {
+		opacity: 0.35;
+		display: block !important;
+	}
+}

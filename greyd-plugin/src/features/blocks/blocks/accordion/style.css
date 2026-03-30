@@ -1,0 +1,154 @@
+.wp-block-greyd-accordion {
+	--accord-padding: 1rem;
+	/**
+	 * @since 2.17.5
+	 * Set var(--text-color) to inherit instead of currentColor.
+	 * currentColor can lead to outlines on buttons not being visible
+	 * when the button is focused due to the text color often being
+	 * white on colored buttons.
+	 */
+	--accord-text-color: inherit; /* currentColor; */
+	--accord-bg-color: var(--wp--preset--color--background);
+	--accord-width: 100%;
+	--accord-align-items: flex-start;
+	/* title */
+	--accord-title-text-color: var(--wp--preset--color--background);
+	--accord-title-bg-color: var(--wp--preset--color--dark);
+	--accord-title-font-size: inherit;
+	--accord-title-radius: 2px;
+	--accord-title-align: left;
+	/* icon */
+	--accord-icon-font-size: 1em;
+	/* content */
+	--accord-content-padding: var(--accord-padding);
+	--accord-content-margin-bottom: var(--wp--style--block-gap);
+
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
+}
+
+.wp-block-greyd-accordion-item {
+	width: var(--accord-width);
+	max-width: 100%;
+	align-self: var(--accord-align-items);
+	overflow: hidden;
+}
+.wp-block-greyd-accordion-item:not(:first-child) {
+	margin-block-start: var(--accord-content-margin-bottom);
+}
+
+/* title */
+.wp-block-greyd-accordion__title {
+	appearance: none;
+	-webkit-appearance: none;
+	font: inherit;
+	width: 100%;
+	border: none;
+	outline: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	padding: var(--accord-padding);
+	margin: 0;
+	gap: 0.5em;
+	color: var(--accord-title-text-color);
+	/**
+	 * Set var(--text-color) to use for outline color
+	 * @since 2.2.0
+	 */
+	--text-color: var(--accord-title-text-color);
+	background: var(--accord-title-bg-color);
+	font-size: var(--accord-title-font-size);
+	border-radius: var(--accord-title-radius);
+	text-align: var(--accord-title-align, left);
+}
+/**
+ * Html element inside title.
+ * @since 2.17.5
+ */
+ .wp-block-greyd-accordion__title > .wp-block-greyd-accordion__title-heading {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5em;
+	width: 100%;
+	font: inherit;
+	padding: 0;
+	margin: 0;
+}
+
+.wp-block-greyd-accordion__title > span:not(.icon) {
+	width: 100%;
+}
+body.animate_fast .wp-block-greyd-accordion__title {
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.wp-block-greyd-accordion.hasiconleft .wp-block-greyd-accordion__title,
+.wp-block-greyd-accordion.hasiconleft .wp-block-greyd-accordion__title > .wp-block-greyd-accordion__title-heading {
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+
+/* icon */
+.wp-block-greyd-accordion__title .icon {
+	font-size: var(--accord-icon-font-size);
+}
+.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title[aria-expanded="true"] .icon-normal,
+.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title:not([aria-expanded="true"]) .icon-active {
+	display: none;
+}
+
+/* content */
+.wp-block-greyd-accordion__content {
+	padding: var(--accord-content-padding);
+	color: var(--accord-text-color);
+	/**
+	 * Set var(--text-color) to use for outline color
+	 * @since 2.2.0
+	 */
+	--text-color: var(--accord-text-color);
+	background:  var(--accord-bg-color);
+	transition-property: all;
+	transition-duration: var(--accord-transition-duration, 0);
+	transition-timing-function: var(--accord-transition-timing-function, none);
+}
+.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title:not([aria-expanded="true"]) + .wp-block-greyd-accordion__content {
+	/* opacity: 0; */
+	max-height: 0;
+	overflow: hidden;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title[aria-expanded="true"] + .wp-block-greyd-accordion__content {
+	/* opacity: 1; */
+	max-height: 1000vh;
+}
+body.animate_fast .wp-block-greyd-accordion__content {
+	transition-property: all;
+	transition-duration: var(--accord-transition-duration, 0.2s);
+	transition-timing-function: var(--accord-transition-timing-function, ease);
+}
+.wp-block-greyd-accordion-item button:focus-visible {
+	outline: 2px dotted var( --text-color, var(--wp--preset--color--foreground, currentColor) );
+	outline-offset: -2px;
+}
+
+@supports (interpolate-size: allow-keywords) {
+	.wp-block-greyd-accordion__content {
+		interpolate-size: allow-keywords;
+		transition-property: height, padding, margin;
+	}
+	.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title:not([aria-expanded="true"]) + .wp-block-greyd-accordion__content {
+		max-height: unset;
+		height: 0;
+	}	
+	.wp-block-greyd-accordion-item .wp-block-greyd-accordion__title[aria-expanded="true"] + .wp-block-greyd-accordion__content {
+		max-height: unset;
+		height: auto;
+	}
+}

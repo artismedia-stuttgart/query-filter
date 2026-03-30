@@ -1,0 +1,214 @@
+/**
+ * Navigation Extension Blocks CSS
+ * @since 1.13.0
+ * 
+ * Contains general block styles. Is enqueued in the front- & backend.
+ * This file does not get processed and is loaded *after* editor styles so it
+ * will take precedence over editor-specific styles using the same selectors.
+ */
+
+
+/*    core/navigation
+__________________________________
+*/
+
+/**
+ * OPTION: show/toggle submenus
+ */
+
+.wp-block-navigation.submenus-show .wp-block-navigation-submenu {
+	flex-direction: column;
+	align-items: start;
+}
+
+.wp-block-navigation.submenus-toggle .wp-block-navigation-submenu {
+	align-items: start;
+	flex-wrap: wrap;
+}
+
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container {
+	position: relative;
+	flex-basis: 100%;
+	overflow: visible;
+	background: none;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+/**
+ * remove dropdown styling from theme
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__container .wp-block-navigation-submenu.has-child .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__container .wp-block-navigation-submenu.has-child .wp-block-navigation__submenu-container {
+	margin-top: 0;
+	left: 0 !important;
+	transform: none;
+	box-shadow: none !important;
+	min-width: 0 !important;
+}
+
+/**
+ * remove triangle from theme
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container::before,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container::before {
+	content: none;
+}
+
+/**
+ * show submenus
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container {
+	opacity: 1;
+	visibility: visible;
+	height: auto;
+	width: auto;
+	min-width: 200px;
+}
+
+/**
+ * Make submenu layout same as inside overlay
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle .has-child .wp-block-navigation-submenu__toggle[aria-expanded=true] ~ .wp-block-navigation__submenu-container,
+/* editor */
+.wp-block-navigation.submenus-toggle .has-child.wp-block-navigation-item.is-selected > .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle .has-child.wp-block-navigation-item.has-child-selected > .wp-block-navigation__submenu-container {
+	padding-bottom: 0;
+	padding-left: var(--wp--style--block-gap, 1em);
+	padding-top: 0.5rem;
+	row-gap: 0.5rem;
+}
+
+/**
+ * Fix padding of submenu items
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container .wp-block-navigation-item a:not(.wp-element-button),
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container .wp-block-navigation-submenu a:not(.wp-element-button),
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container .wp-block-navigation-submenu button.wp-block-navigation-item__content,
+.wp-block-navigation.submenus-show .wp-block-navigation__submenu-container .wp-block-pages-list__item button.wp-block-navigation-item__content,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container .wp-block-navigation-item a:not(.wp-element-button),
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container .wp-block-navigation-submenu a:not(.wp-element-button),
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container .wp-block-navigation-submenu button.wp-block-navigation-item__content,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container .wp-block-pages-list__item button.wp-block-navigation-item__content {
+	padding: 0;
+}
+
+/**
+ * Horizontal navigation
+ */
+.wp-block-navigation.submenus-show .wp-block-navigation__container:not(.is-vertical),
+.wp-block-navigation.submenus-toggle .wp-block-navigation__container:not(.is-vertical) {
+	align-items: start;
+}
+
+.wp-block-navigation.submenus-show:not(.is-vertical) .has-child .wp-block-navigation-submenu__toggle[aria-expanded=true] ~ .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle:not(.is-vertical) .has-child .wp-block-navigation-submenu__toggle[aria-expanded=true] ~ .wp-block-navigation__submenu-container,
+/* editor */
+.wp-block-navigation.submenus-toggle:not(.is-vertical) .has-child.wp-block-navigation-item.is-selected > .wp-block-navigation__submenu-container,
+wp-block-navigation.submenus-toggle:not(.is-vertical) .has-child.wp-block-navigation-item.has-child-selected > .wp-block-navigation__submenu-container {
+	min-width: 0;
+	width: min-content;
+}
+
+/**
+ * Vertical navigation
+ */
+.wp-block-navigation.submenus-show.is-vertical .wp-block-navigation-submenu,
+.wp-block-navigation.submenus-toggle.is-vertical .wp-block-navigation-submenu {
+	width: 100%;
+}
+
+.wp-block-navigation.submenus-show.items-justified-center.is-vertical .wp-block-navigation-item,
+.wp-block-navigation.submenus-show.items-justified-center.is-vertical .wp-block-navigation-submenu {
+	align-items: center;
+	align-self: center;
+}
+
+.wp-block-navigation.submenus-show.items-justified-right.is-vertical .wp-block-navigation-item,
+.wp-block-navigation.submenus-show.items-justified-right.is-vertical .wp-block-navigation-submenu {
+	align-items: flex-end;
+	align-self: flex-end;
+}
+
+.wp-block-navigation.submenus-toggle.items-justified-center.is-vertical .wp-block-navigation-item,
+.wp-block-navigation.submenus-toggle.items-justified-center.is-vertical .wp-block-navigation-submenu {
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+}
+
+.wp-block-navigation.submenus-toggle.items-justified-right.is-vertical .wp-block-navigation-item,
+.wp-block-navigation.submenus-toggle.items-justified-right.is-vertical .wp-block-navigation-submenu {
+	justify-content: flex-end;
+	align-items: flex-end;
+	align-self: flex-end;
+}
+
+.wp-block-navigation.submenus-show.items-justified-center.is-vertical .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle.items-justified-center.is-vertical .has-child .wp-block-navigation-submenu__toggle[aria-expanded=true] ~ .wp-block-navigation__submenu-container,
+/* editor */
+.wp-block-navigation.submenus-toggle.items-justified-center.is-vertical .has-child.wp-block-navigation-item.is-selected > .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle.items-justified-center.is-vertical .has-child.wp-block-navigation-item.has-child-selected > .wp-block-navigation__submenu-container {
+	padding-left: 0;
+}
+
+.wp-block-navigation.submenus-show.items-justified-right.is-vertical .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle.items-justified-right.is-vertical .has-child .wp-block-navigation-submenu__toggle[aria-expanded=true] ~ .wp-block-navigation__submenu-container,
+/* editor */
+.wp-block-navigation.submenus-toggle.items-justified-right.is-vertical .has-child.wp-block-navigation-item.is-selected > .wp-block-navigation__submenu-container,
+.wp-block-navigation.submenus-toggle.items-justified-right.is-vertical .has-child.wp-block-navigation-item.has-child-selected > .wp-block-navigation__submenu-container {
+	padding-left: 0;
+	padding-right: var(--wp--style--block-gap, 1em);
+}
+
+/**
+ * Make sub-submenu toggle same as submenu toggle
+ */
+.wp-block-navigation.submenus-toggle .has-child .wp-block-navigation__submenu-container > .wp-block-navigation-item > .wp-block-navigation-item__content {
+	flex-grow: initial;
+}
+
+.wp-block-navigation.submenus-toggle .has-child .wp-block-navigation__submenu-container > .wp-block-navigation-item.open-on-click .wp-block-navigation-submenu__toggle {
+	padding-left: 0;
+	padding-right: .85em;
+}
+
+.wp-block-navigation.submenus-toggle .has-child .wp-block-navigation__submenu-container .wp-block-navigation__submenu-icon {
+	margin-right: 0;
+}
+
+.wp-block-navigation.submenus-toggle .has-child .wp-block-navigation__submenu-container .wp-block-navigation__submenu-icon svg {
+	transform: none;
+}
+
+/* .wp-block-navigation.submenus-show .has-child .wp-block-navigation__submenu-container .wp-block-navigation__submenu-container {
+	left: 1em;
+} */
+
+/* .wp-block-navigation.submenus-show .wp-block-navigation__submenu-container .wp-block-navigation-item,
+.wp-block-navigation.submenus-toggle .wp-block-navigation__submenu-container .wp-block-navigation-item {
+	width: 100%;
+} */
+
+.wp-block-navigation.submenus-toggle .wp-block-navigation-submenu > .wp-block-navigation-item__content {
+	max-width: 100%;
+}
+
+.wp-block-navigation.submenus-toggle:not(.is-vertical) .wp-block-navigation-item.open-on-click .wp-block-navigation-submenu__toggle + .wp-block-navigation__submenu-icon {
+	margin-right: calc(-.6em - .25em);
+}
+
+/**
+ * OPTION: hide submenus
+ */
+.wp-block-navigation.submenus-hide .wp-block-navigation__submenu-container {
+	display: none;
+}
+
+/* fix alignment of core Overlay Menu 'burger' button */
+.wp-block-navigation.items-justified-center:not(.is-layout-flex),
+.wp-block-navigation.items-justified-right:not(.is-layout-flex) {
+	display: flex;
+}

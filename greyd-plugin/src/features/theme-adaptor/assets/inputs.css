@@ -1,0 +1,401 @@
+
+/**
+ * Variables
+ * ____________________________________________________________________
+ */
+:root {
+}
+
+
+/**
+ * Primary inputs
+ * ____________________________________________________________________
+ */
+.input,
+.greyd_form input:not([type=submit], [type=checkbox], [type=radio]),
+.greyd_form input[type=text],
+.greyd_form input[type=email],
+.greyd_form input[type=url],
+.greyd_form input[type=password],
+.greyd_form input[type=search],
+.greyd_form input[type=number],
+.greyd_form input[type=tel],
+.greyd_form input[type=range],
+.greyd_form input[type=date],
+.greyd_form input[type=month],
+.greyd_form input[type=week],
+.greyd_form input[type=time],
+.greyd_form input[type=datetime],
+.greyd_form input[type=datetime-local],
+.greyd_form input[type=color],
+.greyd_form textarea,
+.greyd_form select,
+.wp-block-greyd-search select {
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	/* font */
+	font-family: var(--wp--custom--greyd--input--typography--font-family);
+	font-size: var(--wp--custom--greyd--input--typography--font-size);
+	font-weight: var(--wp--custom--greyd--input--typography--font-weight);
+	line-height: var(--wp--custom--greyd--input--typography--line-height);
+	text-transform: var(--wp--custom--greyd--input--typography--text-transform);
+	letter-spacing: var(--wp--custom--greyd--input--typography--letter-spacing);
+	/* spacing */
+	padding-top: var(--wp--custom--greyd--input--spacing--padding--top);
+	padding-bottom: var(--wp--custom--greyd--input--spacing--padding--bottom);
+	padding-left: var(--wp--custom--greyd--input--spacing--padding--left);
+	padding-right: var(--wp--custom--greyd--input--spacing--padding--right);
+	/* color */
+	color: var(--wp--custom--greyd--input--prim--color--text);
+	background-color: var(--wp--custom--greyd--input--prim--color--background);
+	/* border */
+	border-radius: var(--wp--custom--greyd--input--prim--border--radius);
+	border-width: var(--wp--custom--greyd--input--prim--border--width);
+	border-style: var(--wp--custom--greyd--input--prim--border--style);
+	border-color: var(--wp--custom--greyd--input--prim--border--color);
+	/* shadow */
+	box-shadow: var(--wp--custom--greyd--input--prim--shadow);
+
+	transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* placeholder */
+.input::-webkit-input-placeholder,
+.greyd_form input::-webkit-input-placeholder,
+.greyd_form textarea::-webkit-input-placeholder {
+	color: var(--wp--custom--greyd--input--prim--color--placeholder);
+	opacity: 1;
+}
+
+.input::-moz-placeholder,
+.greyd_form input::-moz-placeholder,
+.greyd_form textarea::-moz-placeholder {
+	color: var(--wp--custom--greyd--input--prim--color--placeholder);
+	opacity: 1;
+}
+
+.input::placeholder,
+.greyd_form input::placeholder,
+.greyd_form textarea::placeholder {
+	color: var(--wp--custom--greyd--input--prim--color--placeholder);
+	opacity: 1;
+}
+
+/* hover */
+.input:hover,
+.greyd_form input:not([type=submit], [type=checkbox]):hover,
+.greyd_form input[type=text]:hover,
+.greyd_form input[type=email]:hover,
+.greyd_form input[type=url]:hover,
+.greyd_form input[type=password]:hover,
+.greyd_form input[type=search]:hover,
+.greyd_form input[type=number]:hover,
+.greyd_form input[type=tel]:hover,
+.greyd_form input[type=range]:hover,
+.greyd_form input[type=date]:hover,
+.greyd_form input[type=month]:hover,
+.greyd_form input[type=week]:hover,
+.greyd_form input[type=time]:hover,
+.greyd_form input[type=datetime]:hover,
+.greyd_form input[type=datetime-local]:hover,
+.greyd_form input[type=color]:hover,
+.greyd_form textarea:hover,
+.greyd_form select:hover,
+.wp-block-greyd-search select:hover,
+/* focus */
+.input:focus,
+.greyd_form input:not([type=submit], [type=checkbox]):focus,
+.greyd_form input.wp-block-search__input:focus,
+.greyd_form input[type=text]:focus,
+.greyd_form input[type=email]:focus,
+.greyd_form input[type=url]:focus,
+.greyd_form input[type=password]:focus,
+.greyd_form input[type=search]:focus,
+.greyd_form input[type=number]:focus,
+.greyd_form input[type=tel]:focus,
+.greyd_form input[type=range]:focus,
+.greyd_form input[type=date]:focus,
+.greyd_form input[type=month]:focus,
+.greyd_form input[type=week]:focus,
+.greyd_form input[type=time]:focus,
+.greyd_form input[type=datetime]:focus,
+.greyd_form .greyd_form input[type=datetime-local]:focus,
+.greyd_form input[type=color]:focus,
+.greyd_form textarea:focus,
+.greyd_form select:focus,
+.wp-block-greyd-search select:focus {
+	color: var(--wp--custom--greyd--input--prim--hover--color--text);
+	background-color: var(--wp--custom--greyd--input--prim--hover--color--background);
+	border-width: var(--wp--custom--greyd--input--prim--hover--border--width);
+	border-style: var(--wp--custom--greyd--input--prim--hover--border--style);
+	border-color: var(--wp--custom--greyd--input--prim--hover--border--color);
+	box-shadow: var(--wp--custom--greyd--input--prim--hover--shadow);
+}
+
+/* placeholder hover */
+.input:hover::-webkit-input-placeholder,
+.greyd_form input:hover::-webkit-input-placeholder,
+.greyd_form textarea:hover::-webkit-input-placeholder,
+.input:focus::-webkit-input-placeholder,
+.greyd_form input:focus::-webkit-input-placeholder,
+.greyd_form textarea:focus::-webkit-input-placeholder {
+	color: var(--wp--custom--greyd--input--prim--hover--color--placeholder);
+}
+
+.input:hover::-moz-placeholder,
+.greyd_form input:hover::-moz-placeholder,
+.greyd_form textarea:hover::-moz-placeholder,
+.input:focus::-moz-placeholder,
+.greyd_form input:focus::-moz-placeholder,
+.greyd_form textarea:focus::-moz-placeholder {
+	color: var(--wp--custom--greyd--input--prim--hover--color--placeholder);
+}
+
+.input:hover::placeholder,
+.greyd_form input:hover::placeholder,
+.greyd_form textarea:hover::placeholder,
+.input:focus::placeholder,
+.greyd_form input:focus::placeholder,
+.greyd_form textarea:focus::placeholder {
+	color: var(--wp--custom--greyd--input--prim--hover--color--placeholder);
+}
+
+/**
+ * Inputs secondary
+ * ____________________________________________________________________
+ */
+.input.is-style-sec,
+input.is-style-sec:not([type=submit], [type=checkbox]),
+form input.is-style-sec:not([type=submit], [type=checkbox]),
+input.wp-block-search__input.is-style-sec,
+input[type=text].is-style-sec,
+input[type=email].is-style-sec,
+input[type=url].is-style-sec,
+input[type=password].is-style-sec,
+input[type=search].is-style-sec,
+input[type=number].is-style-sec,
+input[type=tel].is-style-sec,
+input[type=range].is-style-sec,
+input[type=date].is-style-sec,
+input[type=month].is-style-sec,
+input[type=week].is-style-sec,
+input[type=time].is-style-sec,
+input[type=datetime].is-style-sec,
+input[type=datetime-local].is-style-sec,
+input[type=color].is-style-sec,
+textarea.is-style-sec,
+div:not(.components-base-control__field) > select.is-style-sec {
+	color: var(--wp--custom--greyd--input--sec--color--text);
+	background-color: var(--wp--custom--greyd--input--sec--color--background);
+	border-radius: var(--wp--custom--greyd--input--sec--border--radius);
+	border-width: var(--wp--custom--greyd--input--sec--border--width);
+	border-style: var(--wp--custom--greyd--input--sec--border--style);
+	border-color: var(--wp--custom--greyd--input--sec--border--color);
+	box-shadow: var(--wp--custom--greyd--input--sec--shadow);
+}
+
+/* placeholder */
+input.is-style-sec::-webkit-input-placeholder,
+textarea.is-style-sec::-webkit-input-placeholder {
+	color: var(--wp--custom--greyd--input--sec--color--placeholder);
+	opacity: 1;
+}
+
+input.is-style-sec::-moz-placeholder,
+textarea.is-style-sec::-moz-placeholder {
+	color: var(--wp--custom--greyd--input--sec--color--placeholder);
+	opacity: 1;
+}
+
+input.is-style-sec::placeholder,
+textarea.is-style-sec::placeholder {
+	color: var(--wp--custom--greyd--input--sec--color--placeholder);
+	opacity: 1;
+}
+
+/* hover */
+.input.is-style-sec:hover,
+input.is-style-sec:not([type=submit], [type=checkbox]):hover,
+form input.is-style-sec:not([type=submit], [type=checkbox]):hover,
+input.wp-block-search__input.is-style-sec:hover,
+input[type=text].is-style-sec:hover,
+input[type=email].is-style-sec:hover,
+input[type=url].is-style-sec:hover,
+input[type=password].is-style-sec:hover,
+input[type=search].is-style-sec:hover,
+input[type=number].is-style-sec:hover,
+input[type=tel].is-style-sec:hover,
+input[type=range].is-style-sec:hover,
+input[type=date].is-style-sec:hover,
+input[type=month].is-style-sec:hover,
+input[type=week].is-style-sec:hover,
+input[type=time].is-style-sec:hover,
+input[type=datetime].is-style-sec:hover,
+input[type=datetime-local].is-style-sec:hover,
+input[type=color].is-style-sec:hover,
+textarea.is-style-sec:hover,
+div:not(.components-base-control__field) > select.is-style-sec:hover,
+/* focus */
+.input.is-style-sec:focus,
+input.is-style-sec:not([type=submit], [type=checkbox]):focus,
+form input.is-style-sec:not([type=submit], [type=checkbox]):focus,
+input.wp-block-search__input.is-style-sec:focus,
+input[type=text].is-style-sec:focus,
+input[type=email].is-style-sec:focus,
+input[type=url].is-style-sec:focus,
+input[type=password].is-style-sec:focus,
+input[type=search].is-style-sec:focus,
+input[type=number].is-style-sec:focus,
+input[type=tel].is-style-sec:focus,
+input[type=range].is-style-sec:focus,
+input[type=date].is-style-sec:focus,
+input[type=month].is-style-sec:focus,
+input[type=week].is-style-sec:focus,
+input[type=time].is-style-sec:focus,
+input[type=datetime].is-style-sec:focus,
+input[type=datetime-local].is-style-sec:focus,
+input[type=color].is-style-sec:focus,
+textarea.is-style-sec:focus,
+div:not(.components-base-control__field) > select.is-style-sec:focus {
+	color: var(--wp--custom--greyd--input--sec--hover--color--text);
+	background-color: var(--wp--custom--greyd--input--sec--hover--color--background);
+	border-width: var(--wp--custom--greyd--input--sec--hover--border--width);
+	border-style: var(--wp--custom--greyd--input--sec--hover--border--style);
+	border-color: var(--wp--custom--greyd--input--sec--hover--border--color);
+	box-shadow: var(--wp--custom--greyd--input--sec--hover--shadow);
+}
+
+/* placeholder hover */
+.input.is-style-sec:hover::-webkit-input-placeholder,
+input.is-style-sec:hover::-webkit-input-placeholder,
+textarea.is-style-sec:hover::-webkit-input-placeholder,
+.input.is-style-sec:focus::-webkit-input-placeholder,
+input.is-style-sec:focus::-webkit-input-placeholder,
+textarea.is-style-sec:focus::-webkit-input-placeholder {
+	color: var(--wp--custom--greyd--input--sec--hover--color--placeholder);
+}
+
+.input.is-style-sec:hover::-moz-placeholder,
+input.is-style-sec:hover::-moz-placeholder,
+textarea.is-style-sec:hover::-moz-placeholder,
+.input.is-style-sec:focus::-moz-placeholder,
+input.is-style-sec:focus::-moz-placeholder,
+textarea.is-style-sec:focus::-moz-placeholder {
+	color: var(--wp--custom--greyd--input--sec--hover--color--placeholder);
+}
+
+.input.is-style-sec:hover::placeholder,
+input.is-style-sec:hover::placeholder,
+textarea.is-style-sec:hover::placeholder,
+.input.is-style-sec:focus::placeholder,
+input.is-style-sec:focus::placeholder,
+textarea.is-style-sec:focus::placeholder {
+	color: var(--wp--custom--greyd--input--sec--hover--color--placeholder);
+}
+
+/**
+ * Labels
+ * ____________________________________________________________________
+ */
+.greyd_form label,
+.wp-block-greyd-search label {
+	display: block;
+	color: var(--wp--custom--greyd--input--label--color--text);
+	background: var(--wp--custom--greyd--input--label--color--background);
+	font-family: var(--wp--custom--greyd--input--label--typography--font-family);
+	font-size: var(--wp--custom--greyd--input--label--typography--font-size);
+	font-weight: var(--wp--custom--greyd--input--label--typography--font-weight);
+	line-height: var(--wp--custom--greyd--input--label--typography--line-height);
+}
+
+/**
+ * Disabled
+ * ____________________________________________________________________
+ */
+.input[disabled],
+.greyd_form input[disabled],
+.greyd_form textarea[disabled],
+.greyd_form select[disabled] {
+	opacity: 0.3;
+}
+
+.input[disabled]:hover,
+.greyd_form input[disabled]:hover,
+.greyd_form textarea[disabled]:hover,
+.greyd_form select[disabled]:hover {
+	cursor: not-allowed;
+}
+
+/**
+ * Select
+ * ____________________________________________________________________
+ */
+.greyd_form select,
+.wp-block-greyd-search select {
+	background-image: url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E);
+	background-repeat: no-repeat;
+	background-position: right 14px top 55%;
+	background-size: 20px 20px;
+	padding-right: calc( 20px + var(--wp--custom--greyd--input--spacing--padding--right) ) !important;
+}
+
+
+/**
+ * Checkbox
+ * ____________________________________________________________________
+ */
+.greyd_form input[type=checkbox] + label {
+	display: inline-block;
+	margin-left: 0.5em;
+	line-height: 1em;
+}
+
+/**
+ * Custom cross browser checkbox without extra markup
+ * ____________________________________________________________________
+ */
+.greyd_form input[type="checkbox"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: none;
+	font: inherit;
+	display: inline-grid;
+	place-content: center;
+	margin: 0;
+	padding: 0;
+	margin-right: 0.2em;
+	color: currentColor;
+	width: 0.9em;
+	height: 0.9em;
+	border: 0.1em solid currentColor;
+	-moz-border-radius: 0.15em;
+	-webkit-border-radius: 0.15em;
+	border-radius: 0.15em;
+	transform: translateY(0.15em);
+	vertical-align: text-top;
+}
+
+.greyd_form input[type="checkbox"]::before {
+	content: "";
+	width: 0.6em;
+	height: 0.6em;
+	margin: 0;
+	transform: scale(0);
+	transition: 100ms transform ease-in-out;
+	box-shadow: inset 1em 1em currentColor;
+	/* checkmark */
+	clip-path: polygon(15% 50%, 35% 70%, 84% 5%, 100% 17%, 39% 100%, 3% 65%);
+
+}
+
+.greyd_form input[type="checkbox"]:checked::before {
+	transform: scale(1);
+}
+
+.greyd_form input[type="checkbox"][disabled] {
+	background: rgb(100 100 100 / 0.2);
+}

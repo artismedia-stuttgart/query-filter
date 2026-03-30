@@ -1,0 +1,260 @@
+/**
+ * Editor Styles for components and UI.
+ * 
+ * This style is loaded in the editor only.
+ */
+
+:root {
+    --basic-margin: 10px;
+    --basic-padding: 8px;
+    /* --previewMaxWidth: 700px; */
+    /* --previewBackgroundColor: var(--wp--preset--color--lightest); */
+    /* --wp--style--block-gap: 1em; */
+}
+
+.post-type-greyd_popup :where(.editor-styles-wrapper)::after {
+    height: 10vh !important;
+}
+
+
+/*    Sidebar Panel
+__________________________________
+*/
+.greyd-styles-panel .panel-head {
+    padding: calc(2 * var(--basic-padding));
+    border-bottom: 1px solid #ddd;
+}
+
+.greyd-styles-panel .panel-menu {
+    padding: calc(2 * var(--basic-padding));
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.greyd-styles-panel .panel-head .panel-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: var(--basic-margin);
+}
+
+.greyd-styles-panel .panel-menu-item {
+    width: 100%;
+    padding-top: calc(1 * var(--basic-margin));
+    padding-bottom: calc(1 * var(--basic-margin));
+    height: auto;
+}
+
+.greyd-styles-panel .panel-headline {
+    margin-top: calc(2 * var(--basic-margin));
+    margin-bottom: var(--basic-margin);
+}
+
+.greyd-styles-panel > .edit-site-typography-preview {
+    margin: calc(2 * var(--basic-padding));
+}
+
+.greyd-styles-panel > .components-spinner {
+    display: block;
+    margin: calc(5 * var(--basic-padding)) auto 0;
+    transform: scale(2.5);
+}
+
+.greyd-styles-panel .components-panel__body:last-child {
+    border-bottom: none;
+}
+
+.greyd-styles-panel .components-tip {
+    margin-top: calc(2 * var(--basic-margin));
+    padding-top: calc(2 * var(--basic-margin));
+    /* border-top: 1px solid #ddd; */
+}
+
+
+/*    Components
+__________________________________
+*/
+.panel_debug {
+    font-size: 0.75em;
+    line-height: 1;
+    padding: var(--basic-padding) 2px;
+    border: 1px solid #D7D7D7;
+    background: #f3f3f3;
+    overflow: auto hidden;
+}
+
+
+/*    OptionsControl
+__________________________________
+*/
+.components-base-control.greyd-options-control {
+    width: 100%;
+}
+
+.components-base-control.greyd-options-control label {
+    display: inline-block;
+    margin-bottom: var(--basic-padding);
+}
+
+.components-base-control.greyd-options-control select {
+    display: inline-block;
+    margin-bottom: var(--basic-padding);
+}
+
+
+/*    ButtonGroupControl
+__________________________________
+*/
+.button_group_control {
+    margin-bottom: calc(2 * var(--basic-padding));
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.button_group_control .button {
+    color: #575756;
+    background-color: #fff;
+    border-color: #CCCCCC !important;
+    box-shadow: none !important;
+    transition: color .1s ease, background-color .1s ease;
+}
+
+.button_group_control .button:hover {
+    background-color: #F7F7F7;
+}
+
+.button_group_control .button.active,
+.button_group_control .button.active:hover {
+    background-color: #F2F2F2;
+}
+
+.button_group_control .button:not(:last-child) {
+    margin-right: -1px;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.button_group_control .button:not(:first-child) {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.button_group_control .button svg {
+    display: block;
+}
+
+
+/*    DimensionControl
+__________________________________
+*/
+.dimension_control {
+    margin-bottom: calc(2 * var(--basic-padding));
+}
+
+.dimension_control__label,
+.dimension_control__inputs {
+    margin-bottom: var(--basic-padding);
+}
+
+.dimension_control .components-unit-control-wrapper {
+    /* flex: 1; */
+    width: 45%;
+}
+
+/* switch button */
+.dimension_control__label .switch_button {
+    cursor: pointer;
+    align-self: center;
+    height: 24px;
+    width: 24px;
+    padding: 2px;
+    color: #777;
+    transition: all .2 ease;
+}
+
+.dimension_control__label .switch_button:hover {
+    color: #555;
+}
+
+
+/*    ColorPopupControl
+__________________________________
+*/
+.color_popup_control__popover .components-popover__content > div {
+    width: 265px;
+    padding: 8px;
+}
+
+/* remove color indicator */
+.color_popup_control__popover .components-popover__content legend {
+    display: none;
+}
+
+.color_gradient_popup_control {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-bottom-width: 0px;
+}
+
+.color_gradient_popup_control.single,
+.color_gradient_popup_control:last-of-type {
+    border-bottom-width: 1px;
+    margin-bottom: calc(2 * var(--basic-padding));
+}
+
+.color_gradient_popup_control.small {
+    height: 32px;
+    margin-bottom: 0px;
+}
+
+.color_gradient_popup_control.small button {
+    height: auto;
+}
+
+.color_popup_control__popover.color_gradient {
+    margin-left: -45px;
+}
+
+
+/*    RangeControl
+__________________________________
+*/
+.components-h-stack > .inner_label {
+    flex: 1;
+    margin-bottom: var(--basic-padding);
+}
+
+.components-h-stack > .components-range-control {
+    flex: 2;
+}
+
+
+/*    DropShadowControl
+__________________________________
+*/
+.drop_shadow_control {
+    margin-bottom: calc(2 * var(--basic-padding));
+}
+
+.drop_shadow_control__label,
+.drop_shadow_control .inner_label,
+.drop_shadow_control > .components-flex {
+    flex: 1;
+    margin-bottom: var(--basic-padding);
+}
+
+.drop_shadow_control .components-range-control {
+    flex: 2;
+}
+
+.drop_shadow_control .color_popup_control,
+.drop_shadow_control .components-range-control,
+.drop_shadow_control .components-range-control > div {
+    margin-bottom: 0 !important;
+}
+
+.drop_shadow_control .button_group_control {
+    padding: 0;
+    margin: 0;
+}

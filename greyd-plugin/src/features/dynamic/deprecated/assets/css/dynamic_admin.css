@@ -1,0 +1,88 @@
+/* 
+    Dynamic Templates Admin (deprecated)
+*/
+#template_type {
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    padding: 4px 12px;
+    margin: 0;
+}
+
+/**
+ * Prevent default 'create new template' action as long as the wizard is not loaded
+ */
+#wpbody-content .page-title-action[href*="post-new.php?post_type=dynamic_template"]:not(.wizard-loaded) {
+    pointer-events: none;
+}
+
+/* logging */
+#template_log {
+    position: relative;
+    display: none;
+    float: right;
+    margin-top: 10px;
+    color: #575756;
+    border: 1px solid #dddddd;
+    font-size: 12px;
+    overflow: hidden;
+    height: 30px;
+    max-width: 270px;
+}
+#template_log.show {
+    height: auto;
+}
+.log_title {
+    position: relative;
+    padding: 6px 10px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #dddddd;
+}
+#template_log .log_title.toggle {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left: 34px;
+}
+#template_log .log_title.toggle:hover {
+    background: #efefef;
+}
+#template_log .log_title.toggle::before {
+    content: ' ';
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 5px solid transparent;
+    border-left: 8px solid #575756;
+    top: 50%;
+    left: 16px;
+    margin-top: -5px;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s, -webkit-transform .2s;
+}
+#template_log.show .log_title.toggle::before {
+    -webkit-transform: rotate(90deg) translate(3px, 4px);
+    transform: rotate(90deg) translate(3px, 4px);
+}
+.log_items {
+    background: #fff;
+    padding: 10px 6px 4px 12px;
+}
+.log_items .log_item {
+    margin-bottom: 6px;
+}
+
+.type-dynamic_template .export_template a {
+    cursor: pointer;
+}
+
+/* Hide Preview Buttons for dynamic templates */
+body.post-type-dynamic_template .vc_navbar .vc_save-backend .vc_control-preview,
+body.post-type-dynamic_template #wpadminbar ul#wp-admin-bar-root-default > li#wp-admin-bar-view,
+body.post-type-dynamic_template #wpadminbar ul#wp-admin-bar-root-default > li#wp-admin-bar-archive {
+    display: none;
+}

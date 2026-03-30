@@ -1,0 +1,298 @@
+/**
+ * Animation editor controls.
+ * This file is loaded in block editor pages and modifies the editor experience.
+ * 
+ * @since 1.6.0
+ */
+
+.greyd-animation-control--summary > :first-child {
+	display: flex;
+	align-items: stretch;
+	border: 1px solid rgba(0, 0, 0, .1);
+	border-radius: 2px;
+}
+
+.greyd-animation-control--summary > :first-child > :first-child {
+	flex: 1;
+}
+
+.greyd-animation-control--summary > :first-child > .components-button {
+	height: auto;
+	min-height: 36px;
+}
+
+.greyd-animation-control--summary > :first-child > :not(:first-child) {
+	box-shadow: -1px 0 0 rgba(0, 0, 0, .1);
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.greyd-animation-control--overlay .components-modal__content {
+	width: min(600px, 90vw);
+}
+@media (min-width: 960px) {
+	.greyd-animation-control--overlay .components-modal__frame {
+		max-height: 90%;
+	}
+}
+
+.greyd-animation-control--preview {
+	background-color: #F0F0F0;
+	margin: 0 -32px;
+	padding: 32px;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+}
+
+.greyd-animation-control--preview-element {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	padding: 12px 24px;
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
+	border-radius: 4px;
+}
+
+.greyd-animation-control--preview-element span {
+	display: block;
+	height: 16px;
+	width: 16px;
+	border-radius: 2px;
+	background-color: var(--clr);
+}
+
+.greyd-animation-control--preview-description {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.greyd-animation-control--preview-description > * {
+	margin: 0;
+}
+
+.greyd-animation-control--row {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 12px;
+	margin: 12px 0;
+	padding: 12px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.greyd-animation-control--row > :has(textarea) {
+	grid-column: span 3;
+}
+
+.code-input-control input,
+.code-input-control textarea {
+	font-family: ui-monospace,"Cascadia Mono","Segoe UI Mono","Liberation Mono",Menlo,Monaco,Consolas,monospace;
+	background-color: hsl(0,0%,96.5%);
+}
+
+.greyd-animation-control--row:nth-last-child(2) {
+	border-bottom: none;
+	/* margin-bottom: 0; */
+	/* padding-bottom: 0; */
+}
+
+.greyd-animation-control--row[inert="true"] {
+	opacity: 0.4;
+}
+
+.greyd-animation-control--row > .components-toggle-control {
+	margin-top: 20px;
+}
+
+.greyd-animation-control--row > .color_gradient_popup_control,
+.greyd-animation-control--row > .color_gradient_popup_control:last-of-type {
+	margin-bottom: 8px;
+	border-bottom-width: 1px;
+	height: min-content;
+	align-self: flex-end;
+}
+
+
+/**
+ * ==========================================
+ * 
+ * Animation editor preview control.
+ * 
+ * ==========================================
+ */
+
+.greyd-animation-control--preview [data-anim-action] {
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+/**
+ * whileScroll
+ */
+.greyd-animation-control--preview [data-anim-event="whileScroll"] {
+	transition-duration: 600ms;
+}
+
+/**
+ * show
+ */
+ .greyd-animation-control--preview [data-anim-action="show"] {
+	opacity: 0;
+	transition: none;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="show"] {
+	opacity: 1;
+}
+
+
+/**
+ * hide
+ */
+.greyd-animation-control--preview [data-anim-action="hide"] {
+	transition: none;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="hide"] {
+	opacity: 0;
+}
+
+
+/**
+ * fadeIn
+ */
+.greyd-animation-control--preview [data-anim-action="fadeIn"] {
+	opacity: 0;
+	transition-property: opacity;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeIn"] {
+	opacity: 1;
+}
+
+
+/**
+ * fadeInUp
+ */
+.greyd-animation-control--preview [data-anim-action="fadeInUp"] {
+	opacity: 0;
+	transform: translateY(100px);
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeInUp"] {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+
+/**
+ * fadeInDown
+ */
+.greyd-animation-control--preview [data-anim-action="fadeInDown"] {
+	opacity: 0;
+	transform: translateY(-100px);
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeInDown"] {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+
+/**
+ * fadeInRight
+ */
+.greyd-animation-control--preview [data-anim-action="fadeInRight"] {
+	opacity: 0;
+	transform: translateX(100px);
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeInRight"] {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+
+/**
+ * fadeInLeft
+ */
+.greyd-animation-control--preview [data-anim-action="fadeInLeft"] {
+	opacity: 0;
+	transform: translateX(-100px);
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeInLeft"] {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+
+/**
+ * fadeOut
+ */
+.greyd-animation-control--preview [data-anim-action="fadeOut"] {
+	transition-property: opacity;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeOut"] {
+	opacity: 0;
+}
+
+
+/**
+ * fadeOutUp
+ */
+.greyd-animation-control--preview [data-anim-action="fadeOutUp"] {
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeOutUp"] {
+	opacity: 0;
+	transform: translateY(-100px);
+}
+
+
+/**
+ * fadeOutDown
+ */
+.greyd-animation-control--preview [data-anim-action="fadeOutDown"] {
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeOutDown"] {
+	opacity: 0;
+	transform: translateY(100px);
+}
+
+
+/**
+ * fadeOutRight
+ */
+.greyd-animation-control--preview [data-anim-action="fadeOutRight"] {
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeOutRight"] {
+	opacity: 0;
+	transform: translateX(100px);
+}
+
+
+/**
+ * fadeOutLeft
+ */
+.greyd-animation-control--preview [data-anim-action="fadeOutLeft"] {
+	transition-property: opacity, transform;
+}
+
+.greyd-animation-control--preview:hover [data-anim-action="fadeOutLeft"] {
+	opacity: 0;
+	transform: translateX(-100px);
+}

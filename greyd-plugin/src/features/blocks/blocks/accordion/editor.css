@@ -1,0 +1,14 @@
+.wp-block-greyd-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+    position: relative;
+}
+.wp-block[data-type="greyd/accordion"]:not(.is-selected, .has-child-selected) > .wp-block-greyd-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+    display: none;
+}
+[data-type="greyd/accordion-item"] {
+    display: flex;
+    flex-direction: column;
+}
+
+[data-type="greyd/accordion-item"]:not(:first-child) .wp-block-greyd-accordion-item {
+	margin-top: var(--accord-content-margin-bottom);
+}

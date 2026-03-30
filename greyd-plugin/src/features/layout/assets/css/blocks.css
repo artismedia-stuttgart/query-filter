@@ -1,0 +1,319 @@
+/**
+ * Blocks CSS for Layout Features.
+ * 
+ * Contains general block styles. Is enqueued in the front- & backend.
+ * This file does not get processed and is loaded *after* editor styles so it
+ * will take precedence over editor-specific styles using the same selectors.
+ */
+
+
+/*    General
+__________________________________
+*/
+.is-hidden,
+.wp-block-group.is-hidden,
+.wp-block-columns.is-hidden {
+	display: none;
+}
+
+:where(
+	.has-text-color p,
+	.has-text-color h1,
+	.has-text-color h2,
+	.has-text-color h3,
+	.has-text-color h4,
+	.has-text-color h5,
+	.has-text-color h6
+) {
+	color: inherit;
+}
+
+
+/*    Alignment
+__________________________________
+*/
+.alignleft,
+body .is-layout-flow > .alignleft,
+body .is-layout-constrained > .alignleft {
+	float: none !important;
+	margin-inline-start: 0;
+	margin-inline-end: auto;
+}
+.alignright,
+body .is-layout-flow > .alignright,
+body .is-layout-constrained > .alignright {
+	float: none !important;
+	margin-left: auto !important;
+	margin-inline-start: auto;
+	margin-inline-end: 0;
+}
+.aligncenter,
+body .is-layout-flow > .aligncenter,
+body .is-layout-constrained > .aligncenter {
+	float: none !important;
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+}
+
+/* fix core image alignment margins */
+body .wp-block-image .alignleft {
+	margin-block-start: 0;
+	margin-inline-start: 0;
+	margin-inline-end: auto;
+}
+body .wp-block-image .alignright {
+	margin-block-start: 0;
+	margin-inline-start: auto;
+	margin-inline-end: 0;
+}
+
+/*    Content box
+__________________________________
+*/
+.greyd-content-box {
+	position: relative;
+}
+:where( .greyd-content-box ) {
+	transition-duration: 200ms;
+	transition-property: all;
+	transition-delay: 0ms;
+}
+.greyd-content-box > .wp-block-greyd-box:not(.greyd-content-box) {
+	position: relative;
+	display: block;
+	border: 1px solid transparent; /* prevent inner margin from collapsing */
+	margin: -1px;
+	width: auto; /* calc(100% + 2px) */
+}
+.wp-block-greyd-box.has-text-color h1,
+.wp-block-greyd-box.has-text-color h2,
+.wp-block-greyd-box.has-text-color h3,
+.wp-block-greyd-box.has-text-color h4,
+.wp-block-greyd-box.has-text-color h5,
+.wp-block-greyd-box.has-text-color h6,
+.wp-block-greyd-box.has-text-color p {
+	color: inherit;
+	transition: inherit;
+}
+.greyd-content-box.has-background {
+	overflow: hidden;
+}
+
+
+/*    Backgrounds
+__________________________________
+*/
+.greyd-background {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    /* transition: left var(--anim) ease, right var(--anim) ease; */
+}
+.row_wrap .greyd-background,
+.greyd-content-box .greyd-background {
+    /* position: absolute;
+    top: 0;
+    height: 100%; */
+    left: 0 !important;
+    right: 0 !important;
+    overflow: hidden;
+}
+
+/**
+ * @since 1.7.4
+ * Isolation breaks popover-block layouts and
+ * other z-index based elements.
+ */
+/* .row_wrap.has-background,
+.greyd-content-box.has-background {
+    isolation: isolate;
+} */
+:where( .row_wrap.has-background > :not(.greyd-background) ),
+:where( .greyd-content-box.has-background > :not(.greyd-background) ) {
+    position: relative;
+}
+
+.row_wrap.has-background > .wp-block-columns {
+	background: none !important;
+}
+
+.greyd-background > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.greyd-background > .bg_image {
+    background-position: center;
+    background-size: cover;
+}
+
+.greyd-background .lottie-animation,
+.greyd-background .lottie-animation-placeholder {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.greyd-background .lottie-animation.top_left, .greyd-background .lottie-animation-placeholder.top_left { width:auto; height:auto; }
+.greyd-background .lottie-animation.top_center, .greyd-background .lottie-animation-placeholder.top_center { width:auto; height:auto; left: 50%; transform: translateX(-50%); }
+.greyd-background .lottie-animation.top_right, .greyd-background .lottie-animation-placeholder.top_right { width:auto; height:auto; right:0; }
+.greyd-background .lottie-animation.center_left, .greyd-background .lottie-animation-placeholder.center_left { width:auto; }
+.greyd-background .lottie-animation.center_center, .greyd-background .lottie-animation-placeholder.center_center { width:auto; left: 50%; transform: translateX(-50%); }
+.greyd-background .lottie-animation.center_right, .greyd-background .lottie-animation-placeholder.center_right { width:auto; right:0; }
+.greyd-background .lottie-animation.bottom_left, .greyd-background .lottie-animation-placeholder.bottom_left { width:auto; height:auto; bottom:0; }
+.greyd-background .lottie-animation.bottom_center, .greyd-background .lottie-animation-placeholder.bottom_center { width:auto; height:auto; left: 50%; transform: translateX(-50%); bottom:0; }
+.greyd-background .lottie-animation.bottom_right, .greyd-background .lottie-animation-placeholder.bottom_right { width:auto; height:auto; right:0; bottom:0; }
+.greyd-background .lottie-animation.top, .greyd-background .lottie-animation-placeholder.top { height:auto; }
+.greyd-background .lottie-animation.bottom, .greyd-background .lottie-animation-placeholder.bottom { height:auto; bottom:0; }
+
+.greyd-background .bg_seperator > div {
+    position: absolute;
+    height: auto;
+    width: 100%;
+}
+.greyd-background .bg_seperator .sep_top {
+    top: -1px;
+}
+.greyd-background .bg_seperator .sep_bottom {
+    bottom: -1px;
+    transform: scaleY(-1);
+}
+.greyd-background .bg_seperator .sep_bottom_mirror {
+    bottom: -1px;
+    transform: scale(-1);
+}
+.greyd-background .bg_seperator svg {
+    display: block;
+}
+.greyd-background .bg_seperator svg.svg_mirror_x {
+    transform: scaleX(-1);
+}
+.greyd-background .bg_seperator svg.svg_mirror_y {
+    transform: scaleY(-1);
+}
+.greyd-background .bg_seperator svg.svg_mirror_xy {
+    transform: scale(-1);
+}
+
+
+/*    Parallax background
+__________________________________
+*/
+.greyd-background .bg_hparallax,
+.greyd-background .bg_vparallax {
+	transform: scale(1.5)
+}
+.greyd-background .bg_vparallax {
+	transition: background-position-y .1s;
+}
+.greyd-background .bg_hparallax {
+	transition: background-position-x .1s;
+}
+
+
+/*    Content-box: justify-content
+__________________________________
+*/
+.greyd-content-box.flex-justify-space-between,
+.greyd-content-box.flex-justify-space-between > .wp-block-greyd-box,
+.greyd-content-box.flex-justify-space-around,
+.greyd-content-box.flex-justify-space-around > .wp-block-greyd-box,
+.greyd-content-box.flex-justify-center,
+.greyd-content-box.flex-justify-center > .wp-block-greyd-box,
+.greyd-content-box.flex-justify-flex-start,
+.greyd-content-box.flex-justify-flex-start > .wp-block-greyd-box,
+.greyd-content-box.flex-justify-flex-end,
+.greyd-content-box.flex-justify-flex-end > .wp-block-greyd-box
+{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+
+.greyd-content-box.flex-justify-space-between > .wp-block-greyd-box:not(.greyd-content-box) > *,
+.greyd-content-box.flex-justify-space-between.wp-block-greyd-box > *,
+.greyd-content-box.flex-justify-space-around > .wp-block-greyd-box:not(.greyd-content-box) > *,
+.greyd-content-box.flex-justify-space-around.wp-block-greyd-box > *,
+.greyd-content-box.flex-justify-center > .wp-block-greyd-box:not(.greyd-content-box) > *,
+.greyd-content-box.flex-justify-center.wp-block-greyd-box > *,
+.greyd-content-box.flex-justify-flex-start > .wp-block-greyd-box:not(.greyd-content-box) > *,
+.greyd-content-box.flex-justify-flex-start.wp-block-greyd-box > *,
+.greyd-content-box.flex-justify-flex-end > .wp-block-greyd-box:not(.greyd-content-box) > *,
+.greyd-content-box.flex-justify-flex-end.wp-block-greyd-box > *
+{
+	flex: 0;
+}
+
+.greyd-content-box.flex-justify-space-between > .wp-block-greyd-box:not(.greyd-content-box),
+.greyd-content-box.flex-justify-space-between.wp-block-greyd-box {
+    justify-content: space-between;
+}
+
+.greyd-content-box.flex-justify-space-around > .wp-block-greyd-box:not(.greyd-content-box),
+.greyd-content-box.flex-justify-space-around.wp-block-greyd-box {
+    justify-content: space-around;
+}
+
+.greyd-content-box.flex-justify-center > .wp-block-greyd-box:not(.greyd-content-box),
+.greyd-content-box.flex-justify-centerwp-block-greyd-box {
+    justify-content: center;
+}
+
+.greyd-content-box.flex-justify-flex-end > .wp-block-greyd-box:not(.greyd-content-box),
+.greyd-content-box.flex-justify-flex-end.wp-block-greyd-box {
+    justify-content: flex-end;
+}
+
+
+
+
+/**
+ * Content Box Variation: ".is-position-sticky"
+ * @since 2.0.0
+ */
+.is-position-sticky {
+	position: -webkit-sticky !important;
+	position: var(--sticky-position, sticky ) !important;
+	top: var(--sticky-offset, 0px) !important;
+	z-index: 10;
+}
+
+/**
+ * Content Box Variation: ".is-position-fixed"
+ * @since 2.0.0
+ */
+.is-position-fixed {
+	position: fixed !important;
+	z-index: 20;
+	width: auto;
+	top: var(--offset-top);
+	right: var(--offset-right);
+	bottom: var(--offset-bottom);
+	left: var(--offset-left);
+}
+
+@media screen and (min-width: 601px) {
+	body.admin-bar .is-position-sticky {
+		top: calc( var(--sticky-offset, 0px) + var(--wp-admin--admin-bar--height, 0px) ) !important;
+	}
+	body.admin-bar .is-position-fixed {
+		top: calc( var(--offset-top) + var(--wp-admin--admin-bar--height, 0px) );
+	}
+}
+
+/**
+ * Content Box Variation: ".is-position-absolute"
+ * @since 2.0.0
+ */
+.is-position-absolute {
+	position: absolute !important;
+	width: auto;
+	top: var(--offset-top);
+	right: var(--offset-right);
+	bottom: var(--offset-bottom);
+	left: var(--offset-left);
+}

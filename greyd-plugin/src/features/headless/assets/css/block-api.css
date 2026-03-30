@@ -1,0 +1,33 @@
+
+/*
+----------------------------------------------------------
+
+					API block
+
+----------------------------------------------------------
+*/
+
+.wp-block-greyd-api {
+	min-height: 32px;
+}
+
+.editor-styles-wrapper .wp-block .wp-block-greyd-api pre,
+.wp-block-greyd-api pre {
+	font-size: 12px;
+	line-height: 1;
+	color: var(--color31) !important;
+	background: var(--color33) !important;
+	border: none;
+	margin: 0;
+}
+
+.wp-block-greyd-api.grid-container {
+	--columns: 1;
+	display: grid;
+	gap: var(--GRDgutter);
+	grid-template-columns: repeat(var(--columns), minmax(0px, 1fr));
+	list-style: none;
+}
+.wp-block-greyd-api.grid-container .wp-block-api-item {
+	margin: 0;
+}

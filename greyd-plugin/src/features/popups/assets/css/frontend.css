@@ -1,0 +1,52 @@
+/*
+----------------------------------------------------------
+
+                    Popups Frontend Styles
+
+----------------------------------------------------------
+*/
+section.popups .popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 99999;
+    box-sizing: border-box;
+    pointer-events: none;
+	overflow: hidden;
+}
+section.popups .popup.hidden {
+    display: none;
+}
+section.popups .popup .popup_overlay {
+    position: absolute;
+    width: 0; height: 0;
+    z-index: -1;
+    pointer-events: all;
+}
+section.popups .popup .popup_content {
+    /* perspective: 1000px; this causes strange display issues on firefox when scrolling inside a popup */
+    max-height: 100%;
+    max-width: 100%;
+    transition: all .2s ease;
+}
+section.popups .popup .popup_content .popup_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    pointer-events: all;
+    /* will-change: transform; */
+    transition-property: transform;
+    transition: all .2s ease;
+    background-color: var(--color23, var(--wp--preset--color--background, transparent));
+}
+section.popups .popup .popup_content .popup_wrapper > * {
+    flex-shrink: 0;
+    width: 100%;
+}

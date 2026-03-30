@@ -1,0 +1,285 @@
+/**
+ * This file makes sure that old css variables from the
+ * greyd_suite theme are comptible with the new ones.
+ */
+body {
+	/**
+	 * Brand colors
+	 */
+	--color11: var(--wp--preset--color--primary, #4f309e);
+	--color12: var(--wp--preset--color--secondary, #f2b25a);
+	--color13: var(--wp--preset--color--tertiary, #f9dd61);
+	/**
+	 * Greyscale colors
+	 */
+	--color31: var(--wp--preset--color--foreground, #0e1111);
+	--color21: var(--wp--preset--color--dark, #3d3549);
+	--color32: var(--wp--preset--color--mediumdark, #9992a3);
+	--color22: var(--wp--preset--color--mediumlight, #cbc6d1);
+	--color33: var(--wp--preset--color--base, #e9e6ed);
+	--color23: var(--wp--preset--color--background, #f9f7ff);
+	/**
+	 * Basic colors
+	 */
+	--color61: var(--wp--preset--color--darkest, #000);
+	--color62: var(--wp--preset--color--lightest, #fff);
+	--color63: var(--wp--preset--color--transparent, transparent);
+	/**
+	 * Signal colors
+	 */
+	--color41: var(--wp--preset--color--vivid-cyan-blue, #0693e3);
+	--color51: var(--wp--preset--color--pale-cyan-blue, #8ed1fc);
+	--color42: var(--wp--preset--color--vivid-green-cyan, #00d084);
+	--color52: var(--wp--preset--color--light-green-cyan, #7bdcb5);
+	--color43: var(--wp--preset--color--vivid-red, #cf2e2e);
+	--color53: var(--wp--preset--color--pale-pink, #f78da7);
+	/**
+	 * Deprecated colors
+	 */
+	--wp--preset--color--color-11: var(--color11);
+	--wp--preset--color--color-12: var(--color12);
+	--wp--preset--color--color-13: var(--color13);
+	--wp--preset--color--color-21: var(--color21);
+	--wp--preset--color--color-22: var(--color22);
+	--wp--preset--color--color-23: var(--color23);
+	--wp--preset--color--color-31: var(--color31);
+	--wp--preset--color--color-32: var(--color32);
+	--wp--preset--color--color-33: var(--color33);
+	--wp--preset--color--color-41: var(--color41);
+	--wp--preset--color--color-42: var(--color42);
+	--wp--preset--color--color-43: var(--color43);
+	--wp--preset--color--color-51: var(--color51);
+	--wp--preset--color--color-52: var(--color52);
+	--wp--preset--color--color-53: var(--color53);
+	--wp--preset--color--color-61: var(--color61);
+	--wp--preset--color--color-62: var(--color62);
+	--wp--preset--color--color-63: var(--color63);
+}
+
+/**
+ * Color helper classes
+ */
+
+.has-color-11-color {
+	color: var(--color11) !important;
+}
+
+.has-color-12-color {
+	color: var(--color12) !important;
+}
+
+.has-color-13-color {
+	color: var(--color13) !important;
+}
+
+.has-color-21-color {
+	color: var(--color21) !important;
+}
+
+.has-color-22-color {
+	color: var(--color22) !important;
+}
+
+.has-color-23-color {
+	color: var(--color23) !important;
+}
+
+.has-color-31-color {
+	color: var(--color31) !important;
+}
+
+.has-color-32-color {
+	color: var(--color32) !important;
+}
+
+.has-color-33-color {
+	color: var(--color33) !important;
+}
+
+.has-color-41-color {
+	color: var(--color41) !important;
+}
+
+.has-color-42-color {
+	color: var(--color42) !important;
+}
+
+.has-color-43-color {
+	color: var(--color43) !important;
+}
+
+.has-color-51-color {
+	color: var(--color51) !important;
+}
+
+.has-color-52-color {
+	color: var(--color52) !important;
+}
+
+.has-color-53-color {
+	color: var(--color53) !important;
+}
+
+.has-color-61-color {
+	color: var(--color61) !important;
+}
+
+.has-color-62-color {
+	color: var(--color62) !important;
+}
+
+/**
+ * Background color helper classes
+ */
+
+.has-color-11-background-color {
+	background-color: var(--color11) !important;
+}
+
+.has-color-12-background-color {
+	background-color: var(--color12) !important;
+}
+
+.has-color-13-background-color {
+	background-color: var(--color13) !important;
+}
+
+.has-color-21-background-color {
+	background-color: var(--color21) !important;
+}
+
+.has-color-22-background-color {
+	background-color: var(--color22) !important;
+}
+
+.has-color-23-background-color {
+	background-color: var(--color23) !important;
+}
+
+.has-color-31-background-color {
+	background-color: var(--color31) !important;
+}
+
+.has-color-32-background-color {
+	background-color: var(--color32) !important;
+}
+
+.has-color-33-background-color {
+	background-color: var(--color33) !important;
+}
+
+.has-color-41-background-color {
+	background-color: var(--color41) !important;
+}
+
+.has-color-42-background-color {
+	background-color: var(--color42) !important;
+}
+
+.has-color-43-background-color {
+	background-color: var(--color43) !important;
+}
+
+.has-color-51-background-color {
+	background-color: var(--color51) !important;
+}
+
+.has-color-52-background-color {
+	background-color: var(--color52) !important;
+}
+
+.has-color-53-background-color {
+	background-color: var(--color53) !important;
+}
+
+.has-color-61-background-color {
+	background-color: var(--color61) !important;
+}
+
+.has-color-62-background-color {
+	background-color: var(--color62) !important;
+}
+
+/**
+ * Background gradient helper classes
+ */
+
+.has-color11-to-color12-gradient-background {
+	background: linear-gradient(130deg, var(--color11) 0%, var(--color12) 100%);
+}
+
+.has-color11-to-color13-gradient-background {
+	background: linear-gradient(130deg, var(--color11) 0%, var(--color12) 50%, var(--color13) 100%);
+}
+
+.has-color12-to-color13-gradient-background {
+	background: linear-gradient(130deg, var(--color12) 0%, var(--color13) 100%);
+}
+
+.has-color11-to-color31-gradient-background {
+	background: linear-gradient(130deg, var(--color11) 0%, var(--color12) 33%, var(--color13) 66%, var(--color31) 100%);
+}
+
+.has-branding-steps-gradient-background {
+	background: linear-gradient(130deg, var(--color11) 0%, var(--color12) 50%, var(--color11) 50%, var(--color12) 75%, var(--color13) 75%, var(--color12) 100%);
+}
+
+.has-branding-experiment-gradient-background {
+	background: linear-gradient(130deg, var(--color13) 50%, var(--color12) 50%, var(--color12) 60%, var(--color11) 60%, var(--color11) 70%, var(--color12) 80%, var(--color13) 80%, var(--color13) 90%, var(--color11) 90%);
+}
+
+.has-color62-to-color22-gradient-background {
+	background: linear-gradient(130deg, var(--color62) 0%, var(--color22) 100%);
+}
+
+.has-color23-to-color32-gradient-background {
+	background: linear-gradient(130deg, var(--color23) 0%, var(--color22) 50%, var(--color32) 100%);
+}
+
+.has-color62-to-color21-gradient-background {
+	background: linear-gradient(130deg, var(--color62) 0%, var(--color33) 33%, var(--color32) 66%, var(--color21) 100%);
+}
+
+.has-color33-to-color31-gradient-background {
+	background: linear-gradient(130deg, var(--color33) 0%, var(--color21) 66%, var(--color31) 100%);
+}
+
+.has-darken-steps-gradient-background {
+	background: linear-gradient(130deg, var(--color23) 0%, var(--color22) 50%, var(--color33) 50%, var(--color22) 75%, var(--color32) 75%, var(--color21) 100%);
+}
+
+.has-color63-to-color62-gradient-background {
+	background: linear-gradient(180deg, var(--color63) 0%, var(--color62) 100%);
+}
+
+.has-color-11-to-color-12-se-gradient-background {
+	background: linear-gradient(145deg, var(--color11) 0%, var(--color12) 100%);
+}
+
+.has-color-11-to-color-12-sw-gradient-background {
+	background: linear-gradient(202deg, var(--color11) 0%, var(--color12) 100%);
+}
+
+.has-color-11-to-color-12-ne-gradient-background {
+	background: linear-gradient(29deg, var(--color11) 0%, var(--color12) 100%);
+}
+
+.has-color-31-to-color-63-s-gradient-background {
+	background: linear-gradient(180deg, var(--color31) 0%, var(--color63) 100%);
+}
+
+.has-color-21-to-color-31-ne-gradient-background {
+	background: linear-gradient(29deg, var(--color21) 0%, var(--color31) 100%);
+}
+
+.has-color-32-to-color-23-ne-gradient-background {
+	background: linear-gradient(45deg, var(--color32) 0%, var(--color23) 100%);
+}
+
+.has-color-33-to-color-62-n-gradient-background {
+	background: linear-gradient(0deg, var(--color33) 0%, var(--color62) 100%);
+}
+
+.has-color-33-to-color-23-s-gradient-background {
+	background: linear-gradient(180deg, var(--color33) 49.99%, var(--color23) 50%);
+}

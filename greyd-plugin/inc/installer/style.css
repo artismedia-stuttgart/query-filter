@@ -1,0 +1,621 @@
+:root {
+	--body-font-size: 16px;
+	--block-gap: 20px;
+	--yellow: #F9DD61;
+	--orange: #F2B25A;
+	--black: #0F0326;
+	--gray: #636381;
+	--pink: #F82969;
+	--bg: repeating-linear-gradient(0deg, #F9DD61 0, #F9DD61 24%, transparent 0, transparent 50%), repeating-linear-gradient(135deg, #F2B25A 0, #F2B25A 1%, transparent 0, transparent 50%);
+	--font-size--tiny: clamp(.9rem, 0.9rem + ((1vw - 0.2rem) * 0.17), 1rem);
+	--font-size--small: clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.34), 1.2rem);
+	--font-size--base: clamp(1.13rem, 1.13rem + ((1vw - 0.2rem) * 0.289), 1.3rem);
+	--font-size--medium: clamp(1.3rem, 1.3rem + ((1vw - 0.2rem) * 0.511), 1.6rem);
+	--font-size--large: clamp(1.5rem, 1.5rem + ((1vw - 0.2rem) * 0.851), 2rem);
+	--font-size--huge: clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.362), 2.8rem);
+}
+
+/**
+ * Reset
+ * ____________________________________________________________________
+ */
+* {
+	box-sizing: border-box;
+}
+
+html.wp-toolbar {
+	background: #1d2327;
+	padding-top: 0
+}
+
+div#adminmenumain,
+div#wpadminbar {
+	display: none
+}
+
+.appearance_page_install-greyd .notice {
+	display: none
+}
+
+#wpcontent {
+	height: 100%;
+	padding-left: 0
+}
+
+#wpcontent > :not(#wpbody) {
+	display: none;
+}
+
+#wpcontent #wpbody-content {
+	padding-bottom: 0
+}
+
+#wpcontent #wpbody-content > :not(#greyd-installer) {
+	display: none
+}
+
+#wpfooter {
+	display: none
+}
+
+#wpwrap {
+	background: #1d2327;
+}
+
+@media(max-width: 1250px) {
+	#wpbody {
+		padding-top: 0
+	}
+}
+
+div#wpcontent {
+	margin: 0;
+	position: relative;
+}
+
+@media(max-width: 1250px) {
+	div#wpcontent {
+		margin-left: 0 !important;
+		padding-left: 0 !important
+	}
+}
+
+
+/**
+ * Elements
+ * ____________________________________________________________________
+ */
+
+h1 {
+	font-size: var(--font-size--huge);
+	line-height: 1.2;
+	font-weight: 700;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+	text-wrap: pretty;
+}
+
+h2 {
+	font-size: var(--font-size--medium);
+	line-height: 1.2;
+	font-weight: 600;
+	margin: 0;
+	margin-bottom: 1rem;
+	text-wrap: pretty;
+}
+
+p {
+	font-size: var(--font-size--small);
+	padding-left: 0;
+	padding-right: 0;
+	text-wrap: pretty;
+}
+
+small {
+	font-size: var(--font-size--tiny);
+	line-height: 1.5;
+}
+
+a {
+	color: var(--black);
+	text-decoration: none;
+	display: inline-block;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline dotted;
+	color: var(--black);
+}
+
+label {
+	font-size: var(--font-size--small);
+	margin-bottom: 1rem;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #d2d2d2;
+	margin: 1.5rem 0;
+}
+
+
+/**
+ * Background
+ * ____________________________________________________________________
+ */
+
+#greyd-installer {
+	display: grid;
+	min-height: calc(100vh - var(--block-gap) - var(--block-gap));
+	margin: var(--block-gap);
+	padding: var(--block-gap);
+	background-color: var(--yellow);
+	background-image: var(--bg);
+	background-size: 32px 32px;
+	color: var(--black);
+	border-radius: 8px;
+}
+
+
+/**
+ * Layout
+ * ____________________________________________________________________
+ */
+
+.greyd-installer-container {
+	position: relative;
+	max-width: min(100vw, calc(42vw + 40rem));
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--block-gap);
+}
+
+@media screen and (min-width: 783px) {
+
+	.greyd-installer-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 30px 1fr;
+		grid-column-gap: clamp(var(--block-gap), 6vw, 8rem);
+		grid-row-gap: 0;
+	}
+
+	.greyd-installer-head {
+		grid-area: 1 / 1 / 2 / 3;
+	}
+
+	.greyd-installer-claim {
+		grid-area: 2 / 1 / 3 / 2;
+	}
+
+	.greyd-installer-start {
+		grid-area: 2 / 2 / 3 / 3;
+	}
+
+	.greyd-installer-container > div {
+		align-self: center;
+	}
+}
+
+
+/**
+ * Header
+ * ____________________________________________________________________
+ */
+
+.back-to-dash {
+	color: inherit;
+	text-decoration: none;
+	line-height: 2;
+	text-decoration: none;
+	width: auto;
+	font-size: 16px !important;
+}
+
+.back-to-dash:hover,
+.back-to-dash:focus {
+	text-decoration: none !important;
+}
+
+.back-to-dash span {
+	font-size: 20px;
+	line-height: 1.3;
+	margin-right: 10px;
+	position: relative;
+}
+
+
+/**
+ * Claim
+ * ____________________________________________________________________
+ */
+.greyd-installer-claim {
+	animation: FadeInLeft 0.3s;
+}
+
+
+/**
+ * Dialog
+ * ____________________________________________________________________
+ */
+
+.greyd-installer-dialog {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: min(2.5vw, 2.5rem);
+	padding-bottom: 70px;
+	border-radius: 6px;
+	background: var(--white, #ffffff);
+	border: 1px solid #bea583;
+	box-shadow: 0px 2.76726px 2.21381px 0px rgba(0, 0, 0, 0.02), 0px 6.6501px 5.32008px 0px rgba(0, 0, 0, 0.03), 0px 12.52155px 10.01724px 0px rgba(0, 0, 0, 0.04), 0px 22.33631px 17.86905px 0px rgba(0, 0, 0, 0.04), 0px 41.77761px 33.42209px 0px rgba(0, 0, 0, 0.05), 0px 100px 80px 0px rgba(0, 0, 0, 0.07);
+	animation: FadeInUp 0.8s;
+}
+
+/**
+ * Content
+ * ____________________________________________________________________
+ */
+
+.greyd-installer-dialog--content {
+	padding: 10px;
+	animation: FadeInRight 0.3s;
+}
+
+.greyd-installer-dialog--content p {
+	color: var(--gray);
+}
+
+@media screen and (min-width: 783px) {
+
+	.greyd-installer-dialog {
+		max-width: 650px;
+		height: 690px;
+	}
+
+	.greyd-installer-dialog--content {
+		flex-grow: 1;
+		overflow: auto;
+	}
+
+	.greyd-installer-container[data-step="3"] .greyd-installer-dialog--content {
+		overflow: scroll;
+		padding-right: 20px;
+		margin-right: -20px;
+	}
+}
+
+* {
+	scrollbar-width: auto;
+	scrollbar-color: var(--gray) #ffffff;
+}
+
+*::-webkit-scrollbar {
+	width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--gray);
+	border-radius: 10px;
+	border: 3px solid #ffffff;
+}
+
+
+/**
+ * List
+ * ____________________________________________________________________
+ */
+
+ol {
+	list-style: none;
+	margin: 3rem 0 0 2rem;
+}
+
+li {
+	font-size: var(--font-size--medium);
+	line-height: 1.5;
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+li::before {
+	content: "";
+	display: inline-block;
+	vertical-align: sub;
+	width: 2rem;
+	height: 2rem;
+	margin-right: 2rem;
+	border-radius: 100%;
+	background-color: currentColor;
+}
+
+li:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 1rem;
+	margin: 6px -1px;
+	width: 2px;
+	height: 1rem;
+	background-color: currentColor;
+	opacity: 0.5;
+}
+
+li:nth-child(2) {
+	opacity: 0.5;
+}
+
+li:nth-child(3) {
+	opacity: 0.35;
+}
+
+li:nth-child(4) {
+	opacity: 0.25;
+}
+
+
+/**
+ * Buttons
+ * ____________________________________________________________________
+ */
+
+.components-button {
+	--wp-components-color-accent: var(--black);
+	--wp-admin-theme-color-darker-10: #000000;
+	--wp-components-color-accent-darker-20: #343151;
+	--wp-components-color-accent-inverted: #ffffff;
+}
+
+.components-button.is-size-large {
+	font-size: var(--font-size--small);
+	line-height: 1.2;
+	padding: 0.75rem 2rem;
+	height: auto;
+}
+
+.components-button:has(svg) svg {
+	transition: transform 0.2s !important;
+}
+
+.components-button:hover:has(svg) span + svg {
+	transform: translateX(4px) !important;
+}
+
+.components-button:hover:has(svg) svg:first-child {
+	transform: translateX(-4px) !important;
+}
+
+.components-flex-block:has(> .components-button) {
+	display: flex;
+}
+
+.components-flex-block > .components-button {
+	display: flex;
+	flex: 1 1 auto;
+	justify-content: center;
+}
+
+
+/**
+ * Pagination
+ * ____________________________________________________________________
+ */
+
+.greyd-installer-dialog--pagination {
+	--size: 10px;
+	--padding: 6px;
+	position: absolute;
+	inset: auto 0 0 0;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: opacity 0.2s;
+}
+
+.greyd-installer-dialog--pagination:not(:hover) {
+	opacity: 0.75;
+}
+
+.greyd-installer-dialog--pagination--dot {
+	all: unset;
+	display: block;
+	padding: var(--padding);
+	cursor: pointer;
+	border-radius: 100%;
+}
+
+.greyd-installer-dialog--pagination--dot::before {
+	content: "";
+	display: block;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 100%;
+	background-color: #d2d2d2;
+}
+
+.greyd-installer-dialog--pagination--dot:hover::before {
+	background-color: var(--gray);
+}
+
+.greyd-installer-dialog--pagination--dot[data-active="true"]::before {
+	background-color: var(--black)
+}
+
+
+
+/**
+ * SelectCard
+ * ____________________________________________________________________
+ */
+
+.greyd-installer-card {
+	position: relative;
+	--gap: var(--font-size--small);
+	padding: var(--gap);
+	margin-top: var(--gap);
+	border-radius: 4px;
+	background-color: #f0f0f0;
+	cursor: default;
+}
+
+.greyd-installer-card :is( label, a, input ) {
+	cursor: default !important;
+}
+
+.greyd-installer-card:not([aria-disabled]):hover {
+	background-color: #E9E9E9;
+	box-shadow: 0 0 0 1px #d2d2d2 inset;
+}
+
+.greyd-installer-card[aria-disabled] {
+	background-color: #f7f7f7;
+	color: var(--gray);
+}
+
+.greyd-installer-card--title {
+	font-size: var(--font-size--small);
+	margin-bottom: 1rem;
+}
+
+.greyd-installer-card--description {
+	font-size: var(--font-size--tiny);
+	color: var(--gray);
+	line-height: 1.5;
+	margin-bottom: 0;
+}
+
+/**
+ * chips
+ */
+.greyd-installer-card--chips {
+	position: absolute;
+	top: var(--gap);
+	right: var(--gap);
+	margin: -2px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.greyd-installer-card--chip {
+	font-size: 11px;
+	line-height: 2;
+	padding: 0 0.6rem;
+	border-radius: 50px;
+	color: #ffffff;
+	background-color: currentColor;
+}
+
+.greyd-installer-card--chip[data-color="purple"] {
+	background-color: #7351FB;
+}
+
+.greyd-installer-card--chip[data-color="orange"] {
+	color: var(--black);
+	background-color: #F2B25A;
+}
+
+.greyd-installer-card--chip[data-color="green"] {
+	background-color: #108D59;
+}
+
+/**
+ * Finish
+ * ____________________________________________________________________
+ */
+.greyd-installer-dialog--section {
+	align-items: flex-start !important;
+	border-top: 1px solid #d5d5d5;
+	gap: 20px;
+	justify-content: flex-start;
+	padding: 30px 0;
+}
+
+.greyd-installer-dialog--section p {
+	font-size: var(--font-size--tiny);
+	margin-bottom: 0;
+}
+
+/**
+ * Notices
+ * ____________________________________________________________________
+ */
+.components-snackbar-list {
+	position: fixed;
+	bottom: var(--block-gap);
+	left: var(--block-gap);
+	margin-bottom: var(--block-gap);
+	margin-left: var(--block-gap);
+	z-index: 999;
+}
+
+.components-snackbar .components-snackbar__content-with-icon {
+	position: static;
+}
+
+.components-snackbar .components-snackbar__icon {
+	left: 18px;
+	top: 12px;
+}
+
+.components-snackbar .components-button.components-snackbar__action {
+	font-size: inherit;
+}
+
+.components-notice {
+	margin: 0;
+}
+
+
+/**
+ * Animations
+ * ____________________________________________________________________
+ */
+
+@keyframes FadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	50% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes FadeInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes FadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}

@@ -1,0 +1,56 @@
+/*
+----------------------------------------------------------
+
+                    Pop-up close button
+
+----------------------------------------------------------
+*/
+
+.popup_close_button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 40px;
+    font-size: 4px;
+    transition: all var(--anim) ease;
+}
+.popup_close_button::before {
+    content: "";
+    display:block;
+    padding-top: 100%;
+}
+.popup_close_button .close_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.popup_close_button .close_icon span {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    height: 90%;
+    width: 1em;
+    margin-left: -.5em !important;
+    background-color: currentColor;
+}
+.popup_close_button .close_icon span:first-child {
+    transform: rotate(45deg);
+}
+.popup_close_button .close_icon span:last-child {
+    transform: rotate(-45deg);
+}
+/* alignment */
+.wp-block-greyd-popup-close, .popup_close_button {
+    float: none !important;
+    margin: 0;
+}
+.wp-block-greyd-popup-close.alignright,
+.wp-block[data-type="greyd/popup-close"].alignright {
+    text-align: right;
+}
+.wp-block-greyd-popup-close.aligncenter,
+.wp-block[data-type="greyd/popup-close"].aligncenter {
+    text-align: center;
+}

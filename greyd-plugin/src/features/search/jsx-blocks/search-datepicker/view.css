@@ -1,0 +1,105 @@
+/* .flatpickr-current-month .numInputWrapper {
+	width: 6ch;
+	display: inline-block;
+	position: absolute;
+	top: 6px;
+	right: 0;
+} */
+
+.wp-block-greyd-search-datepicker .input-inner-wrapper {
+	position: relative;
+}
+
+.greyd-datepicker-input.greyd-datepicker-input {
+	padding-right: calc(var(--wp--custom--greyd--input--spacing--padding--right) + 15px);
+}
+
+.greyd-datepicker-input:placeholder-shown ~ .greyd-datepicker-clear {
+	display: none;
+}
+
+.greyd-datepicker-clear {
+	position: absolute;
+	display: block;
+	background: none;
+	right: 10px;
+	width: 20px;
+	padding: 0;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 22px;
+	font: 20px monospace;
+	border-radius: 50%;
+	line-height: 1;
+	color: currentColor;
+	text-align: center;
+	cursor: pointer;
+}
+
+.greyd-datepicker-clear:focus-visible {
+	outline: 2px dotted var( --text-color, var(--wp--preset--color--foreground, currentColor) );
+}
+
+.input-inner-wrapper:has( .greyd-datepicker-clear ) {
+	position: relative;
+}
+
+/**
+ * Small screen design adjustments
+ */
+@media (max-width: 576px) {
+
+	/* position calendar as drawer at the bottom */
+	.flatpickr-calendar {
+		width: calc(100%) !important;
+		position: fixed;
+		top: auto !important;
+		bottom: 0px !important;
+		left: 0px !important;
+		right: 0px !important;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	/* fade in drawer from bottom */
+	@keyframes fpFadeInDown {
+		from {
+			opacity: 0;
+			-webkit-transform: translate3d(0, 20px, 0);
+			transform: translate3d(0, 20px, 0);
+		}
+		to {
+			opacity: 1;
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	/* adjust calendar width */
+	.flatpickr-calendar .flatpickr-days {
+		width: 100% !important;
+	}
+	.flatpickr-calendar .flatpickr-days .dayContainer {
+		grid-template-columns: repeat(7, 1fr);
+	}
+
+	/* remove small triangle */
+	.flatpickr-calendar:before,
+	.flatpickr-calendar:after {
+		content: none;
+	}
+
+	/* hide predefined ranges */
+	.flatpickr-predefined-ranges {
+		display: none;
+	}
+
+	input[type="date"]:before {
+		content: attr(placeholder) !important;
+	}
+	input[type="date"]:focus:before,
+	input[type="date"]:valid:before {
+		content: "";
+	}
+}

@@ -24,18 +24,6 @@ function bootstrap(): void
   add_filter('block_type_metadata', __NAMESPACE__ . '\\filter_block_type_metadata', 10);
   add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 
-  // WAR-PLAN: Final proof logging.
-  add_filter( 'the_posts', function( $posts, $query ) {
-  	// Target the specific query loop with ID 3, only on the frontend.
-  	if ( ! is_admin() && $query->get( 'query_id' ) == 3 ) {
-  		error_log('--- WAR-PLAN: POSTS RETURNED FROM DB (Query ID 3) ---');
-  		error_log( 'Post Count: ' . count( $posts ) );
-  		error_log( 'Post IDs: ' . implode( ', ', wp_list_pluck( $posts, 'ID' ) ) );
-  		error_log('--- END POSTS RETURNED ---');
-  	}
-  	return $posts;
-  }, 10, 2 );
-
   // Settings.
   add_action( 'admin_menu', __NAMESPACE__ . '\\register_settings_page' );  add_action('admin_init', __NAMESPACE__ . '\\register_settings');
   add_action('admin_init', __NAMESPACE__ . '\\admin_handle_save');
